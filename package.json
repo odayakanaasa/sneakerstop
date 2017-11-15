@@ -1,0 +1,30 @@
+{
+  "name": "sneaker-stop",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start:dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "/issues"
+  },
+  "homepage": "",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.1",
+    "mongoose": "^4.13.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.4.1"
+  }
+}
