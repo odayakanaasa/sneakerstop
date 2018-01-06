@@ -1,3 +1,454 @@
+html, body {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  background-color: #000; }
 
+a {
+  text-decoration: none; }
+
+.row {
+  text-align: center;
+  vertical-align: top;
+  width: 100%;
+  position: relative; }
+
+.col-md-8 {
+  display: inline-block;
+  position: relative;
+  width: 100%; }
+
+.col-md-6 {
+  display: inline-block;
+  position: relative;
+  width: 100%; }
+
+.col-md-4 {
+  display: inline-block;
+  position: relative;
+  width: 100%; }
+
+.col-md-3 {
+  display: inline-block;
+  position: relative;
+  width: 100%; }
+
+@media (min-width: 768px) {
+  .row {
+    display: flex; }
+
+  .col-md-8 {
+    width: 66%; }
+
+  .col-md-6 {
+    width: 50%; }
+
+  .col-md-4 {
+    width: 33%; }
+
+  .col-md-3 {
+    width: 25%; } }
+@font-face {
+  font-family: 'Wolf';
+  src: url("../../assets/fonts/wolf-in-the-city.ttf"); }
+@font-face {
+  font-family: 'Trade Gothic';
+  src: url("../../assets/fonts/trade-gothic.ttf"); }
+@font-face {
+  font-family: 'Trade Gothic Bold';
+  src: url("../../assets/fonts/trade-gothic-bold.ttf"); }
+@font-face {
+  font-family: 'Trade Gothic Light';
+  src: url("../../assets/fonts/trade-gothic-light.ttf"); }
+@font-face {
+  font-family: 'Trade Gothic Condensed';
+  src: url("../../assets/fonts/trade-gothic-condensed.ttf"); }
+.navbar {
+  z-index: 5;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 80px;
+  background: #000;
+  background: linear-gradient(to right, #000, #333334);
+  color: white; }
+  .navbar .logo-container {
+    font-family: 'Wolf';
+    text-align: center;
+    font-size: 64px;
+    z-index: 6;
+    position: absolute;
+    top: 0px;
+    width: 220px;
+    height: 80px;
+    float: left; }
+    .navbar .logo-container a {
+      color: white;
+      cursor: pointer; }
+  .navbar li {
+    display: inline-block;
+    list-style-type: none; }
+  .navbar .nav-container {
+    display: none;
+    text-align: right;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    width: 100%;
+    float: right;
+    height: 80px; }
+    .navbar .nav-container .navbar-top {
+      font-family: 'Trade Gothic Light';
+      font-size: 12px;
+      height: 25px;
+      line-height: 25px;
+      top: 0px; }
+      .navbar .nav-container .navbar-top ul {
+        margin-right: 25px;
+        margin-top: 5px;
+        height: 25px; }
+        .navbar .nav-container .navbar-top ul li {
+          margin-right: 10px; }
+          .navbar .nav-container .navbar-top ul li img {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            height: 14px; }
+          .navbar .nav-container .navbar-top ul li a {
+            color: white; }
+    .navbar .nav-container .navbar-bottom {
+      text-align: center;
+      font-family: 'Trade Gothic Condensed';
+      height: 50px; }
+      .navbar .nav-container .navbar-bottom ul {
+        position: relative;
+        display: inline-block;
+        margin: auto;
+        width: 240px;
+        height: 50px;
+        padding: 0px; }
+        .navbar .nav-container .navbar-bottom ul li {
+          font-size: 22px;
+          padding-left: 15px;
+          padding-right: 15px;
+          padding-top: 5px;
+          height: 45px;
+          line-height: 30px;
+          text-align: center; }
+          .navbar .nav-container .navbar-bottom ul li:hover {
+            background-color: white;
+            color: black;
+            cursor: pointer; }
+      .navbar .nav-container .navbar-bottom .search {
+        display: inline-block;
+        position: absolute;
+        height: 45px;
+        padding-top: 5px;
+        right: 70px; }
+        .navbar .nav-container .navbar-bottom .search input {
+          font-family: 'Trade Gothic Condensed';
+          padding-left: 5px;
+          color: #bbb;
+          height: 30px;
+          line-height: 30px;
+          width: 160px;
+          box-sizing: border-box;
+          font-size: 18px;
+          border: none; }
+          .navbar .nav-container .navbar-bottom .search input::placeholder {
+            color: #bbb; }
+      .navbar .nav-container .navbar-bottom .cart {
+        display: inline-block;
+        position: absolute;
+        height: 40px;
+        right: 15px;
+        color: white; }
+        .navbar .nav-container .navbar-bottom .cart img {
+          height: inherit;
+          -moz-transform: scaleX(-1);
+          -o-transform: scaleX(-1);
+          -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+          filter: FlipH;
+          -ms-filter: "FlipH"; }
+
+.hamburger-container {
+  display: block;
+  float: right;
+  text-align: center;
+  line-height: 80px;
+  height: 80px;
+  width: 80px; }
+
+@media (min-width: 768px) {
+  .navbar .nav-container {
+    display: block; }
+
+  .navbar .hamburger-container {
+    display: none; } }
+.nav-dropdown {
+  color: black;
+  background-color: white;
+  position: fixed;
+  top: 80px;
+  width: 100%;
+  height: 360px;
+  text-align: center; }
+  .nav-dropdown ul {
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    margin: 10px;
+    text-align: center;
+    padding: 0px; }
+    .nav-dropdown ul li {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      color: black;
+      font-family: 'Trade Gothic Light'; }
+      .nav-dropdown ul li a {
+        color: black; }
+        .nav-dropdown ul li a:hover {
+          color: #22F; }
+      .nav-dropdown ul li h3 {
+        margin: 0px;
+        font-family: 'Trade Gothic Bold'; }
+
+.banner {
+  width: 100%;
+  height: 40px;
+  background-color: #333334;
+  color: black;
+  line-height: 40px;
+  font-family: 'Trade Gothic Condensed';
+  font-size: 24px;
+  position: absolute;
+  top: 80px;
+  z-index: 3; }
+
+.footer {
+  background-color: #000;
+  position: relative;
+  height: 200px;
+  width: 100%;
+  z-index: 3; }
+
+/* Hamburger by Jon Suh https://github.com/jonsuh */
+.hamburger {
+  display: inline-block;
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin: 0;
+  overflow: visible; }
+
+.hamburger-box {
+  width: 28px;
+  height: 16px;
+  display: inline-block;
+  position: relative; }
+
+.hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px; }
+
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+  width: 26px;
+  height: 3px;
+  background-color: white;
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease; }
+
+.hamburger-inner::before, .hamburger-inner::after {
+  content: "";
+  display: block; }
+
+.hamburger-inner::before {
+  top: -9px; }
+
+.hamburger-inner::after {
+  bottom: -9px; }
+
+/* Reverse Vortex Animation */
+.hamburger--vortex-r .hamburger-inner {
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1); }
+
+.hamburger--vortex-r .hamburger-inner::before, .hamburger--vortex-r .hamburger-inner::after {
+  transition-duration: 0s;
+  transition-delay: 0.1s;
+  transition-timing-function: linear; }
+
+.hamburger--vortex-r .hamburger-inner::before {
+  transition-property: top, opacity; }
+
+.hamburger--vortex-r .hamburger-inner::after {
+  transition-property: bottom, transform; }
+
+.hamburger--vortex-r.open .hamburger-inner {
+  transform: rotate(-765deg);
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1); }
+
+.hamburger--vortex-r.open .hamburger-inner::before, .hamburger--vortex-r.open .hamburger-inner::after {
+  transition-delay: 0s; }
+
+.hamburger--vortex-r.open .hamburger-inner::before {
+  top: 0;
+  opacity: 0; }
+
+.hamburger--vortex-r.open .hamburger-inner::after {
+  bottom: 0;
+  transform: rotate(-90deg); }
+
+.carousel-container {
+  text-align: center;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  margin-top: 80px; }
+  .carousel-container img {
+    width: 100%;
+    margin: auto;
+    height: auto; }
+  .carousel-container .button {
+    position: absolute;
+    width: 120px;
+    line-height: 400px;
+    text-align: center;
+    font-size: 50px;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 1; }
+    .carousel-container .button:hover {
+      color: white;
+      cursor: pointer; }
+    .carousel-container .button .left {
+      left: 0px; }
+    .carousel-container .button .right {
+      right: 0px; }
+
+/*
+div.arrow-div {
+	position: absolute;
+	width: 120px;
+	line-height: 400px;
+	text-align: center;
+	font-size: 50px;
+	color: rgba(255,255,255,0.5);
+	z-index: 1;
+}
+
+div.arrow-div:hover {
+	color: white;
+	cursor: pointer;
+}
+
+div#left-div {
+	left: 0px;
+}
+
+div#right-div {
+	right: 0px;
+}
+
+div#indicator-div{
+	position: absolute;
+	bottom: 5px;
+	width: 100px;
+	left: 0; 
+  	right: 0; 
+  	margin-left: auto; 
+  	margin-right: auto; 
+	text-align: center;
+	font-size: 30px;
+	color: rgba(255,255,255,0.5);
+	z-index: 1;
+}
+
+.noselect {
+  -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
+                                  
+}
+
+*/
+.product-layout-container {
+  position: relative;
+  margin-top: 110px;
+  padding-bottom: 20px;
+  background-color: white; }
+  .product-layout-container .images-container {
+    max-width: 507px;
+    margin: auto; }
+    .product-layout-container .images-container img.main {
+      position: relative;
+      width: 100%; }
+    .product-layout-container .images-container .thumbnail-container {
+      box-sizing: border-box;
+      display: flex;
+      height: 100px;
+      justify-content: space-between; }
+      .product-layout-container .images-container .thumbnail-container img {
+        width: 20%;
+        margin: auto; }
+        .product-layout-container .images-container .thumbnail-container img:hover {
+          cursor: pointer;
+          opacity: 0.7; }
+  .product-layout-container .product-info {
+    font-family: 'Trade Gothic Light'; }
+    .product-layout-container .product-info h1 {
+      margin: 40px auto 10px auto;
+      width: 90%;
+      text-align: left; }
+    .product-layout-container .product-info h2 {
+      color: #666;
+      margin: 10px auto 10px auto;
+      width: 90%;
+      text-align: left; }
+    .product-layout-container .product-info form {
+      margin: auto;
+      width: 90%; }
+      .product-layout-container .product-info form div {
+        width: 100%;
+        height: 80px;
+        padding: 20px;
+        box-sizing: border-box; }
+      .product-layout-container .product-info form select {
+        width: 70%;
+        height: 30px;
+        margin: 5px;
+        border-radius: 0px;
+        border: 1px solid #666;
+        font-size: 14px;
+        box-sizing: border-box; }
+      .product-layout-container .product-info form button {
+        width: 90%;
+        font-size: 14px;
+        height: 40px;
+        color: black;
+        background-color: #f8f8f8;
+        border: 1px solid #666;
+        box-sizing: border-box; }
+        .product-layout-container .product-info form button:hover {
+          opacity: 0.7;
+          cursor: pointer; }
+
+@media (min-width: 768px) {
+  .images-container {
+    max-width: 768px; } }
 
 /*# sourceMappingURL=main.css.map */

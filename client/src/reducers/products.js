@@ -4,19 +4,19 @@ let defaultState = {
     authenticated: false
 }
 
-const products = (state = defaultState, action) => {
+export const products = (state = defaultState, action) => {
     switch (action.type) {
-        case PRODUCT_REQUEST:
+        case 'PRODUCT_REQUEST':
             return Object.assign({}, state, {
                 isFetching: true
             });
-        case PRODUCT_SUCCESS:
+        case 'PRODUCT_SUCCESS':
             return Object.assign({}, state, {
                 isFetching: false,
                 quote: action.response,
                 authenticated: action.authenticated || false
             });
-        case PRODUCT_FAILURE:
+        case 'PRODUCT_FAILURE':
             return Object.assign({}, state, {
                 isFetching: false
             });

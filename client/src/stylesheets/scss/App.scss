@@ -1,0 +1,84 @@
+//global styles
+
+html,body {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: #000;
+}
+
+a {
+    text-decoration: none;
+}
+
+//grid system
+.row {
+    text-align: center;
+    vertical-align: top;
+    width: 100%;
+    position: relative;    
+}
+.col-md-8 {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+.col-md-6 {
+    display: inline-block;
+    position: relative;    
+    width: 100%;
+}
+.col-md-4 {
+    display: inline-block;
+    position: relative;    
+    width: 100%;
+}
+.col-md-3 {
+    display: inline-block;    
+    position: relative;    
+    width: 100%;
+}
+@media(min-width: 768px) {
+    .row {
+        display: flex;
+    }
+    .col-md-8 {
+        width: 66%;
+    }
+    .col-md-6 {
+        width: 50%;
+    }
+    .col-md-4 {
+        width: 33%;
+    }
+    .col-md-3 {
+        width: 25%;
+    }
+}
+
+//fonts
+
+@font-face {
+    font-family: 'Wolf';
+    src: url('../../assets/fonts/wolf-in-the-city.ttf');
+}
+
+@font-face {
+    font-family: 'Trade Gothic';
+    src: url('../../assets/fonts/trade-gothic.ttf');
+}
+
+@font-face {
+    font-family: 'Trade Gothic Bold';
+    src: url('../../assets/fonts/trade-gothic-bold.ttf');
+}
+
+@font-face {
+    font-family: 'Trade Gothic Light';
+    src: url('../../assets/fonts/trade-gothic-light.ttf');
+}
+
+@font-face {
+    font-family: 'Trade Gothic Condensed';
+    src: url('../../assets/fonts/trade-gothic-condensed.ttf');
+}

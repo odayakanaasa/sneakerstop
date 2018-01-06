@@ -1,0 +1,82 @@
+.carousel-container {
+    text-align: center;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    margin-top: 80px;
+    & img {
+        //display: block;
+        width: 100%;
+        margin: auto;
+        height: auto;
+    }
+    & .button {
+        position: absolute;
+        width: 120px;
+        line-height: 400px;
+        text-align: center;
+        font-size: 50px;
+        color: rgba(255,255,255,0.5);
+        z-index: 1;
+        &:hover {
+            color: white;
+            cursor: pointer;
+        }
+        & .left {
+            left: 0px;
+        }
+        & .right {
+            right: 0px;            
+        }
+    }
+}
+
+/*
+div.arrow-div {
+	position: absolute;
+	width: 120px;
+	line-height: 400px;
+	text-align: center;
+	font-size: 50px;
+	color: rgba(255,255,255,0.5);
+	z-index: 1;
+}
+
+div.arrow-div:hover {
+	color: white;
+	cursor: pointer;
+}
+
+div#left-div {
+	left: 0px;
+}
+
+div#right-div {
+	right: 0px;
+}
+
+div#indicator-div{
+	position: absolute;
+	bottom: 5px;
+	width: 100px;
+	left: 0; 
+  	right: 0; 
+  	margin-left: auto; 
+  	margin-right: auto; 
+	text-align: center;
+	font-size: 30px;
+	color: rgba(255,255,255,0.5);
+	z-index: 1;
+}
+
+.noselect {
+  -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
+                                  
+}
+
+*/
