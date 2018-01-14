@@ -1,7 +1,80 @@
 .footer {
-    background-color: #000;
+    background-color: #333334;
     position: relative;
-    height: 200px;
+    bottom: 0px;
     width: 100%;
     z-index: 3;
+    padding-top: 20px;
+    & .footer-nav {
+        width: 50%;
+        margin: 0px;
+        text-align: center;
+        padding: 0px;
+        margin-bottom: 20px;
+        vertical-align: top;
+        & ul {
+            padding: 0px;
+            vertical-align: top;
+            width: 100%;
+            text-align: center;
+            margin: auto;
+            list-style-type: none;
+            font-size: 12px;
+            & li {
+                width: 100%;
+                height: 20px;
+                line-height: 30px;
+                color: white; 
+                & a {
+                    color: white;
+                    &:hover {
+                        color: #22F;
+                    }
+                }
+                & h3 {
+                    margin: 0px;
+                    font-family: 'Trade Gothic Bold';
+                }
+                font-family: 'Trade Gothic Light';
+            }
+        }
+    }
+    & .social-media {
+        width: 100%;
+        margin: 0px;
+        padding: 10px 0px 10px 0px;
+        height: 30px;
+        & img {
+            display: inline-block;
+            margin: 0px 10px 0px 10px;
+            height: 30px;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+    & hr {
+        width: 80%;
+        border: 1px solid white;
+        margin: 0px auto 0px auto;
+    }
+    & .copyright {
+        width: 100%;
+        margin: auto;
+        font-family: 'Trade Gothic Light';
+        color: white;
+        text-align: center;
+        font-size: 10px;
+        height: 40px;
+        line-height: 40px;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-nav {
+        width: 33% !important;
+    }
+    .social-media {
+        width: 33% !important;
+    }
 }

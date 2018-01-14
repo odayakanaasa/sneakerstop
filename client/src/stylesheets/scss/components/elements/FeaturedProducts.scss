@@ -1,0 +1,30 @@
+.featured-products {
+    position: relative;
+    margin-top: 100px;
+    height: 400px;
+    width: 100%;
+    background-color: white;
+    //flex child
+    & div {
+        display: flex;   
+        margin: auto;   
+        & div {
+            width: 120px;
+            border: 1px solid green;
+            display: inline-block;
+            height: 200px;
+            transition: width 0.2s;            
+            &:hover {
+                width: 140px;
+                cursor: pointer;
+            }
+            & h3 {
+                font-family: 'Trade Gothic';
+                text-align: center;
+            }
+            & img {
+                width: 100%;                
+            }
+        }
+    }
+}

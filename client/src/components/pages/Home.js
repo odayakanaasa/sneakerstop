@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Banner from './../elements/Banner';
 import Carousel from './../elements/Carousel';
+import FeaturedProducts from './../elements/FeaturedProducts';
 
-export default class Home extends Component {
-    render = () => (<div>
-        <Banner />
+const Home = () => (
+    <div>
         <Carousel />
+        <FeaturedProducts />
+    </div>
+);
 
-    </div>);
-}
+export default Home;

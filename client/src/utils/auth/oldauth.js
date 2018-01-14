@@ -4,11 +4,16 @@ import auth0 from 'auth0-js';
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 
-const CLIENT_ID = '{AUTH0_CLIENT_ID}';
-const CLIENT_DOMAIN = '{AUTH0_DOMAIN}';
+const CLIENT_ID = '{Re1Qk5gtuzJImf57FancOhHFf7U36ewv}';
+const CLIENT_DOMAIN = '{sneaker-stop.auth0.com}';
 const REDIRECT = 'YOUR_CALLBACK_URL';
 const SCOPE = '{SCOPE}';
 const AUDIENCE = 'AUDIENCE_ATTRIBUTE';
+
+//login with google
+//sneakerstop.auth0.com
+//secret: HzdKMRzalTS_FvOxCJQSebP4vVjPjc1yvepovTCSPBwZSpoBkpGej42f59o56AQX
+
 
 var auth = new auth0.WebAuth({
   clientID: CLIENT_ID,

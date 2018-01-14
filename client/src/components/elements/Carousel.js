@@ -10,7 +10,7 @@ export default class Carousel extends Component {
         this.state = {
             imageIndex: 1
         }
-        setTimeout(()=>this.changePic('right'),5000);
+        //setTimeout(()=>this.changePic('right'),5000);
     }
 
     imageArray = [Banner1, Banner2, Banner3];    

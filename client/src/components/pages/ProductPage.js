@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import uuid from 'uuid';
 
 export default class ProductPage extends Component {
 
@@ -15,6 +15,11 @@ export default class ProductPage extends Component {
             selectedImage: 1,
         }
     }
+    
+    generateId = () => {
+	    let uuidv1 = require('uuid/v1');
+        return uuidv1();
+    }
 
     componentDidMount() {
         let id = this.context.router.route.match.params.id;
@@ -26,6 +31,7 @@ export default class ProductPage extends Component {
         let selectedImage = this.state.selectedImage;
         return nums.map((num)=>(
             <img 
+                key={this.generateId()}
                 onClick={()=>this.setState({selectedImage: num})}
                 src={require(`../../assets/images/products/${this.context.router.route.match.params.id}/${num}.jpg`)}/>            
         ))

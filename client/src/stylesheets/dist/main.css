@@ -160,7 +160,8 @@ a {
       .navbar .nav-container .navbar-bottom .cart {
         display: inline-block;
         position: absolute;
-        height: 40px;
+        margin-top: 6px;
+        height: 30px;
         right: 15px;
         color: white; }
         .navbar .nav-container .navbar-bottom .cart img {
@@ -193,7 +194,8 @@ a {
   top: 80px;
   width: 100%;
   height: 360px;
-  text-align: center; }
+  text-align: center;
+  border-bottom: 1px solid black; }
   .nav-dropdown ul {
     display: inline-block;
     vertical-align: top;
@@ -215,24 +217,95 @@ a {
         margin: 0px;
         font-family: 'Trade Gothic Bold'; }
 
-.banner {
-  width: 100%;
-  height: 40px;
-  background-color: #333334;
-  color: black;
-  line-height: 40px;
-  font-family: 'Trade Gothic Condensed';
-  font-size: 24px;
-  position: absolute;
-  top: 80px;
-  z-index: 3; }
-
 .footer {
-  background-color: #000;
+  background-color: #333334;
   position: relative;
-  height: 200px;
+  bottom: 0px;
   width: 100%;
-  z-index: 3; }
+  z-index: 3;
+  padding-top: 20px; }
+  .footer .footer-nav {
+    width: 50%;
+    margin: 0px;
+    text-align: center;
+    padding: 0px;
+    margin-bottom: 20px;
+    vertical-align: top; }
+    .footer .footer-nav ul {
+      padding: 0px;
+      vertical-align: top;
+      width: 100%;
+      text-align: center;
+      margin: auto;
+      list-style-type: none;
+      font-size: 12px; }
+      .footer .footer-nav ul li {
+        width: 100%;
+        height: 20px;
+        line-height: 30px;
+        color: white;
+        font-family: 'Trade Gothic Light'; }
+        .footer .footer-nav ul li a {
+          color: white; }
+          .footer .footer-nav ul li a:hover {
+            color: #22F; }
+        .footer .footer-nav ul li h3 {
+          margin: 0px;
+          font-family: 'Trade Gothic Bold'; }
+  .footer .social-media {
+    width: 100%;
+    margin: 0px;
+    padding: 10px 0px 10px 0px;
+    height: 30px; }
+    .footer .social-media img {
+      display: inline-block;
+      margin: 0px 10px 0px 10px;
+      height: 30px; }
+      .footer .social-media img:hover {
+        opacity: 0.8; }
+  .footer hr {
+    width: 80%;
+    border: 1px solid white;
+    margin: 0px auto 0px auto; }
+  .footer .copyright {
+    width: 100%;
+    margin: auto;
+    font-family: 'Trade Gothic Light';
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    height: 40px;
+    line-height: 40px; }
+
+@media (min-width: 768px) {
+  .footer-nav {
+    width: 33% !important; }
+
+  .social-media {
+    width: 33% !important; } }
+.featured-products {
+  position: relative;
+  margin-top: 100px;
+  height: 400px;
+  width: 100%;
+  background-color: white; }
+  .featured-products div {
+    display: flex;
+    margin: auto; }
+    .featured-products div div {
+      width: 120px;
+      border: 1px solid green;
+      display: inline-block;
+      height: 200px;
+      transition: width 0.2s; }
+      .featured-products div div:hover {
+        width: 140px;
+        cursor: pointer; }
+      .featured-products div div h3 {
+        font-family: 'Trade Gothic';
+        text-align: center; }
+      .featured-products div div img {
+        width: 100%; }
 
 /* Hamburger by Jon Suh https://github.com/jonsuh */
 .hamburger {
@@ -313,7 +386,7 @@ a {
 
 .carousel-container {
   text-align: center;
-  position: fixed;
+  position: relative;
   z-index: 1;
   width: 100%;
   margin-top: 80px; }
@@ -337,6 +410,9 @@ a {
     .carousel-container .button .right {
       right: 0px; }
 
+@media (min-width: 768px) {
+  .carousel-container {
+    height: 480px; } }
 /*
 div.arrow-div {
 	position: absolute;
