@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import InputField from './../elements/InputField';
 
 export default class LogInPage extends Component {
 
@@ -33,20 +35,53 @@ export default class LogInPage extends Component {
     canSubmit = () => {
         //username is not empty
         if (this.state.usernameText!==''
-        //username < 13 characters
+        //password is not empty
         && this.state.passwordText!=='') {
             return true;            
         }
         return false;
     }
 
-    //make api call to auth0 either in canSubmit or in handleSubmit
-
     handleSubmit = () => {
         if (this.canSubmit()) {
-
+            //make api call to auth0
+            this.props.login();
         }
     }
     
-    render = () => (<div></div>);
+    render = () => (
+        <div className='login-page'>
+			<div className="header-container">
+				<Link to="/home" className="header-link">SneakerStop</Link>
+			</div>
+			<div className="login-form-container">
+				<form className="login-form" onSubmit={this.handleSubmit}>
+					<h2 className="login-form-header"> Log In </h2>
+					<span className="input-label"> Username </span>
+					<InputField 
+						name="username"
+					 	type="text"
+					 	handleInputChange={this.handleUsernameChange} 
+					 	validation={this.validateField}
+					 	errorMessage={this.state.usernameErrMsg}
+					 	autofocus={"autofocus"} />
+					<span className="input-label"> Password </span>
+					<InputField 
+						name="password"
+						type="password"
+						handleInputChange={this.handlePasswordChange} 
+						validation={this.validateField}
+						errorMessage={this.state.passwordErrMsg} />
+					<div className="login-button-container">
+						<button className="login-button" type="submit">Log In</button>
+					</div>
+				</form>
+				<hr className="form-hr" />
+				<div className="signup-link-container">
+					New?
+					<Link className="signup-link" to="/signup">Create an Account &#9656;</Link>
+				</div> 
+			</div>
+		</div>
+    );
 }

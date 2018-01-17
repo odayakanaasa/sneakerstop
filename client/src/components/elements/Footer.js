@@ -37,14 +37,14 @@ export default class Footer extends Component {
                     </ul>
                 </div>
                 <div className='col-md-4 social-media'>
-                    <a href='http://www.facebook.com'>
-                        <img src={require('../../assets/images/icons/facebook_white.png')}/>
+                    <a href='http://www.facebook.com/sneakerstop'>
+                        <img src={require('../../assets/images/icons/facebook_white.png')} alt='Facebook'/>
                     </a>
-                    <a href='http://www.twitter.com'>
-                        <img src={require('../../assets/images/icons/twitter_white.png')}/>
+                    <a href='http://www.twitter.com/sneakerstop'>
+                        <img src={require('../../assets/images/icons/twitter_white.png')} alt='Twitter'/>
                     </a>
-                    <a href='http://www.instagram.com'>
-                        <img src={require('../../assets/images/icons/instagram_white.png')}/>
+                    <a href='http://www.instagram.com/sneakerstop'>
+                        <img src={require('../../assets/images/icons/instagram_white.png')} alt='Instagram'/>
                     </a>
                 </div>
             </div>

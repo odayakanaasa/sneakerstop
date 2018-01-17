@@ -33,14 +33,14 @@ class App extends Component {
     }
 
     toggleMobileNav = () => {
-        this.state.mobileNavOpen ? this.setState({mobileNavOpen: true}) : this.setState({mobileNavOpen: false})
+        console.log('i got called');
+        this.state.mobileNavOpen ? this.setState({mobileNavOpen: false}) : this.setState({mobileNavOpen: true})
     }
 
     render = () => (
         <div>
-            <NavBar toggleMobileNav={this.toggleMobileNav} isAuthenticated={auth.isAuthenticated()}/>
-            <MobileNav isAuthenticated={auth.isAuthenticated()}/>
-            {this.state.mobileNavOpen ? null : (
+            <NavBar toggleMobileNav={this.toggleMobileNav} username={auth.getUsername()}/>
+            {this.state.mobileNavOpen ? <MobileNav username={auth.getUsername()}/> : (
                 <div className='page-content'>
                     <Route exact path='/' render = {() => (<Redirect to='/home'/>)}/>
                     <Route path='/home' component = {Home}/>
@@ -52,10 +52,9 @@ class App extends Component {
                     <Route path='/addproduct' component = {AddProduct}/>
                 </div>
             )}
-            <Footer/>
+            <Footer isAdmin={auth.isAdmin()}/>
         </div>
     );
-    //            <Footer isAdmin={auth.isAdmin}/>
 }
 
 export default withRouter(App);
