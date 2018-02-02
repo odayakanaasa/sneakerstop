@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 //REST http methods
 module.exports = (router) => {
-    
+
 	const products = require('./controllers/products.js');
     
     router.get('/api/products', products.findAll);
@@ -17,11 +17,10 @@ module.exports = (router) => {
     router.post('/api/images', images.add);
     router.get('/api/images/:id', images.findById);
 
-    const users = require('./controllers/cart_items.js');
+    const cartItems = require('./controllers/cart_items.js');
     
     router.post('/api/cartitems', cartItems.add);
-    router.get('/api/cartitems/:id', cartItems.findById);
-    //router.get('/api/cartitems/:userId', cartItems.findByUserId);
+    router.get('/api/cartitems/:userId', cartItems.findByUsername);
     router.put('/api/cartitems/:id', cartItems.updateById);
     router.delete('/api/cartitems/:id', cartItems.deleteById);
 }

@@ -3,7 +3,7 @@ const Product = require('../database.js').models.Product;
 //GET Request
 const findAll = (req,res,next) => {
 	console.log('Request Type:', req.method);
-	Product.findAll().then((result) => {
+	Product.findAll().then(result => {
     	return res.send(result);
     }).catch(next);
 }
@@ -12,7 +12,7 @@ const findAll = (req,res,next) => {
 const findById = (req,res,next) => {
 	console.log('Request Type:', req.method);
 	console.log('Request ID parameter: ',req.params.id);
-	Product.findAll({ where: { id: req.params.id } }).then((result) => {
+	Product.findAll({ where: { id: req.params.id } }).then(result => {
      	return res.send(result);
     }).catch(next);
 }
@@ -21,7 +21,7 @@ const findById = (req,res,next) => {
 const add = (req,res,next) => {
 	console.log('Request Type:', req.method);
 	console.log('Request Body: ',req.body);
-	Product.create(req.body).then((result) => {
+	Product.create(req.body).then(result => {
 		return res.send(result);
 	}).catch(next);
 }
@@ -31,7 +31,7 @@ const updateById = (req,res,next) => {
 	console.log('Request Type: ',req.method);
 	console.log('Request ID parameter: ',req.params.id);
 	console.log('Request Body: ',req.body);
-	Product.update(req.body, { where: { id: req.params.id }}).then((result) => {
+	Product.update(req.body, { where: { id: req.params.id }}).then(result => {
 		return res.send(result);
 	}).catch(next);
 }
@@ -45,10 +45,18 @@ const deleteById = (req,res,next) => {
 	}).catch(next);
 }
 
+const search = (req,res,next) => {
+    let terms = req.params.terms;
+    sequelize.query("SELECT * FROM `products` WHERE ", { type: sequelize.QueryTypes.SELECT}).then(result => {
+        return res.send(result);
+   }).catch(next);
+}
+
 module.exports = {
 	findAll,
 	findById,
 	add,
 	updateById,
-	deleteById
+    deleteById,
+    search
 }

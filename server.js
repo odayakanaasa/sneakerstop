@@ -8,7 +8,7 @@ const database = require('./database');
 const app = express();
 
 //middleware
-app.use(bodyParser());
+app.use(bodyParser({uploadDir:'/path/to/temporary/directory/to/store/uploaded/files'}));
 app.use(cors());
 
 //routes
@@ -31,6 +31,6 @@ const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`listening on port:${port}`));
 
 //add default data
-database.seed();
+//database.seed();
 
-module.exports=app;
+module.exports = app;

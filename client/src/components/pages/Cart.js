@@ -23,7 +23,7 @@ export default class Cart extends Component {
     //checkout ->
 
     getSubTotal = () => {
-
+        
     }
 
     handleQuantityChange = () => {
@@ -46,7 +46,7 @@ export default class Cart extends Component {
                         Product
                     </th>
                     <th>
-                        
+
                     </th>
                 </thead>
                 <tbody>

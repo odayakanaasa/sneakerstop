@@ -10,7 +10,9 @@ import ProductPage from './components/pages/ProductPage';
 import AddProduct from './components/pages/AddProduct';
 import SignUpPage from './components/pages/SignUpPage';
 import LogInPage from './components/pages/LogInPage';
+import SearchResults from './components/pages/SearchResults';
 import Footer from './components/elements/Footer';
+
 import Callback from './utils/auth/Callback';
 import Auth from './utils/auth/Auth';
 
@@ -48,6 +50,7 @@ class App extends Component {
                 <Route path='/products/:group/:id' component = {ProductPage}/>
                 <Route path='/dashboard' render = {() => <Dashboard/>}/>
                 <Route path='/addproduct' render = {() => <AddProduct/>}/>
+                <Route path='/search/:terms' render = {()=><SearchResults/>}/>
             </div>
             <Route path='/login' render = {() => <LogInPage username={auth.getUsername} login={auth.login}/>}/>
             <Route path='/signup' render = {() => <SignUpPage username={auth.getUsername} signup={auth.signup}/>}/>

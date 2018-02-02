@@ -47,7 +47,7 @@ const deleteById = (req,res,next) => {
 
 module.exports = {
 	findAll,
-	findById,
+	findByUsername,
 	add,
 	updateById,
 	deleteById
