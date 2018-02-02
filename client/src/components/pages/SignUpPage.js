@@ -6,7 +6,7 @@ import InputField from './../elements/InputField';
 export default class SignUpPage extends Component {
 
     static propTypes = {
-        
+        signup: PropTypes.func.isRequired,
     }
 
     constructor(props) {

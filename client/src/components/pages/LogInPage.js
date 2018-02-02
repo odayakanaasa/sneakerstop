@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import InputField from './../elements/InputField';
 
 export default class LogInPage extends Component {
+
+    static propTypes = {
+        login: PropTypes.func.isRequired,
+    }
 
     constructor(props) {
         super(props);
@@ -42,7 +47,8 @@ export default class LogInPage extends Component {
         return false;
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
         if (this.canSubmit()) {
             //make api call to auth0
             this.props.login();

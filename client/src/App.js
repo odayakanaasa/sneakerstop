@@ -33,25 +33,24 @@ class App extends Component {
     }
 
     toggleMobileNav = () => {
-        console.log('i got called');
         this.state.mobileNavOpen ? this.setState({mobileNavOpen: false}) : this.setState({mobileNavOpen: true})
     }
 
     render = () => (
         <div>
-            <NavBar toggleMobileNav={this.toggleMobileNav} username={auth.getUsername()}/>
-            {this.state.mobileNavOpen ? <MobileNav username={auth.getUsername()}/> : (
-                <div className='page-content'>
-                    <Route exact path='/' render = {() => (<Redirect to='/home'/>)}/>
-                    <Route path='/home' component = {Home}/>
-                    <Route exact path='/products' component = {ProductsPage}/>
-                    <Route path='/products/:id' component = {ProductPage}/>
-                    <Route path='/login' component = {LogInPage}/>
-                    <Route path='/signup' component = {SignUpPage}/>
-                    <Route path='/dashboard' component = {Dashboard}/>
-                    <Route path='/addproduct' component = {AddProduct}/>
-                </div>
-            )}
+            <NavBar username={auth.getUsername()} toggleMobileNav={this.toggleMobileNav} />
+            <MobileNav username={auth.getUsername()} open={this.state.mobileNavOpen}/>
+            <div className='page-content'>    
+                <Route exact path='/' render = {() => <Redirect to='/home'/>}/>
+                <Route path='/home' component = {Home}/>
+                <Route exact path='/products' component = {ProductsPage}/>
+                <Route path='/products/:group' component = {ProductsPage}/>
+                <Route path='/products/:group/:id' component = {ProductPage}/>
+                <Route path='/dashboard' render = {() => <Dashboard/>}/>
+                <Route path='/addproduct' render = {() => <AddProduct/>}/>
+            </div>
+            <Route path='/login' render = {() => <LogInPage username={auth.getUsername} login={auth.login}/>}/>
+            <Route path='/signup' render = {() => <SignUpPage username={auth.getUsername} signup={auth.signup}/>}/>
             <Footer isAdmin={auth.isAdmin()}/>
         </div>
     );

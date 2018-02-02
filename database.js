@@ -57,19 +57,49 @@ const Product = database.define('product', {
     },
 });
 
+const CartItem = database.define('cartitem', {
+    id: {
+		type: database.Sequelize.UUID,
+		defaultValue: Sequelize.UUIDV1,
+		allowNull: false,
+		unique: true,
+		primaryKey: true,
+    },
+    userId: {
+        type: database.Sequelize.UUID,
+		allowNull: false,
+		unique: false,
+    },
+    productId: {
+        type: database.Sequelize.UUID,
+		allowNull: false,
+		unique: false,
+    },
+    quantity: {
+        type: database.Sequelize.INTEGER,
+        allowNull: false,
+        unique: false,
+    },
+});
+
 const sync = () => database.sync({force:true});
 
 const seed = () => {
-	const products = [];
+    const products = [];
+    const cartItems = [];
 	return sync().then(()=>{
 		const seedProductData = products;
-		return Promise.all(seedTodoData);
-	});
+		return Promise.all(seedProductData);
+	}).then(()=>{
+        const seedCartItemData = cartItems;
+        return Promise.all(seedCartItemData);
+    }).catch(err => console.log(err));
 }
 
 module.exports = {
 	models: {
-		Product,
+        Product,
+        CartItem
 	},
 	sync,
 	seed,

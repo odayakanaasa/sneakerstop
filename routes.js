@@ -11,7 +11,9 @@ module.exports = (router) => {
     router.delete('/api/products/:id', products.deleteById);
     const images = require('./controllers/images.js');
     router.post('/api/images', images.add);
+    router.get('/api/images/:id', images.findById);
     const users = require('./controllers/users');
+    router.post('/api/users', users.add);
     router.get('/api/users/:id', users.findById);
     router.put('/api/users/:id', users.updateById);
     router.delete('/api/users/:id', users.deleteById);

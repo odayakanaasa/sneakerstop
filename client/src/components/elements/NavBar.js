@@ -20,7 +20,7 @@ export default class NavBar extends Component {
         }
     }
 
-    handleChange = (event) => {
+    handleInputChange = (event) => {
         event.preventDefault();        
         this.setState({searchInputValue: event.target.value})
     }
@@ -82,7 +82,7 @@ export default class NavBar extends Component {
                     <div className='search'>
                         <form onSubmit={this.handleSubmit}>
                             <input 
-                                onChange={this.handleChange} 
+                                onChange={this.handleInputChange} 
                                 placeholder={'Search...'} 
                                 value={this.state.searchInputValue}/>
                         </form>
