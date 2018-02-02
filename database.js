@@ -65,8 +65,8 @@ const CartItem = database.define('cartitem', {
 		unique: true,
 		primaryKey: true,
     },
-    userId: {
-        type: database.Sequelize.UUID,
+    userName: {
+        type: database.Sequelize.STRING,
 		allowNull: false,
 		unique: false,
     },
@@ -80,6 +80,11 @@ const CartItem = database.define('cartitem', {
         allowNull: false,
         unique: false,
     },
+    purchased: {
+        type: database.Sequelize.BOOLEAN,
+        allowNull: false,
+        unique: false,
+    }
 });
 
 const sync = () => database.sync({force:true});

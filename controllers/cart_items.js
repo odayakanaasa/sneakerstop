@@ -1,27 +1,27 @@
-const User = require('../database.js').models.User;
+const CartItem = require('../database.js').models.CartItem;
 
 //GET Request
 const findAll = (req,res,next) => {
 	console.log('Request Type:', req.method);
-	User.findAll().then((result) => {
+	CartItem.findAll().then((result) => {
     	return res.send(result);
     }).catch(next);
 }
 
 //GET Request
-const findById = (req,res,next) => {
-	console.log('Request Type:', req.method);
-	console.log('Request ID parameter: ',req.params.id);
-	User.findAll({ where: { id: req.params.id } }).then((result) => {
-     	return res.send(result);
-    }).catch(next);
+const findByUsername = (req,res,next) => {
+    console.log('Request Type:', req.method);
+    console.log('Request ID parameter: ',req.params.id);
+    CartItem.findAll({ where: { username: req.params.username } }).then((result) => {
+        return res.send(result);
+   }).catch(next);
 }
 
 //POST Request
 const add = (req,res,next) => {
 	console.log('Request Type:', req.method);
 	console.log('Request Body: ',req.body);
-	User.create(req.body).then((result) => {
+	CartItem.create(req.body).then((result) => {
 		return res.send(result);
 	}).catch(next);
 }
@@ -31,7 +31,7 @@ const updateById = (req,res,next) => {
 	console.log('Request Type: ',req.method);
 	console.log('Request ID parameter: ',req.params.id);
 	console.log('Request Body: ',req.body);
-	User.update(req.body, { where: { id: req.params.id }}).then((result) => {
+	CartItem.update(req.body, { where: { id: req.params.id }}).then((result) => {
 		return res.send(result);
 	}).catch(next);
 }
@@ -40,7 +40,7 @@ const updateById = (req,res,next) => {
 const deleteById = (req,res,next) => {
 	console.log('Request Type:', req.method);
 	console.log('Request ID parameter: ',req.params.id);
-	User.destroy({ where: {id: req.params.id }}).then(() => {
+	CartItem.destroy({ where: {id: req.params.id }}).then(() => {
 		return res.sendStatus(200);
 	}).catch(next);
 }
