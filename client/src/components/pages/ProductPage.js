@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'uuid';
+import axios from 'axios';
+import { generateId } from './../../utils/uuid-generator';
+import { API_ROOT } from './../../utils/api_config';
+
+const sizes = [7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12];
 
 export default class ProductPage extends Component {
 
@@ -12,18 +16,16 @@ export default class ProductPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            productData: undefined,
             selectedImage: 1,
         }
     }
-    
-    generateId = () => {
-	    let uuidv1 = require('uuid/v1');
-        return uuidv1();
-    }
 
-    componentDidMount() {
+    async componentDidMount() {
         let id = this.context.router.route.match.params.id;
-        //make api call here
+        let result = await axios.get(`${API_ROOT}/products/${id}`);
+        console.log(result);
+        this.setState({productData: result.data});
     }
 
     renderThumbnails = () => {
@@ -31,17 +33,17 @@ export default class ProductPage extends Component {
         let selectedImage = this.state.selectedImage;
         return nums.map((num)=>(
             <img 
-                key={this.generateId()}
+                key={generateId()}
                 onClick={()=>this.setState({selectedImage: num})}
                 src={require(`../../assets/images/products/${this.context.router.route.match.params.id}/${num}.jpg`)}/>            
         ))
     }
 
-    render = () => (
-        <div className='product-layout-container'>
+    render = () => !this.state.productData ? null : (
+        <div className='sneakerstop-product-layout-container'>
             <div className='row'>
                 <div className='col-md-8'>
-                    <div className='images-container'>
+                    <div className='sneakerstop-product-images-container'>
                         <img 
                             className='main' 
                             src={require(`../../assets/images/products/${this.context.router.route.match.params.id}/${this.state.selectedImage}.jpg`)}/>
@@ -51,24 +53,15 @@ export default class ProductPage extends Component {
                     </div>
                 </div>
                 <div className='col-md-4'>
-                    <div className='product-info'>
-                        <h1> Air Jordan 5 Retro Blue Suede </h1>
-                        <h2> Air Jordan </h2>
+                    <div className='sneakerstop-product-info'>
+                        <h1> {this.state.productData.name} </h1>
+                        <h2> {this.state.productData.brand} </h2>
+                        <h3> ${this.state.productData.price} </h3>
                         <form>
                             <div>
                                 <span> Size </span>
                                 <select>
-                                    <option> 7 </option>
-                                    <option> 7.5 </option>
-                                    <option> 8 </option>
-                                    <option> 8.5 </option>
-                                    <option> 9 </option>
-                                    <option> 9.5 </option>
-                                    <option> 10 </option>
-                                    <option> 10.5 </option>
-                                    <option> 11 </option>
-                                    <option> 11.5 </option>
-                                    <option> 12 </option>
+                                    {sizes.map(size => <option key={generateId()}>{size}</option>)}
                                 </select>
                             </div>
                             <div>
@@ -79,5 +72,5 @@ export default class ProductPage extends Component {
                 </div>
             </div>
         </div>
-    );
+    )
 }

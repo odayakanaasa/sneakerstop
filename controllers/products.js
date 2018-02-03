@@ -12,7 +12,7 @@ const findAll = (req,res,next) => {
 const findById = (req,res,next) => {
 	console.log('Request Type:', req.method);
 	console.log('Request ID parameter: ',req.params.id);
-	Product.findAll({ where: { id: req.params.id } }).then(result => {
+	Product.findOne({ where: { id: req.params.id } }).then(result => {
      	return res.send(result);
     }).catch(next);
 }

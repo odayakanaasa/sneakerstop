@@ -34,10 +34,14 @@ export default class NavBar extends Component {
     }
 
     render = () => (
-        <div className='navbar'>
-            <div className='logo-container'><Link to='/home'> SneakerStop </Link></div>
-            <div className='nav-container'>
-                <div className='navbar-top'>
+        <div className='sneakerstop-navbar'>
+            <div className='sneakerstop-logo-container'>
+                <h1 className='logo sneakerstop-logo'>
+                    <Link to='/home'> SneakerStop </Link>
+                </h1>
+            </div>
+            <div className='sneakerstop-nav-container'>
+                <div className='sneakerstop-navbar-top'>
                     <ul>
                         <li>
                             <Link to='/login'> Log In </Link>
@@ -52,7 +56,7 @@ export default class NavBar extends Component {
                         </li>
                     </ul>
                 </div>
-                <div className='navbar-bottom'>
+                <div className='sneakerstop-navbar-bottom'>
                     <ul>
                         <li onMouseEnter={()=>{this.setState({dropdownGroup:'Men'})}} 
                             onMouseLeave={()=>{this.setState({dropdownGroup:''})}}
@@ -79,7 +83,7 @@ export default class NavBar extends Component {
                             <a> Kids </a>
                         </li>
                     </ul>
-                    <div className='search'>
+                    <div className='sneakerstop-search'>
                         <form onSubmit={this.handleSubmit}>
                             <input 
                                 onChange={this.handleInputChange} 
@@ -88,14 +92,14 @@ export default class NavBar extends Component {
                         </form>
                     </div>
                     <Link to='/cart'>
-                        <div className='cart'>
+                        <div className='sneakerstop-cart-icon-container'>
                             <img src={require('../../assets/images/icons/shopping-cart.png')}/>
                         </div>
                     </Link>
                 </div>
             </div>
             <div 
-                className='hamburger-container' 
+                className='sneakerstop-hamburger-container' 
                 onClick={()=> {
                     if (this.state.hamburgerOpen) {
                         this.setState({hamburgerOpen: false});

@@ -12,7 +12,7 @@ const findAll = (req,res,next) => {
 const findByUsername = (req,res,next) => {
     console.log('Request Type:', req.method);
     console.log('Request ID parameter: ',req.params.id);
-    CartItem.findAll({ where: { username: req.params.username } }).then((result) => {
+    CartItem.findOne({ where: { username: req.params.username } }).then((result) => {
         return res.send(result);
    }).catch(next);
 }
