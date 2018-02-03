@@ -47,9 +47,17 @@ const deleteById = (req,res,next) => {
 
 const search = (req,res,next) => {
     let terms = req.params.terms;
-    sequelize.query("SELECT * FROM `products` WHERE ", { type: sequelize.QueryTypes.SELECT}).then(result => {
-        return res.send(result);
-   }).catch(next);
+    let resultIds = [];
+    terms.forEach(term => {
+        sequelize.query(`SELECT 'products.id' 
+                FROM 'products' 
+                WHERE 'products.brand' LIKE ${term}
+                OR 'products.name' LIKE ${term}
+                OR 'products.name`, { type: sequelize.QueryTypes.SELECT}).then(result => {
+            resultIds.push(result);
+       }).catch(next);
+    });
+    return res.send(resultIds);
 }
 
 module.exports = {

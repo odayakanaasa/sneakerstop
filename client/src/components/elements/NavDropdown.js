@@ -39,7 +39,7 @@ export default class NavDropdown extends Component {
                         <li><Link to={`/products/${this.props.group}/clothing/shirts`}>Shirts</Link></li>
                         <li><Link to={`/products/${this.props.group}/clothing/sweatshirts`}>Hoodies &amp; Sweatshirts</Link></li>
                         <li><Link to={`/products/${this.props.group}/clothing/socks`}>Socks</Link></li>
-                        <li><Link to={`/products/${this.props.group}/clothing/sweatshirts`}>Pants</Link></li>
+                        <li><Link to={`/products/${this.props.group}/clothing/pants`}>Pants</Link></li>
                         <li><Link to={`/products/${this.props.group}/clothing/shorts`}>Shorts</Link></li>
                         <li><Link to={`/products/${this.props.group}/clothing/swim`}>Swim</Link></li>
                         <li><Link to={`/products/${this.props.group}/clothing`}>{`All ${plural} Clothing`}</Link></li>

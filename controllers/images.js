@@ -1,3 +1,6 @@
+//TODO: store images in an s3 bucket!!!
+
+
 //POST Request
 const add = (req,res,next) => {
     let tempPath = req.files.file.path,
