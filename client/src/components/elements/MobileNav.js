@@ -5,6 +5,13 @@ import PropTypes from 'prop-types';
 
 export default class MobileNav extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchInputValue: "",
+        }
+    }
+
     static propTypes = {
         username: PropTypes.string.isRequired,
         open: PropTypes.bool.isRequired,
