@@ -167,6 +167,26 @@ const seed = () => {
             subCategory: 'Lifestyle',
             quantity: '100',
         },
+        {
+            id: 'cbca7a0d-9df8-464a-b729-2ac974c8c9dd',
+            name: 'Air Jordan 13 Retro "Bred"',
+            price: '149.99',
+            brand: 'Air Jordan',
+            group: 'Men',
+            category: 'Shoes',
+            subCategory: 'Basketball',
+            quantity: '100',
+        },
+        {
+            id: 'fb5fbb05-b2a6-4e82-ae21-5314473cef07',
+            name: 'Nike Air Max 97 Og Qs "Silver Bullet 2017"',
+            price: '89.99',
+            brand: 'Nike',
+            group: 'Men',
+            category: 'Shoes',
+            subCategory: 'Lifestyle',
+            quantity: '100',
+        },
     ];
 	return sync().then(()=>{
 		const seedProductData = products.map(product => Product.create({

@@ -23,8 +23,9 @@ export default class Home extends Component {
         products.map(product => (
             <div key={generateId()}>
                 <h3>{product.name}</h3>
+                <h4>${product.price}</h4>
                 <Link to={`/products/${product.productGroup.toLocaleLowerCase()}/${product.id}`}>
-                    <img src={require(`../../assets/images/products/${product.id}/1.jpg`)}/>
+                    <img src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${product.id}-1.jpg`}/>
                 </Link>
             </div>
             )
@@ -34,11 +35,15 @@ export default class Home extends Component {
     render = () => (
         <div>
             <div className='sneakerstop-banner-background'>
-                <div className='sneakerstop-banner'>
-                    <h1> Welcome </h1>
+                <div className='sneakerstop-banner-left'>
+
+                </div>
+                <div className='sneakerstop-banner-right'>
+            
                 </div>
             </div>
             <div className='sneakerstop-featured-products-container'>
+                <h2> Featured Products </h2>
                 {this.state.products.length===0 ? (
                     <div className='sneakerstop-featured-products-loading'>
                     
@@ -46,10 +51,11 @@ export default class Home extends Component {
                 ) : (
                     <div className='sneakerstop-featured-products'>
                         <div className='sneakerstop-featured-products-row'>
-                            {this.renderProducts(this.state.products.slice(0,4))}
+                            {this.renderProducts(this.state.products.slice(0,5))}
                         </div>
+                        <h2> Recommended For You </h2>
                         <div className='sneakerstop-featured-products-row'>
-                            {this.renderProducts(this.state.products.slice(4,8))}
+                            {this.renderProducts(this.state.products.slice(5,10))}
                         </div>
                     </div>
                 )}       

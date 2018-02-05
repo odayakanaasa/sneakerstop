@@ -1,5 +1,7 @@
 .sneakerstop-banner-background {
     margin-top: 80px;
+    padding: 40px 50px 40px 50px;
+    box-sizing: border-box;
     height: 440px;
     background: url('./../../assets/images/banners/basketball1.jpg');
     background-position: center;
@@ -8,48 +10,106 @@
     position: relative;
 }
 
-.sneakerstop-banner {
-    text-align: center;
-    position: absolute;
+.sneakerstop-banner-left, .sneakerstop-banner-right {
+    display: inline-block;
     height: 360px;
-    width: 90%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0,0,0,0.5);
-    color: white;
+    margin: auto;
+    background-color: rgba(0,0,0,0.5);        
+}
+.sneakerstop-banner-left {
+    float: left;
+    width: 62%; 
+}
+.sneakerstop-banner-right {
+    float: right;
+    width: 32%; 
 }
 
 .sneakerstop-featured-products-container {
     position: relative;
     width: 100%;
-    background-color: black;
+    background-color: white;
+    padding: 10px 10px 20px 10px;
+    box-sizing: border-box;
+    & h2 {
+        margin-left: 50px;
+        font-size: 30px;
+        height: 60px;
+        line-height: 60px;
+        margin-bottom: 10px;
+    }
 }
 
 .sneakerstop-featured-products-row {
     display: flex;   
-    margin: 20px auto 20px auto;   
+    margin: 0px auto 20px auto;
+    &:last-child {
+        margin-bottom: 0px;
+    }  
     //item
     & div {
+        position: relative;
         width: 160px;
+        min-width: 160px;
         margin: auto;
-        border: 1px solid green;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+        padding: 10px 5px 10px 5px;
+        background-color: white;
         box-sizing: border-box;
         display: inline-block;
         height: 200px;
-        transition: width 0.2s;           
+        transition: width 0.2s;
+        &:nth-child(3) {
+            display: none;
+        }
+        &:nth-child(4) {
+            display: none;
+        }
         &:hover {
+            box-shadow: 0px 0px 5px 0px rgba(34,34,255,0.5);
             width: 180px;
             cursor: pointer;
         }
-        & h3 {
+        & h3,h4 {
             font-family: 'Trade Gothic';
             text-align: center;
+            width: 150px;
+            margin: auto;
+        }
+        & h3 {
+            font-size: 14px;            
+            color: #666;
+        }
+        & h4 {
+            font-size: 12px;            
+            color: $sneakerstop-blue;
+            margin-top: 5px;
         }
         & img {
-            width: 100%;                
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            margin: auto;
+            bottom: 20px;
+            width: 90%;                
         }
     }
 }
+
+@media(min-width: 520px) {
+    .sneakerstop-featured-products-row > div {
+        &:nth-child(3) {
+            display: block;
+        }
+    }
+}
+@media (min-width: 680px) {
+    .sneakerstop-featured-products-row > div {
+        &:nth-child(4) {
+            display: block;
+        }
+    }
+}
+
 
 

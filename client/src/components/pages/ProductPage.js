@@ -35,7 +35,7 @@ export default class ProductPage extends Component {
             <img 
                 key={generateId()}
                 onClick={()=>this.setState({selectedImage: num})}
-                src={require(`../../assets/images/products/${this.context.router.route.match.params.id}/${num}.jpg`)}/>            
+                src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${this.state.productData.id}-${num}.jpg`}/>            
         ))
     }
 
@@ -46,7 +46,7 @@ export default class ProductPage extends Component {
                     <div className='sneakerstop-product-images-container'>
                         <img 
                             className='main' 
-                            src={require(`../../assets/images/products/${this.context.router.route.match.params.id}/${this.state.selectedImage}.jpg`)}/>
+                            src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${this.state.productData.id}-${this.state.selectedImage}.jpg`}/>
                         <div className='thumbnail-container'>
                             {this.renderThumbnails()}
                         </div>
