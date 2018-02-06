@@ -5,8 +5,8 @@ import NavBar from './components/elements/NavBar';
 import MobileNav from './components/elements/MobileNav';
 import Home from './components/pages/Home';
 import Dashboard from './components/pages/Dashboard';
-import ProductsPage from './components/pages/ProductsPage';
-import ProductPage from './components/pages/ProductPage';
+import ProductCollection from './components/pages/ProductCollection';
+import Product from './components/pages/Product';
 import AddProduct from './components/pages/AddProduct';
 import SignUpPage from './components/pages/SignUpPage';
 import LogInPage from './components/pages/LogInPage';
@@ -45,9 +45,9 @@ class App extends Component {
             <div className='page-content'>    
                 <Route exact path='/' render = {() => <Redirect to='/home'/>}/>
                 <Route path='/home' component = {Home}/>
-                <Route exact path='/products' component = {ProductsPage}/>
-                <Route path='/products/:group' component = {ProductsPage}/>
-                <Route path='/products/:group/:id' component = {ProductPage}/>
+                <Route exact path='/products' component = {ProductCollection}/>
+                <Route path='/products/:group' component = {ProductCollection}/>
+                <Route path='/products/:group/:id' component = {Product}/>
                 <Route path='/dashboard' render = {() => <Dashboard/>}/>
                 <Route path='/addproduct' render = {() => <AddProduct/>}/>
                 <Route path='/search/:terms' render = {()=><SearchResults/>}/>

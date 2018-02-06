@@ -6,7 +6,7 @@ import { API_ROOT } from './../../utils/api_config';
 
 const sizes = [7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12];
 
-export default class ProductPage extends Component {
+export default class Product extends Component {
 
     static contextTypes = {
     	router: PropTypes.object,

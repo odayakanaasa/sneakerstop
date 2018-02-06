@@ -19,16 +19,14 @@ export default class Home extends Component {
         this.setState({products: result.data});
     }
 
-    renderProducts = (products) => (
-        products.map(product => (
-            <div key={generateId()}>
-                <h3>{product.name}</h3>
-                <h4>${product.price}</h4>
-                <Link to={`/products/${product.productGroup.toLocaleLowerCase()}/${product.id}`}>
+    renderProducts = (products) => products.map(product => (
+            <Link key={generateId()} to={`/products/${product.productGroup.toLocaleLowerCase()}/${product.id}`}>
+                <div className='sneakerstop-product-thumbnail'>
                     <img src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${product.id}-1.jpg`}/>
-                </Link>
-            </div>
-            )
+                    <h3>{product.name}</h3>
+                    <h4>${product.price}</h4>
+                </div>
+            </Link>
         )
     )
     
