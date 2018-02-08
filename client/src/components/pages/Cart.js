@@ -112,7 +112,7 @@ export default class Cart extends Component {
                 </tbody>
             </table>
 
-            <div className='sneakerstop-cart-table-mobile'>
+            <div className='sneakerstop-cart-mobile'>
                 {this.state.cartItems.length === 0 ? (
                     <tr>
                         <td colSpan={2}>
@@ -126,11 +126,10 @@ export default class Cart extends Component {
                                 <img src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${item.productId}-1.jpg`}/>
                             </Link>
                         </div>
-
                         <table>
                             <tr>
-                                <td colSpan={5}>
-                                
+                                <td colSpan={2}>
+                                    {item.name}
                                 </td>
                             </tr>
                             <tr>
@@ -162,7 +161,7 @@ export default class Cart extends Component {
                                 </td>
                             </tr>
                             <tr>
-                                <td rowSpan={2}>
+                                <td colSpan={2}>
                                     <span onClick={()=>this.removeItem(item.id)}>Delete</span>
                                 </td>
                             </tr>

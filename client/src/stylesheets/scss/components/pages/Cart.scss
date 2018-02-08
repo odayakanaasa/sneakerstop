@@ -59,41 +59,57 @@
     }
 }
 
-.sneakerstop-cart-table-mobile {
+.sneakerstop-cart-mobile {
     width: 90%;
     margin: auto;
-    & table {
-        width: 100%;
-        border: 1px solid #ddd;   
-        border-collapse: collapse; 
+}
+
+.sneakerstop-mobile-cart-item {
+    border: 1px solid #ddd;
+    &:last-child {
+        border-top: none;
     }
-    & tr {
-        border: 1px solid #ddd;
-    }
-    & td {
-        & input {
-            width: 100%;
-            line-height: 30px;
-            font-size: 18px;
-        }
-        & span {
-            vertical-align: top;
-            width: 100%;
-            display: inline-block;
-            height: 30px;
-            line-height: 30px;
-        }
+    .sneakerstop-mobile-cart-item-img-container {
+        display: inline-block;
+        width: 33%;
+        text-align: center;
         & img {
             width: 100px;
-            margin: 0px auto 30px auto;
+            margin: 0px auto 60px auto;
         }
-        &:first-child {
-            text-align: center;
+    }
+    & table {
+        width: 66%;
+        display: inline-block;
+        & tr {
+            width: 100%;
+            height: 30px;
+            &:first-child {
+                font-family: 'Trade Gothic Bold';
+            }
+            &:last-child {
+                color: $sneakerstop-blue;
+            }
         }
-        &:last-child {
-            padding-left: 10px;
+        & td {
+            text-align: left;
+            box-sizing: border-box;
+            & input {
+                width: 100%;
+                line-height: 30px;
+                font-size: 18px;
+            }
+            & span {
+                vertical-align: top;
+                width: 100%;
+                display: inline-block;
+                height: 30px;
+                line-height: 30px;
+            }
+            &:last-child {
+                padding-left: 10px;
+            }
         }
-       
     }
 }
 
@@ -161,7 +177,7 @@
     .sneakerstop-cart-table {
         display: table;
     }
-    .sneakerstop-cart-table-mobile {
+    .sneakerstop-cart-mobile {
         display: none;
     }
     .sneakerstop-totals-table {

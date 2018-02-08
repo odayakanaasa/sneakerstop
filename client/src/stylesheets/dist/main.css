@@ -496,32 +496,46 @@ input, textarea {
     height: 50px;
     font-size: 18px; }
 
-.sneakerstop-cart-table-mobile {
+.sneakerstop-cart-mobile {
   width: 90%;
   margin: auto; }
-  .sneakerstop-cart-table-mobile table {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-collapse: collapse; }
-  .sneakerstop-cart-table-mobile tr {
-    border: 1px solid #ddd; }
-  .sneakerstop-cart-table-mobile td input {
-    width: 100%;
-    line-height: 30px;
-    font-size: 18px; }
-  .sneakerstop-cart-table-mobile td span {
-    vertical-align: top;
-    width: 100%;
+
+.sneakerstop-mobile-cart-item {
+  border: 1px solid #ddd; }
+  .sneakerstop-mobile-cart-item:last-child {
+    border-top: none; }
+  .sneakerstop-mobile-cart-item .sneakerstop-mobile-cart-item-img-container {
     display: inline-block;
-    height: 30px;
-    line-height: 30px; }
-  .sneakerstop-cart-table-mobile td img {
-    width: 100px;
-    margin: 0px auto 30px auto; }
-  .sneakerstop-cart-table-mobile td:first-child {
+    width: 33%;
     text-align: center; }
-  .sneakerstop-cart-table-mobile td:last-child {
-    padding-left: 10px; }
+    .sneakerstop-mobile-cart-item .sneakerstop-mobile-cart-item-img-container img {
+      width: 100px;
+      margin: 0px auto 60px auto; }
+  .sneakerstop-mobile-cart-item table {
+    width: 66%;
+    display: inline-block; }
+    .sneakerstop-mobile-cart-item table tr {
+      width: 100%;
+      height: 30px; }
+      .sneakerstop-mobile-cart-item table tr:first-child {
+        font-family: 'Trade Gothic Bold'; }
+      .sneakerstop-mobile-cart-item table tr:last-child {
+        color: #22f; }
+    .sneakerstop-mobile-cart-item table td {
+      text-align: left;
+      box-sizing: border-box; }
+      .sneakerstop-mobile-cart-item table td input {
+        width: 100%;
+        line-height: 30px;
+        font-size: 18px; }
+      .sneakerstop-mobile-cart-item table td span {
+        vertical-align: top;
+        width: 100%;
+        display: inline-block;
+        height: 30px;
+        line-height: 30px; }
+      .sneakerstop-mobile-cart-item table td:last-child {
+        padding-left: 10px; }
 
 .sneakerstop-totals-table {
   margin: 20px auto 20px auto;
@@ -572,7 +586,7 @@ input, textarea {
   .sneakerstop-cart-table {
     display: table; }
 
-  .sneakerstop-cart-table-mobile {
+  .sneakerstop-cart-mobile {
     display: none; }
 
   .sneakerstop-totals-table {

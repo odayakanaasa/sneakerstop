@@ -6,6 +6,19 @@ const database = new Sequelize(process.env.DATABASE_URL,{
 	dialect: 'postgres'
 });
 
+/*
+id            | uuid                     |           | not null | 
+name          | character varying(255)   |           | not null | 
+price         | numeric                  |           | not null | 
+brand         | character varying(255)   |           | not null | 
+product_group | character varying(255)   |           | not null | 
+category      | character varying(255)   |           | not null | 
+sub_category  | character varying(255)   |           | not null | 
+quantity      | integer                  |           | not null | 
+createdAt     | timestamp with time zone |           | not null | 
+updatedAt     | timestamp with time zone |           | not null | 
+*/
+
 //model
 const Product = database.define('product', {
 	id: {
@@ -51,6 +64,16 @@ const Product = database.define('product', {
         unique: false,
     },
 });
+
+/*
+ id         | uuid                     |           | not null | 
+ username   | character varying(255)   |           | not null | 
+ product_id | uuid                     |           | not null | 
+ quantity   | integer                  |           | not null | 
+ purchased  | boolean                  |           | not null | 
+ createdAt  | timestamp with time zone |           | not null | 
+ updatedAt  | timestamp with time zone |           | not null |
+*/
 
 const CartItem = database.define('cartitem', {
     id: {
@@ -211,16 +234,16 @@ const seed = () => {
             name: product.name,
             price: product.price,
             brand: product.brand,
-            productGroup: product.group,
+            product_group: product.group,
             category: product.category,
-            subCategory: product.subCategory,
+            sub_category: product.subCategory,
             quantity: product.quantity,
         }));
         return Promise.all(seedProducts).then(()=>{
             const seedCartItems = cartItems.map(item => CartItem.create({
                 id: item.id,
                 username: item.username,
-                productId: item.productId,
+                product_id: item.productId,
                 quantity: item.quantity,
                 purchased: item.purchased,
             }));
