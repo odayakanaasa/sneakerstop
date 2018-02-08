@@ -20,7 +20,8 @@ module.exports = (router) => {
     const cartItems = require('./controllers/cart_items.js');
     
     router.post('/api/cartitems', cartItems.add);
-    router.get('/api/cartitems/:userId', cartItems.findByUsername);
-    router.put('/api/cartitems/:id', cartItems.updateById);
+    router.get('/api/cartitems/:username', cartItems.findByUsername);
+    router.put('/api/cartitems/:id', cartItems.add);
+    router.patch('/api/cartitems/:id', cartItems.updateById);
     router.delete('/api/cartitems/:id', cartItems.deleteById);
 }

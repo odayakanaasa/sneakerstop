@@ -4,6 +4,7 @@ import { Route, withRouter, Redirect } from 'react-router-dom';
 import NavBar from './components/elements/NavBar';
 import MobileNav from './components/elements/MobileNav';
 import Home from './components/pages/Home';
+import Cart from './components/pages/Cart';
 import Dashboard from './components/pages/Dashboard';
 import ProductCollection from './components/pages/ProductCollection';
 import Product from './components/pages/Product';
@@ -29,7 +30,6 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            loggedInUserId: undefined,
             mobileNavOpen: false,
         }
     }
@@ -46,15 +46,15 @@ class App extends Component {
                 <Route exact path='/' render = {() => <Redirect to='/home'/>}/>
                 <Route path='/home' component = {Home}/>
                 <Route exact path='/products' component = {ProductCollection}/>
-                <Route path='/products/:group' component = {ProductCollection}/>
-                <Route path='/products/:group/:id' component = {Product}/>
+                <Route path='/products/:id' render = {() => <Product username={auth.getUsername()}/>}/>
+                <Route path='/cart' render = {() => <Cart username={auth.getUsername()}/>}/>
                 <Route path='/dashboard' render = {() => <Dashboard/>}/>
                 <Route path='/addproduct' render = {() => <AddProduct/>}/>
                 <Route path='/search/:terms' render = {()=><SearchResults/>}/>
             </div>
-            <Route path='/login' render = {() => <LogInPage username={auth.getUsername} login={auth.login}/>}/>
-            <Route path='/signup' render = {() => <SignUpPage username={auth.getUsername} signup={auth.signup}/>}/>
-            <Footer isAdmin={auth.isAdmin()}/>
+            <Route path='/login' render = {() => <LogInPage username={auth.getUsername()} login={auth.login}/>}/>
+            <Route path='/signup' render = {() => <SignUpPage username={auth.getUsername()} signup={auth.signup}/>}/>
+            <Footer isAdmin={auth.isAdmin()} username={auth.getUsername()}/>
         </div>
     );
 }

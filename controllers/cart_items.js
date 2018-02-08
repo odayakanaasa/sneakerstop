@@ -3,16 +3,32 @@ const CartItem = require('../database.js').models.CartItem;
 //GET Request
 const findAll = (req,res,next) => {
 	console.log('Request Type:', req.method);
-	CartItem.findAll().then((result) => {
+	CartItem.findAll().then(result => {
     	return res.send(result);
     }).catch(next);
 }
 
 //GET Request
+
+//TODO: join the products table to get the price and name of each product by id
+//TODO: make this association between products and cartitems
+//User.hasMany(Post, {foreignKey: 'user_id'})
+//Post.belongsTo(User, {foreignKey: 'user_id'})
+/*
+Posts.findAll({
+  include: [{
+    model: User,
+    where: {year_birth: 1984}
+    required: false,
+   }]
+})
+*/
+//Something like
+//SELECT cartitems. FROM CartItems INNER JOIN products ON product.id = cartitem.productId
 const findByUsername = (req,res,next) => {
     console.log('Request Type:', req.method);
     console.log('Request ID parameter: ',req.params.id);
-    CartItem.findOne({ where: { username: req.params.username } }).then((result) => {
+    CartItem.findAll({ where: { username: req.params.username } }).then(result => {
         return res.send(result);
    }).catch(next);
 }
@@ -21,17 +37,18 @@ const findByUsername = (req,res,next) => {
 const add = (req,res,next) => {
 	console.log('Request Type:', req.method);
 	console.log('Request Body: ',req.body);
-	CartItem.create(req.body).then((result) => {
+	CartItem.create(req.body).then(result => {
 		return res.send(result);
 	}).catch(next);
 }
 
+//TODO: Patch Request??
 //PUT Request
 const updateById = (req,res,next) => {
 	console.log('Request Type: ',req.method);
 	console.log('Request ID parameter: ',req.params.id);
 	console.log('Request Body: ',req.body);
-	CartItem.update(req.body, { where: { id: req.params.id }}).then((result) => {
+	CartItem.update(req.body, { where: { id: req.params.id }}).then(result => {
 		return res.send(result);
 	}).catch(next);
 }

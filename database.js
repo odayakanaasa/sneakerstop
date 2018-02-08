@@ -60,7 +60,7 @@ const CartItem = database.define('cartitem', {
 		unique: true,
 		primaryKey: true,
     },
-    userName: {
+    username: {
         type: database.Sequelize.STRING,
 		allowNull: false,
 		unique: false,
@@ -86,6 +86,7 @@ const sync = () => database.sync({force:true});
 
 //default data
 const seed = () => {
+    
     const products = [
         {
             id: '38a23cf6-a223-4b02-8fb9-4ca1348ae459',
@@ -188,8 +189,24 @@ const seed = () => {
             quantity: '100',
         },
     ];
+
+    const cartItems = [
+        {
+            username: 'jhinsch799',
+            productId: '80280ddd-0457-42c0-ae58-b4b092bdd91e',
+            quantity: 2,
+            purchased: false,
+        },
+        {
+            username: 'jhinsch799',
+            productId: 'fb5fbb05-b2a6-4e82-ae21-5314473cef07',
+            quantity: 1,
+            purchased: false,
+        },
+    ];
+
 	return sync().then(()=>{
-		const seedProductData = products.map(product => Product.create({
+		const seedProducts = products.map(product => Product.create({
             id: product.id,
             name: product.name,
             price: product.price,
@@ -199,8 +216,17 @@ const seed = () => {
             subCategory: product.subCategory,
             quantity: product.quantity,
         }));
-		return Promise.all(seedProductData);
-	}).catch(err => console.log(err));
+        return Promise.all(seedProducts).then(()=>{
+            const seedCartItems = cartItems.map(item => CartItem.create({
+                id: item.id,
+                username: item.username,
+                productId: item.productId,
+                quantity: item.quantity,
+                purchased: item.purchased,
+            }));
+            return Promise.all(seedCartItems);
+        }).catch(err => console.log(err));
+    });
 }
 
 module.exports = {

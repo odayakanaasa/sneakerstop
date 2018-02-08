@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+//TODO: map these to form all nav links
+//TODO: import them from a util file
+//let categories = [];
+//let subcategories = [];
+
 export default class NavDropdown extends Component {
     
     static propTypes = {
@@ -21,17 +26,64 @@ export default class NavDropdown extends Component {
                     onMouseEnter={()=>{this.props.setDropdownGroup(this.props.group)}}
                     onMouseLeave={()=>{this.props.setDropdownGroup('')}}>
                     <ul>
-                        <li><Link to={`/products/${this.props.group}/shoes`}><h3>Shoes</h3></Link></li>
-                        <li><Link to={`/products/${this.props.group}/shoes`}>Basketball</Link></li>
-                        <li><Link to='/'>Running</Link></li>
-                        <li><Link to='/'>Lifestyle</Link></li>
-                        <li><Link to='/'>Tennis</Link></li>
-                        <li><Link to='/'>Soccer</Link></li>
-                        <li><Link to='/'>Skateboarding</Link></li>
-                        <li><Link to='/'>Cleats</Link></li>
-                        <li><Link to={`/products/${this.props.group}/boots`}>Boots</Link></li>
-                        <li><Link to='/'>{`All ${plural} Shoes`}</Link></li>
-                        <li><Link to='/products/shoes'>All Shoes</Link></li>
+                        <li>
+                            <Link to={`/products?group=${this.props.group}&category=shoes`}>
+                                <h3>Shoes</h3>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/products?group=${this.props.group}&category=shoes&subcategory=basketball`}>
+                                Basketball
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/products?group=${this.props.group}&category=shoes&subcategory=running`}>
+                                Running
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/products?group=${this.props.group}&category=shoes&subcategory=lifestyle`}>
+                                Lifestyle
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/products?group=${this.props.group}&category=shoes&subcategory=tennis`}>
+                                Tennis
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/products?group=${this.props.group}&category=shoes&subcategory=soccer`}>
+                                Soccer
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/products?group=${this.props.group}&category=shoes&subcategory=soccer`}>
+                                Soccer
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/products?group=${this.props.group}&category=shoes&subcategory=skateboarding`}>
+                                Skateboarding
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/products?group=${this.props.group}&category=shoes&subcategory=cleats`}>
+                                Cleats
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/products?group=${this.props.group}&category=shoes&subcategory=boots`}>
+                                Boots
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/products?group=${this.props.group}&category=shoes`}>
+                                {`All ${plural} Shoes`}
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to='/products/?category=shoes'>All Shoes</Link>
+                        </li>
                     </ul>
                     <ul>
                         <li><Link to={`/products/${this.props.group}/clothing`}><h3>Clothing</h3></Link></li>

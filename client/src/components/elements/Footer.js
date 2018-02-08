@@ -6,7 +6,6 @@ export default class Footer extends Component {
     
     static propTypes = {
         isAdmin: PropTypes.bool.isRequired,
-        isMerchant: PropTypes.bool.isRequired,
     }
 
     render = () => (
@@ -29,7 +28,7 @@ export default class Footer extends Component {
                         <li><Link to='/blog'>Blog</Link></li>
                         <li><Link to='/investors'>Investors</Link></li>
                         <li><Link to='/careers'>Careers</Link></li>
-                        {this.props.isAdmin || this.props.isMerchant ? (
+                        {this.props.isAdmin ? (
                             <li>
                                 <Link to='/dashboard'>Dashboard</Link>
                             </li>

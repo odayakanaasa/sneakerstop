@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { generateId } from './../../utils/uuid-generator';
 import { API_ROOT } from './../../utils/api_config';
+import Auth from './../../utils/auth/Auth';
 
 const sizes = [7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12];
 
 export default class Product extends Component {
+
+    static propTypes = {
+        username: PropTypes.string.isRequired,
+    }
 
     static contextTypes = {
     	router: PropTypes.object,
@@ -18,6 +23,8 @@ export default class Product extends Component {
         this.state = {
             productData: undefined,
             selectedImage: 1,
+            //handle sizes later
+            //selectedSize: 1,
         }
     }
 
@@ -26,6 +33,30 @@ export default class Product extends Component {
         let result = await axios.get(`${API_ROOT}/products/${id}`);
         console.log(result);
         this.setState({productData: result.data});
+    }
+
+    handleSubmit = (event) => {
+        console.log(event);
+        event.preventDefault();
+        this.addToCart();
+    }
+
+    async addToCart() {
+        if(this.props.username) {
+            //if user is logged in post to cartitems database
+            try {
+                await axios.put(`${API_ROOT}/cartitems`,{
+                    productId: this.state.productData.id,
+                    username: this.props.username,
+                    quantity: 1,
+                    purchased: false,
+                });
+            } catch(err) {
+                console.log(err);
+            }
+        } else {
+            //save the cartitem in localstorage or similar
+        }
     }
 
     renderThumbnails = () => {
@@ -57,7 +88,7 @@ export default class Product extends Component {
                         <h1> {this.state.productData.name} </h1>
                         <h2> {this.state.productData.brand} </h2>
                         <h3> ${this.state.productData.price} </h3>
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <div>
                                 <span> Size </span>
                                 <select>

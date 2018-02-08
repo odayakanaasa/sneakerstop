@@ -16,7 +16,7 @@ export default class Auth {
     });
 
     getUsername = () => {
-        return '';
+        return 'jhinsch799';
     }
 
     isAdmin = () => true;

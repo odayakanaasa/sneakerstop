@@ -33,6 +33,14 @@ export default class NavBar extends Component {
         this.setState({searchInputValue: ''});
     }
 
+    /*
+        <li>
+            <Link to='/lang'>
+                <img src={require('../../assets/images/icons/flag-usa.png')}/>
+            </Link>
+        </li>
+    */
+
     render = () => (
         <div className='sneakerstop-navbar'>
             <div className='sneakerstop-logo-container'>
@@ -41,20 +49,26 @@ export default class NavBar extends Component {
                 </h1>
             </div>
             <div className='sneakerstop-nav-container'>
-                <div className='sneakerstop-navbar-top'>
-                    <ul>
-                        <li>
-                            <Link to='/login'> Log In </Link>
-                        </li>
-                        <li>
-                            <Link to='/register'> Create an Account </Link>
-                        </li>
-                        <li>
-                            <Link to='/lang'>
-                                <img src={require('../../assets/images/icons/flag-usa.png')}/>
-                            </Link>
-                        </li>
-                    </ul>
+                <div className='sneakerstop-navbar-top'>        
+                    {this.props.username ? (
+                        <ul>
+                            <li>
+                                Welcome, {this.props.username}
+                            </li>
+                            <li>
+                                Log Out
+                            </li>
+                        </ul>
+                    ) : (
+                        <ul>
+                            <li>
+                                <Link to='/login'> Log In </Link>
+                            </li>
+                            <li>
+                                <Link to='/register'> Create an Account </Link>
+                            </li>
+                        </ul>
+                    )}
                 </div>
                 <div className='sneakerstop-navbar-bottom'>
                     <ul>
