@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 export default class NavBar extends Component {
 
     static propTypes = {
+        mobileNavOpen: PropTypes.bool.isRequired,
         toggleMobileNav: PropTypes.func.isRequired,
         username: PropTypes.string.isRequired,
         logout: PropTypes.func.isRequired,
@@ -18,7 +19,6 @@ export default class NavBar extends Component {
         super(props);
         this.state = {
             searchInputValue: '',
-            hamburgerOpen: false,
             dropdownGroup: '',
         }
     }
@@ -115,19 +115,17 @@ export default class NavBar extends Component {
             <div 
                 className='sneakerstop-hamburger-container' 
                 onClick={()=> {
-                    if (this.state.hamburgerOpen) {
-                        this.setState({hamburgerOpen: false});
+                    if (this.props.mobileNavOpen) {
                         this.props.toggleMobileNav();
                     } else {
-                        this.setState({hamburgerOpen: true});
                         this.props.toggleMobileNav();
                     } 
                 }}>
-                <Hamburger open={this.state.hamburgerOpen}/>
+                <Hamburger open={this.props.mobileNavOpen}/>
             </div>
             <NavDropdown 
                 group={this.state.dropdownGroup} 
-                setDropdownGroup={(group)=>this.setState({dropdownGroup: group})}/>
+                setDropdownGroup={group => this.setState({dropdownGroup: group})}/>
         </div>
     )
 }

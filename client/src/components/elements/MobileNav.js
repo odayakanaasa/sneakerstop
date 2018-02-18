@@ -7,7 +7,7 @@ export default class MobileNav extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchInputValue: "",
+            searchInputValue: '',
         }
     }
 
@@ -16,6 +16,7 @@ export default class MobileNav extends Component {
         open: PropTypes.bool.isRequired,
         handleSearch: PropTypes.func.isRequired,
         cartItemCount: PropTypes.number.isRequired,
+        toggleMobileNav: PropTypes.func.isRequired,
     }
 
     handleInputChange = (event) => {
@@ -23,30 +24,33 @@ export default class MobileNav extends Component {
     }
     
     render = () => !this.props.open ? null : (
-        <div className='mobile-nav-container'>
+        <div className='mobile-nav-container' onClick={this.props.toggleMobileNav}>
             <div className='mobile-nav'>
                 <ul>
                     <li>
-                        <Link to='/products?group=men'>Men</Link>
+                        <Link to='/products?group=men' onClick={this.props.toggleMobileNav}>Men</Link>
                     </li>
                     <li>
-                        <Link to='/products?group=women'>Women</Link>
+                        <Link to='/products?group=women' onClick={this.props.toggleMobileNav}>Women</Link>
                     </li>
                     <li>
-                        <Link to='/products?group=kids'>Kids</Link>
+                        <Link to='/products?group=kids' onClick={this.props.toggleMobileNav}>Kids</Link>
                     </li>
                     <li>
-                        <Link to='/login'> Log In </Link>
+                        <Link to='/login' onClick={this.props.toggleMobileNav}> Log In </Link>
                     </li>
                     <li>
-                        <Link to='/register'> Create an Account </Link>
+                        <Link to='/register' onClick={this.props.toggleMobileNav}> Create an Account </Link>
                     </li>
                     <li>
-                        <Link to='/cart'>Cart</Link>
+                        <Link to='/cart' onClick={this.props.toggleMobileNav}>Cart</Link>
                     </li>
                 </ul>
                 <div className='search'>
-                    <form onSubmit={this.props.handleSearch}>
+                    <form onSubmit={()=>{
+                            this.props.handleSearch;
+                            this.props.toggleMobileNav;
+                        }}>
                         <input 
                             onChange={this.handleInputChange} 
                             placeholder={'Search...'} 

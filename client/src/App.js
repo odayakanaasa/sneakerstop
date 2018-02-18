@@ -63,10 +63,12 @@ class App extends Component {
             <NavBar 
                 username={auth.getUsername()} 
                 toggleMobileNav={this.toggleMobileNav}
+                mobileNavOpen={this.state.mobileNavOpen}
                 cartItemCount={this.state.cartItemCount}
                 handleSearch={this.handleSearch}
                 logout={auth.logout}/>
             <MobileNav 
+                toggleMobileNav={this.toggleMobileNav}
                 username={auth.getUsername()} 
                 open={this.state.mobileNavOpen}
                 cartItemCount={this.state.cartItemCount}
@@ -83,7 +85,7 @@ class App extends Component {
                 <Route path='/search/:terms' render = {()=><SearchResults/>}/>
             </div>
             <Route path='/login' render = {() => <LogInPage username={auth.getUsername()} login={auth.login}/>}/>
-            <Route path='/signup' render = {() => <SignUpPage username={auth.getUsername()} signup={auth.signup}/>}/>
+            <Route path='/register' render = {() => <SignUpPage username={auth.getUsername()} signup={auth.signup}/>}/>
             <Footer isAdmin={auth.isAdmin()} username={auth.getUsername()}/>
         </div>
     );

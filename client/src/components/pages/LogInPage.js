@@ -6,6 +6,7 @@ import InputField from './../elements/InputField';
 export default class LogInPage extends Component {
 
     static propTypes = {
+        username: PropTypes.string.isRequired,
         login: PropTypes.func.isRequired,
     }
 
@@ -20,8 +21,6 @@ export default class LogInPage extends Component {
     }
 
     handleUsernameChange = (text) => {
-        console.log('handleusername called');
-        console.log(text);
     	this.setState({usernameText: text});
         if (text==='') {
             this.setState({usernameErrMsg:'This field is required.'});
@@ -50,10 +49,12 @@ export default class LogInPage extends Component {
     }
 
     handleSubmit = (event) => {
+        this.handleUsernameChange(this.state.usernameText);
+        this.handlePasswordChange(this.state.passwordText);
         event.preventDefault();
         if (this.canSubmit()) {
             //make api call to auth0
-            this.props.login();
+            this.props.login(this.state.usernameText,this.state.passwordText);
         }
     }
     
@@ -62,21 +63,21 @@ export default class LogInPage extends Component {
 			<div className="login-form-container">
 				<form className="login-form" onSubmit={this.handleSubmit}>
 					<h2 className="login-form-header"> Log In </h2>
+                    <span className="input-label"> Username </span>
 					<InputField 
 						name="username"
 					 	type="text"
 					 	handleInputChange={this.handleUsernameChange} 
 					 	validation={this.validateField}
 					 	errMsg={this.state.usernameErrMsg}
-					 	autofocus={true}
-                        placeholder='Username'/>
+					 	autofocus={true}/>
+                    <span className="input-label"> Password </span>
 					<InputField 
 						name="password"
 						type="password"
 						handleInputChange={this.handlePasswordChange} 
 						validation={this.validateField}
-						errMsg={this.state.passwordErrMsg}
-                        placeholder='Password' />
+						errMsg={this.state.passwordErrMsg}/>
 					<div className="login-button-container">
 						<button className="login-button" type="submit">Log In</button>
 					</div>
@@ -84,7 +85,7 @@ export default class LogInPage extends Component {
 				<hr className="form-hr" />
 				<div className="signup-link-container">
 					New?
-					<Link className="signup-link" to="/signup">Create an Account &#9656;</Link>
+					<Link className="signup-link" to="/register">Create an Account &#9656;</Link>
 				</div> 
 			</div>
 		</div>

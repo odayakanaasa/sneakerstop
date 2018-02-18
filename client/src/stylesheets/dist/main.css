@@ -653,14 +653,13 @@ input, textarea {
   position: relative;
   margin: 30px auto 30px auto;
   padding: 20px 0px 40px 0px;
-  color: #666; }
+  color: black; }
 
 .login-form-header {
-  color: black;
   font-size: 20px;
   text-align: left;
   font-weight: normal;
-  margin-bottom: 40px; }
+  margin-bottom: 30px; }
 
 .login-form {
   width: 90%;
@@ -715,6 +714,85 @@ input, textarea {
     font-size: 30px; } }
 @media (min-width: 500px) {
   .login-form-container {
+    width: 500px;
+    border: 1px solid #ddd; } }
+.signup-page {
+  position: relative;
+  margin-top: 0px;
+  background-color: white;
+  padding-top: 120px;
+  padding-bottom: 80px; }
+
+.header-container {
+  z-index: 10;
+  height: 100px; }
+
+.signup-form-container {
+  width: 100%;
+  position: relative;
+  margin: 30px auto 30px auto;
+  padding: 20px 0px 40px 0px; }
+
+.signup-form-header {
+  color: black;
+  font-size: 20px;
+  text-align: left;
+  font-weight: normal;
+  margin-bottom: 30px; }
+
+.signup-form {
+  width: 90%;
+  margin: auto; }
+
+.input-label {
+  font-family: helvetica;
+  float: left;
+  font-size: 14px;
+  margin: 10px 0px 5px 0px; }
+
+.form-hr {
+  margin: 15px auto 15px auto;
+  border-top: 1px solid #ddd;
+  width: 60%; }
+
+.signup-button-container {
+  margin-top: 20px;
+  text-align: center; }
+
+.signup-button {
+  width: 80%;
+  height: 30px;
+  background-color: #ddd;
+  border: 1px solid #aaa;
+  margin-right: 10px;
+  font-size: 12px; }
+  .signup-button:hover {
+    cursor: pointer;
+    border: 1px solid #719ECE; }
+
+.login-link-container {
+  font-family: helvetica;
+  text-align: center;
+  font-size: 14px;
+  width: 90%;
+  margin: auto; }
+
+.login-link {
+  color: blue;
+  text-decoration: none;
+  margin-left: 5px; }
+  .login-link:hover {
+    text-decoration: underline; }
+
+@media (min-width: 300px) {
+  .signup-form {
+    width: 270px;
+    margin: auto; }
+
+  .signup-form-header {
+    font-size: 30px; } }
+@media (min-width: 500px) {
+  .signup-form-container {
     width: 500px;
     border: 1px solid #ddd; } }
 .sneakerstop-product-layout-container {

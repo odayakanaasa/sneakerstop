@@ -17,7 +17,7 @@ export default class InputField extends Component {
 
 	render = () => (
         <div className='input-container'>
-            <input className={`inputfield ${!this.props.errMsg ==='' ? 'invalid' : ''}`}
+            <input className={`inputfield ${/*this.props.errMsg !== '' ? 'invalid' :*/''}`}
                 name={this.props.name}
                 type={this.props.type}
                 placeholder={this.props.placeholder}

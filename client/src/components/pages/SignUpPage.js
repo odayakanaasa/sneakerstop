@@ -83,6 +83,9 @@ export default class SignUpPage extends Component {
     }
 
     handleSubmit = () => {
+        this.handleUsernameChange(this.state.usernameText);
+        this.handlePasswordChange(this.state.passwordText);
+        this.handlePassword2Change(this.state.password2Text);
         if (this.canSubmit()) {
             //make call to auth0
             this.props.signup();
@@ -90,10 +93,7 @@ export default class SignUpPage extends Component {
     }
 
     render = () => (
-        <div>
-            <div className="header-container">
-                <Link to="/" className="header-link">SneakerStop</Link>
-            </div>
+        <div className='signup-page'>
             <div className="signup-form-container">
                 <form className="signup-form">
                     <h2 className="signup-form-header"> Sign Up </h2>
@@ -104,8 +104,8 @@ export default class SignUpPage extends Component {
                         placeholder="No more than 12 characters"
                         handleInputChange={this.handleInputChange} 
                         validation={this.validateField}
-                        errorMessage={this.state.usernameErrMsg}
-                        autofocus={"autofocus"} />
+                        errMsg={this.state.usernameErrMsg}
+                        autofocus={true} />
                     <span className="input-label"> Password </span>
                     <InputField 
                         name="password" 
@@ -113,21 +113,21 @@ export default class SignUpPage extends Component {
                         placeholder="At least 8 characters and 1 number" 
                         handleInputChange={this.handleInputChange} 
                         validation={this.validateField}
-                        errorMessage={this.state.passwordErrMsg} />
+                        errMsg={this.state.passwordErrMsg} />
                     <span className="input-label"> Re-enter Password </span>
                     <InputField 
                         name="password2"
                         type="password"
                         handleInputChange={this.handleInputChange} 
                         validation={this.validateField}
-                        errorMessage={this.state.password2ErrMsg} />
+                        errMsg={this.state.password2ErrMsg} />
                     <div className="signup-button-container">
                         <button className={"signup-button "+(this.canSubmit() ? "active" : "")} type="submit" onClick={this.handleSubmit}>Create an Account</button>
                     </div>
                 </form>
                 <hr className="form-hr" />
                 <div className="login-link-container">
-                    {"Already have a Voting Booth account? "} 
+                    Already have an account?
                     <Link className="login-link" to="/login">Log in &#9656; </Link>
                 </div> 
             </div>
