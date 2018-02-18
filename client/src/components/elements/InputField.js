@@ -10,18 +10,18 @@ export default class InputField extends Component {
 		errMsg: PropTypes.string.isRequired,
   		placeholder: PropTypes.string,
   		onBlur: PropTypes.func,
-  		autofocus: PropTypes.string,
+  		autofocus: PropTypes.bool,
   		onFocus: PropTypes.func,
   		value: PropTypes.string,
 	}
 
 	render = () => (
         <div className='input-container'>
-            <input className={`inputfield ${!this.props.errMsg==='' ? 'invalid' : ''}`}
+            <input className={`inputfield ${!this.props.errMsg ==='' ? 'invalid' : ''}`}
                 name={this.props.name}
                 type={this.props.type}
                 placeholder={this.props.placeholder}
-                onChange={this.props.handleInputChange} 
+                onChange={event => this.props.handleInputChange(event.target.value)} 
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 autoFocus={this.props.autofocus}

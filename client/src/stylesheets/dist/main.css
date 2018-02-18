@@ -109,6 +109,9 @@ h1, h2, h3, h4, h5 {
   float: right;
   height: 80px; }
 
+.sneakerstop-logout-link {
+  cursor: pointer; }
+
 .sneakerstop-navbar-top {
   font-family: 'Trade Gothic Light';
   font-size: 12px;
@@ -177,7 +180,8 @@ h1, h2, h3, h4, h5 {
   position: absolute;
   margin-top: 6px;
   height: 30px;
-  right: 15px;
+  right: 0px;
+  width: 90px;
   color: white; }
   .sneakerstop-cart-icon-container img {
     height: inherit;
@@ -187,6 +191,16 @@ h1, h2, h3, h4, h5 {
     transform: scaleX(-1);
     filter: FlipH;
     -ms-filter: "FlipH"; }
+
+.sneakerstop-cart-item-count {
+  position: absolute;
+  background-color: red;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  top: 30px;
+  right: 20px; }
 
 .sneakerstop-hamburger-container {
   display: block;
@@ -208,7 +222,7 @@ h1, h2, h3, h4, h5 {
   position: fixed;
   top: 80px;
   width: 100%;
-  height: 360px;
+  height: 380px;
   text-align: center;
   border-bottom: 1px solid black; }
   .nav-dropdown ul {
@@ -434,22 +448,25 @@ input, textarea {
   font-size: 14px;
   line-height: 30px;
   background-color: white;
-  border: 1px solid #aaa; }
+  border: none;
+  border-bottom: 1px solid #aaa; }
   .inputfield.invalid {
     background-color: pink;
-    border: 1px solid red; }
+    border-bottom: 1px solid red; }
   .inputfield:focus {
     background-color: white;
-    border: 1px solid #aaa;
-    box-shadow: 0px 0px 5px 1px #aaa; }
+    outline: none;
+    border-bottom: 1px solid #22f; }
 
 .error-message {
-  height: 15px;
+  font-family: helvetica;
+  height: 20px;
+  line-height: 20px;
   width: 100%;
   text-align: left;
   color: red;
   font-size: 12px;
-  font-weight: bold; }
+  margin-bottom: 10px; }
 
 .sneakerstop-cart-layout-container {
   background-color: white;
@@ -460,6 +477,8 @@ input, textarea {
   font-family: 'Trade Gothic'; }
   .sneakerstop-cart-layout-container h1 {
     margin: 0px 0px 10px 10%; }
+  .sneakerstop-cart-layout-container a {
+    color: #22f; }
 
 .sneakerstop-cart-table {
   display: none;
@@ -488,54 +507,67 @@ input, textarea {
     margin-bottom: 30px; }
   .sneakerstop-cart-table tbody td input {
     width: 40px;
-    height: 100%;
     margin-left: 10px;
     padding-left: 13px;
     box-sizing: border-box;
     line-height: 50px;
     height: 50px;
     font-size: 18px; }
+  .sneakerstop-cart-table tbody .sneakerstop-cart-item-name,
+  .sneakerstop-cart-table tbody .sneakerstop-cart-item-price,
+  .sneakerstop-cart-table tbody .sneakerstop-cart-item-total {
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 10px; }
+  .sneakerstop-cart-table tbody .sneakerstop-cart-item-quantity span {
+    line-height: 12px;
+    color: #22f;
+    margin: 0px 10px 0px 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer; }
 
-.sneakerstop-cart-mobile {
+.sneakerstop-mobile-cart {
   width: 90%;
   margin: auto; }
 
 .sneakerstop-mobile-cart-item {
   border: 1px solid #ddd; }
   .sneakerstop-mobile-cart-item:last-child {
-    border-top: none; }
-  .sneakerstop-mobile-cart-item .sneakerstop-mobile-cart-item-img-container {
+    margin-top: -1px; }
+  .sneakerstop-mobile-cart-item .sneakerstop-mobile-cart-item-image {
     display: inline-block;
     width: 33%;
     text-align: center; }
-    .sneakerstop-mobile-cart-item .sneakerstop-mobile-cart-item-img-container img {
+    .sneakerstop-mobile-cart-item .sneakerstop-mobile-cart-item-image img {
       width: 100px;
       margin: 0px auto 60px auto; }
-  .sneakerstop-mobile-cart-item table {
+  .sneakerstop-mobile-cart-item .sneakerstop-mobile-cart-table-container {
     width: 66%;
     display: inline-block; }
+  .sneakerstop-mobile-cart-item table {
+    width: 100%;
+    table-layout: fixed; }
     .sneakerstop-mobile-cart-item table tr {
-      width: 100%;
-      height: 30px; }
-      .sneakerstop-mobile-cart-item table tr:first-child {
-        font-family: 'Trade Gothic Bold'; }
-      .sneakerstop-mobile-cart-item table tr:last-child {
-        color: #22f; }
+      height: 30px;
+      width: 100%; }
     .sneakerstop-mobile-cart-item table td {
       text-align: left;
       box-sizing: border-box; }
-      .sneakerstop-mobile-cart-item table td input {
-        width: 100%;
-        line-height: 30px;
-        font-size: 18px; }
-      .sneakerstop-mobile-cart-item table td span {
-        vertical-align: top;
-        width: 100%;
-        display: inline-block;
-        height: 30px;
-        line-height: 30px; }
-      .sneakerstop-mobile-cart-item table td:last-child {
-        padding-left: 10px; }
+    .sneakerstop-mobile-cart-item table .sneakerstop-mobile-cart-item-name td {
+      text-align: center;
+      width: 100%; }
+    .sneakerstop-mobile-cart-item table .sneakerstop-mobile-cart-item-quantity span {
+      color: #22f;
+      margin: 0px 10px 0px 10px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer; }
+    .sneakerstop-mobile-cart-item table .sneakerstop-mobile-cart-item-remove td {
+      padding: 0px; }
+      .sneakerstop-mobile-cart-item table .sneakerstop-mobile-cart-item-remove td span {
+        color: #22f;
+        cursor: pointer; }
 
 .sneakerstop-totals-table {
   margin: 20px auto 20px auto;
@@ -545,12 +577,14 @@ input, textarea {
     border: 1px solid #ddd; }
     .sneakerstop-totals-table tr:last-child td:last-child {
       font-family: 'Trade Gothic Bold'; }
+  .sneakerstop-totals-table .sneakerstop-totals-table-shipping select {
+    height: 30px; }
   .sneakerstop-totals-table td {
     text-align: left;
     padding: 10px;
     box-sizing: border-box; }
     .sneakerstop-totals-table td:last-child {
-      background-color: white; }
+      text-align: right; }
 
 .sneakerstop-cart-nav-button-container {
   display: flex;
@@ -586,7 +620,7 @@ input, textarea {
   .sneakerstop-cart-table {
     display: table; }
 
-  .sneakerstop-cart-mobile {
+  .sneakerstop-mobile-cart {
     display: none; }
 
   .sneakerstop-totals-table {
@@ -604,7 +638,10 @@ input, textarea {
     width: 720px; } }
 .login-page {
   position: relative;
-  margin-top: 0px; }
+  margin-top: 0px;
+  background-color: white;
+  padding-top: 120px;
+  padding-bottom: 80px; }
 
 .header-container {
   z-index: 10;
@@ -612,26 +649,25 @@ input, textarea {
   height: 100px; }
 
 .login-form-container {
-  background-color: #333334;
   width: 100%;
   position: relative;
-  margin: 30px auto 0px auto;
-  border-radius: 10px;
+  margin: 30px auto 30px auto;
   padding: 20px 0px 40px 0px;
-  color: white; }
+  color: #666; }
 
 .login-form-header {
-  color: white;
+  color: black;
   font-size: 20px;
   text-align: left;
-  font-weight: normal; }
+  font-weight: normal;
+  margin-bottom: 40px; }
 
 .login-form {
   width: 90%;
   margin: auto; }
 
 .input-label {
-  font-weight: bold;
+  font-family: helvetica;
   float: left;
   font-size: 14px;
   margin: 10px 0px 5px 0px; }
@@ -657,13 +693,16 @@ input, textarea {
     border: 1px solid #719ECE; }
 
 .signup-link-container {
+  font-family: helvetica;
+  text-align: center;
   font-size: 14px;
   width: 90%;
   margin: auto; }
 
 .signup-link {
   color: blue;
-  text-decoration: none; }
+  text-decoration: none;
+  margin-left: 5px; }
   .signup-link:hover {
     text-decoration: underline; }
 
@@ -676,7 +715,8 @@ input, textarea {
     font-size: 30px; } }
 @media (min-width: 500px) {
   .login-form-container {
-    width: 500px; } }
+    width: 500px;
+    border: 1px solid #ddd; } }
 .sneakerstop-product-layout-container {
   position: relative;
   margin-top: 80px;

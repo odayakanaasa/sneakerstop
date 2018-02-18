@@ -1,4 +1,13 @@
 const CartItem = require('../database.js').models.CartItem;
+const sequelize = require('../database.js').database;
+
+//GET Request
+const countByUsername = (req,res,next) => {
+    console.log('Request Type:', req.method);
+    CartItem.count({where: {username: req.params.username}}).then(result => {
+        return res.send({count: result});
+    }).catch(next);
+}
 
 //GET Request
 const findAll = (req,res,next) => {
@@ -8,29 +17,19 @@ const findAll = (req,res,next) => {
     }).catch(next);
 }
 
-//GET Request
-
-//TODO: join the products table to get the price and name of each product by id
-//TODO: make this association between products and cartitems
-//User.hasMany(Post, {foreignKey: 'user_id'})
-//Post.belongsTo(User, {foreignKey: 'user_id'})
-/*
-Posts.findAll({
-  include: [{
-    model: User,
-    where: {year_birth: 1984}
-    required: false,
-   }]
-})
-*/
-//Something like
-//SELECT cartitems. FROM CartItems INNER JOIN products ON product.id = cartitem.productId
+//GET REQUEST
 const findByUsername = (req,res,next) => {
     console.log('Request Type:', req.method);
-    console.log('Request ID parameter: ',req.params.id);
-    CartItem.findAll({ where: { username: req.params.username } }).then(result => {
-        return res.send(result);
-   }).catch(next);
+    console.log('Request Username parameter: ',req.params.username);    
+    sequelize.query(
+        `SELECT products.name, products.price, cartitems.* 
+        FROM cartitems
+        INNER JOIN products
+        ON products.id = cartitems.product_id
+        WHERE cartitems.username = '${req.params.username}'`, 
+        { type: sequelize.QueryTypes.SELECT}).then(result => {
+            return res.send(result);
+    }).catch(next);
 }
 
 //POST Request
@@ -63,6 +62,7 @@ const deleteById = (req,res,next) => {
 }
 
 module.exports = {
+    countByUsername,
 	findAll,
 	findByUsername,
 	add,

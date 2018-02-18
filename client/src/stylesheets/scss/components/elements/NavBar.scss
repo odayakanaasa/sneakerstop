@@ -42,6 +42,10 @@
     height: 80px;
 }
 
+.sneakerstop-logout-link {
+    cursor: pointer;
+}
+
 
 .sneakerstop-navbar-top {
     font-family: 'Trade Gothic Light';
@@ -72,7 +76,7 @@
 .sneakerstop-navbar-bottom {
     text-align: center;
     font-family: 'Trade Gothic Condensed';
-    height: 50px; 
+    height: 50px;
     & ul {
         position: relative;
         display: inline-block;                
@@ -124,7 +128,8 @@
     position: absolute;
     margin-top: 6px;
     height: 30px;
-    right: 15px;
+    right: 0px;
+    width: 90px;
     color: white;
     & img {
         height: inherit;
@@ -136,6 +141,17 @@
         filter: FlipH;
         -ms-filter: "FlipH";
     }
+}
+
+.sneakerstop-cart-item-count {
+    position: absolute;
+    background-color: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    top: 30px;
+    right: 20px;
 }
 
 .sneakerstop-hamburger-container {

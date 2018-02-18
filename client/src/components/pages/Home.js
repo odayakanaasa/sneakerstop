@@ -22,7 +22,9 @@ export default class Home extends Component {
     renderProducts = (products) => products.map(product => (
             <Link key={generateId()} to={`/products/${product.id}`}>
                 <div className='sneakerstop-product-thumbnail'>
-                    <img src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${product.id}-1.jpg`}/>
+                    <img 
+                        src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${product.id}-1.jpg`}
+                        alt={product.name}/>
                     <h3>{product.name}</h3>
                     <h4>${product.price}</h4>
                 </div>

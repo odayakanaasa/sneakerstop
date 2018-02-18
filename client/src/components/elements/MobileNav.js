@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-
 export default class MobileNav extends Component {
 
     constructor(props) {
@@ -15,8 +14,12 @@ export default class MobileNav extends Component {
     static propTypes = {
         username: PropTypes.string.isRequired,
         open: PropTypes.bool.isRequired,
-        handleInputChange: PropTypes.func.isRequired,
-        handleSubmit: PropTypes.func.isRequired,
+        handleSearch: PropTypes.func.isRequired,
+        cartItemCount: PropTypes.number.isRequired,
+    }
+
+    handleInputChange = (event) => {
+        this.setState({searchInputValue: event.target.value});
     }
     
     render = () => !this.props.open ? null : (
@@ -24,13 +27,13 @@ export default class MobileNav extends Component {
             <div className='mobile-nav'>
                 <ul>
                     <li>
-                        <Link to='/products/men'>Men</Link>
+                        <Link to='/products?group=men'>Men</Link>
                     </li>
                     <li>
-                        <Link to='/products/women'>Women</Link>
+                        <Link to='/products?group=women'>Women</Link>
                     </li>
                     <li>
-                        <Link to='/products/kids'>Kids</Link>
+                        <Link to='/products?group=kids'>Kids</Link>
                     </li>
                     <li>
                         <Link to='/login'> Log In </Link>
@@ -41,14 +44,11 @@ export default class MobileNav extends Component {
                     <li>
                         <Link to='/cart'>Cart</Link>
                     </li>
-                    <li>
-                        <Link to='/lang'><img src={require('../../assets/images/icons/flag-usa.png')}/></Link>
-                    </li>
                 </ul>
                 <div className='search'>
-                    <form onSubmit={this.props.handleSubmit}>
+                    <form onSubmit={this.props.handleSearch}>
                         <input 
-                            onChange={this.props.handleInputChange} 
+                            onChange={this.handleInputChange} 
                             placeholder={'Search...'} 
                             value={this.state.searchInputValue}/>
                     </form>

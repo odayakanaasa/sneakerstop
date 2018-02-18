@@ -43,7 +43,7 @@ const Product = database.define('product', {
         allowNull: false,
         unique: false,
     },
-    productGroup: {
+    product_group: {
         type: database.Sequelize.STRING,
         allowNull: false,
         unique: false,
@@ -53,7 +53,7 @@ const Product = database.define('product', {
         allowNull: false,
         unique: false,
     },
-    subCategory: {
+    sub_category: {
         type: database.Sequelize.STRING,
         allowNull: false,
         unique: false,
@@ -88,7 +88,7 @@ const CartItem = database.define('cartitem', {
 		allowNull: false,
 		unique: false,
     },
-    productId: {
+    product_id: {
         type: database.Sequelize.UUID,
 		allowNull: false,
 		unique: false,
@@ -253,6 +253,7 @@ const seed = () => {
 }
 
 module.exports = {
+    database,
 	models: {
         Product,
         CartItem

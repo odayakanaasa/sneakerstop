@@ -20,6 +20,7 @@ module.exports = (router) => {
     const cartItems = require('./controllers/cart_items.js');
     
     router.post('/api/cartitems', cartItems.add);
+    router.get('/api/cartitems/count/:username', cartItems.countByUsername);
     router.get('/api/cartitems/:username', cartItems.findByUsername);
     router.put('/api/cartitems/:id', cartItems.add);
     router.patch('/api/cartitems/:id', cartItems.updateById);

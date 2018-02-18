@@ -45,8 +45,8 @@ export default class Product extends Component {
         if(this.props.username) {
             //if user is logged in post to cartitems database
             try {
-                await axios.put(`${API_ROOT}/cartitems`,{
-                    productId: this.state.productData.id,
+                await axios.post(`${API_ROOT}/cartitems`,{
+                    product_id: this.state.productData.id,
                     username: this.props.username,
                     quantity: 1,
                     purchased: false,
@@ -70,36 +70,42 @@ export default class Product extends Component {
         ))
     }
 
-    render = () => !this.state.productData ? null : (
+    render = () => (
         <div className='sneakerstop-product-layout-container'>
             <div className='row'>
                 <div className='col-md-8'>
                     <div className='sneakerstop-product-images-container'>
-                        <img 
-                            className='main' 
-                            src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${this.state.productData.id}-${this.state.selectedImage}.jpg`}/>
-                        <div className='thumbnail-container'>
-                            {this.renderThumbnails()}
-                        </div>
+                        {!this.state.productData ? null : (
+                            <img 
+                                className='main' 
+                                src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${this.state.productData.id}-${this.state.selectedImage}.jpg`}/>
+                        )}
+                       {!this.state.productData ? null : (
+                           <div className='thumbnail-container'>
+                                {this.renderThumbnails()}
+                            </div>
+                       )}
                     </div>
                 </div>
                 <div className='col-md-4'>
-                    <div className='sneakerstop-product-info'>
-                        <h1> {this.state.productData.name} </h1>
-                        <h2> {this.state.productData.brand} </h2>
-                        <h3> ${this.state.productData.price} </h3>
-                        <form onSubmit={this.handleSubmit}>
-                            <div>
-                                <span> Size </span>
-                                <select>
-                                    {sizes.map(size => <option key={generateId()}>{size}</option>)}
-                                </select>
-                            </div>
-                            <div>
-                                <button type='submit'> Add to Cart </button>
-                            </div>
-                        </form>
-                    </div>
+                    {!this.state.productData ? null : (
+                        <div className='sneakerstop-product-info'>
+                            <h1> {this.state.productData.name} </h1>
+                            <h2> {this.state.productData.brand} </h2>
+                            <h3> ${this.state.productData.price} </h3>
+                            <form onSubmit={this.handleSubmit}>
+                                <div>
+                                    <span> Size </span>
+                                    <select>
+                                        {sizes.map(size => <option key={generateId()}>{size}</option>)}
+                                    </select>
+                                </div>
+                                <div>
+                                    <button type='submit'> Add to Cart </button>
+                                </div>
+                            </form>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

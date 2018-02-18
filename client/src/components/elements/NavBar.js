@@ -9,6 +9,9 @@ export default class NavBar extends Component {
     static propTypes = {
         toggleMobileNav: PropTypes.func.isRequired,
         username: PropTypes.string.isRequired,
+        logout: PropTypes.func.isRequired,
+        cartItemCount: PropTypes.number.isRequired,
+        handleSearch: PropTypes.func.isRequired,
     }
 
     constructor(props) {
@@ -28,18 +31,10 @@ export default class NavBar extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if(this.state.searchInputValue!=='') {
-            this.props.history.push(`/search/${this.state.searchInputValue}`)
+            this.props.handleSearch(this.state.searchInputValue);        
         }
         this.setState({searchInputValue: ''});
     }
-
-    /*
-        <li>
-            <Link to='/lang'>
-                <img src={require('../../assets/images/icons/flag-usa.png')}/>
-            </Link>
-        </li>
-    */
 
     render = () => (
         <div className='sneakerstop-navbar'>
@@ -56,7 +51,9 @@ export default class NavBar extends Component {
                                 Welcome, {this.props.username}
                             </li>
                             <li>
-                                Log Out
+                                <span
+                                    className='sneakerstop-logout-link'
+                                    onClick={()=>this.props.logOut()}>Log Out</span>
                             </li>
                         </ul>
                     ) : (
@@ -107,7 +104,10 @@ export default class NavBar extends Component {
                     </div>
                     <Link to='/cart'>
                         <div className='sneakerstop-cart-icon-container'>
-                            <img src={require('../../assets/images/icons/shopping-cart.png')}/>
+                            <img src={require('../../assets/images/icons/shopping-cart.png')} alt='shopping cart'/>
+                        </div>
+                        <div className='sneakerstop-cart-item-count'>
+                            {this.props.cartItemCount}
                         </div>
                     </Link>
                 </div>

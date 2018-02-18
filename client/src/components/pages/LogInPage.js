@@ -19,7 +19,9 @@ export default class LogInPage extends Component {
         }
     }
 
-    handleUsernameChange = (text) => {	
+    handleUsernameChange = (text) => {
+        console.log('handleusername called');
+        console.log(text);
     	this.setState({usernameText: text});
         if (text==='') {
             this.setState({usernameErrMsg:'This field is required.'});
@@ -57,27 +59,24 @@ export default class LogInPage extends Component {
     
     render = () => (
         <div className='login-page'>
-			<div className="header-container">
-				<Link to="/home" className="header-link">SneakerStop</Link>
-			</div>
 			<div className="login-form-container">
 				<form className="login-form" onSubmit={this.handleSubmit}>
 					<h2 className="login-form-header"> Log In </h2>
-					<span className="input-label"> Username </span>
 					<InputField 
 						name="username"
 					 	type="text"
 					 	handleInputChange={this.handleUsernameChange} 
 					 	validation={this.validateField}
-					 	errorMessage={this.state.usernameErrMsg}
-					 	autofocus={"autofocus"} />
-					<span className="input-label"> Password </span>
+					 	errMsg={this.state.usernameErrMsg}
+					 	autofocus={true}
+                        placeholder='Username'/>
 					<InputField 
 						name="password"
 						type="password"
 						handleInputChange={this.handlePasswordChange} 
 						validation={this.validateField}
-						errorMessage={this.state.passwordErrMsg} />
+						errMsg={this.state.passwordErrMsg}
+                        placeholder='Password' />
 					<div className="login-button-container">
 						<button className="login-button" type="submit">Log In</button>
 					</div>

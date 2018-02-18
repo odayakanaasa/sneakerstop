@@ -2,31 +2,34 @@ input,textarea {
 	padding: 0px;
 	margin-left: 0px;
 	margin-right: 0px;
-	border: 1px solid #bbb;
+    border: 1px solid #bbb;
 }
 
 .inputfield {
 	width: 100%;
 	font-size: 14px;
 	line-height: 30px;
-	background-color: white;
-	border: 1px solid #aaa; 
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid #aaa;
 	&.invalid {
 		background-color: pink;
-		border: 1px solid red;
+		border-bottom: 1px solid red;
 	}
 	&:focus {
-		background-color: white;
-		border: 1px solid #aaa; 
-		box-shadow: 0px 0px 5px 1px #aaa;
+        background-color: white;
+		outline: none;
+		border-bottom: 1px solid $sneakerstop-blue;
 	}
 }
 
 .error-message {
-	height: 15px;
+    font-family: helvetica;
+    height: 20px;
+    line-height: 20px;
 	width: 100%;
 	text-align: left;
 	color: red;
-	font-size: 12px;
-	font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 10px;    
 }

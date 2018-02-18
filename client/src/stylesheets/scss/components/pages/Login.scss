@@ -1,6 +1,9 @@
 .login-page {
     position: relative;
     margin-top: 0px;
+    background-color: white;
+    padding-top: 120px;
+    padding-bottom: 80px;
 }
 
 .header-container {
@@ -10,20 +13,19 @@
 }
 
 .login-form-container {
-    background-color: #333334;
 	width: 100%;
 	position: relative;
-	margin: 30px auto 0px auto;
-	border-radius: 10px;
+    margin: 30px auto 30px auto;
 	padding: 20px 0px 40px 0px;
-	color: white;
+	color: #666;
 }
 
 .login-form-header {
-    color: white;
+    color: black;
 	font-size: 20px;
 	text-align: left;
-	font-weight: normal;
+    font-weight: normal;
+    margin-bottom: 40px;
 }
 
 .login-form {
@@ -32,7 +34,7 @@
 }
 
 .input-label {
-	font-weight: bold;
+    font-family: helvetica;
 	float: left;
 	font-size: 14px;
 	margin: 10px 0px 5px 0px;
@@ -63,6 +65,8 @@
 }
 
 .signup-link-container {
+    font-family: helvetica;
+    text-align: center;
 	font-size: 14px;
 	width: 90%;
 	margin: auto;
@@ -70,7 +74,8 @@
 
 .signup-link {
 	color: blue;
-	text-decoration: none;
+    text-decoration: none;
+    margin-left: 5px;
 	&:hover {
 		text-decoration: underline;
 	}
@@ -88,6 +93,7 @@
 
 @media (min-width: 500px) {
 	.login-form-container {
-		width: 500px;
+        width: 500px;
+        border: 1px solid #ddd;
 	}
 }

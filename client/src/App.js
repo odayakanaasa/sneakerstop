@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Redirect } from 'react-router-dom';
+import axios from 'axios';
+import { API_ROOT } from './utils/api_config';
 
 import NavBar from './components/elements/NavBar';
 import MobileNav from './components/elements/MobileNav';
@@ -31,6 +33,20 @@ class App extends Component {
         super();
         this.state = {
             mobileNavOpen: false,
+            cartItemCount: undefined,
+        }
+    }
+
+    async componentDidMount() {
+        let username = auth.getUsername();
+        if(username) {
+            try {
+                let res = await axios.get(`${API_ROOT}/cartitems/count/${auth.getUsername()}`); 
+                this.setState({cartItemCount: res.data.count});
+                console.log(res.data.count);      
+            } catch(err) {
+                console.log(err);
+            }
         }
     }
 
@@ -38,10 +54,24 @@ class App extends Component {
         this.state.mobileNavOpen ? this.setState({mobileNavOpen: false}) : this.setState({mobileNavOpen: true})
     }
 
+    handleSearch = (usertext) => {
+        this.props.history.push(`/search/${usertext}`)        
+    }
+
     render = () => (
         <div>
-            <NavBar username={auth.getUsername()} toggleMobileNav={this.toggleMobileNav} />
-            <MobileNav username={auth.getUsername()} open={this.state.mobileNavOpen}/>
+            <NavBar 
+                username={auth.getUsername()} 
+                toggleMobileNav={this.toggleMobileNav}
+                cartItemCount={this.state.cartItemCount}
+                handleSearch={this.handleSearch}
+                logout={auth.logout}/>
+            <MobileNav 
+                username={auth.getUsername()} 
+                open={this.state.mobileNavOpen}
+                cartItemCount={this.state.cartItemCount}
+                handleSearch={this.handleSearch}
+                logout={auth.logout}/>
             <div className='page-content'>    
                 <Route exact path='/' render = {() => <Redirect to='/home'/>}/>
                 <Route path='/home' component = {Home}/>
