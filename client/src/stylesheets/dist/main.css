@@ -73,7 +73,7 @@ h1, h2, h3, h4, h5 {
   src: url("../../assets/fonts/trade-gothic-condensed.ttf"); }
 .sneakerstop-navbar {
   z-index: 5;
-  position: fixed;
+  position: absolute;
   top: 0px;
   width: 100%;
   height: 80px;
@@ -219,10 +219,10 @@ h1, h2, h3, h4, h5 {
 .nav-dropdown {
   color: black;
   background-color: white;
-  position: fixed;
+  position: absolute;
   top: 80px;
   width: 100%;
-  height: 380px;
+  height: 350px;
   text-align: center;
   border-bottom: 1px solid black; }
   .nav-dropdown ul {
@@ -250,7 +250,8 @@ h1, h2, h3, h4, h5 {
   background: #000;
   background: rgba(0, 0, 0, 0.95);
   position: fixed;
-  top: 80px;
+  padding-top: 80px;
+  top: 0px;
   width: 100%;
   z-index: 10;
   height: 100%; }
@@ -474,7 +475,8 @@ input, textarea {
   width: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
-  font-family: 'Trade Gothic'; }
+  font-family: 'Trade Gothic';
+  min-height: 500px; }
   .sneakerstop-cart-layout-container h1 {
     margin: 0px 0px 10px 10%; }
   .sneakerstop-cart-layout-container a {
@@ -617,6 +619,9 @@ input, textarea {
         background-color: white; }
 
 @media (min-width: 533px) {
+  .sneakerstop-cart-layout-container {
+    min-height: 600px; }
+
   .sneakerstop-cart-table {
     display: table; }
 
@@ -634,6 +639,9 @@ input, textarea {
     .sneakerstop-cart-nav-button-container a:last-of-type {
       order: 2; } }
 @media (min-width: 800px) {
+  .sneakerstop-cart-layout-container {
+    min-height: 1000px; }
+
   .sneakerstop-cart-table {
     width: 720px; } }
 .login-page {
@@ -862,6 +870,12 @@ input, textarea {
 @media (min-width: 768px) {
   .sneakerstop-product-images-container {
     max-width: 768px; } }
+.sneakerstop-products-collection-header {
+  margin-top: 80px;
+  height: 80px;
+  line-height: 80px;
+  background-color: white; }
+
 .sneakerstop-banner-background {
   margin-top: 80px;
   padding: 40px 50px 40px 50px;
@@ -887,44 +901,40 @@ input, textarea {
   float: right;
   width: 32%; }
 
-.sneakerstop-featured-products-container {
+.sneakerstop-products-container {
   position: relative;
   width: 100%;
   background-color: white;
   padding: 10px 10px 20px 10px;
   box-sizing: border-box; }
-  .sneakerstop-featured-products-container h2 {
+  .sneakerstop-products-container h2 {
     margin-left: 50px;
     font-size: 30px;
     height: 60px;
     line-height: 60px;
     margin-bottom: 10px; }
 
-.sneakerstop-featured-products-row {
+.sneakerstop-products-row {
   display: flex;
-  margin: 0px auto 20px auto; }
-  .sneakerstop-featured-products-row:last-child {
+  margin: 0px auto 20px auto;
+  width: 100%;
+  overflow-x: hidden; }
+  .sneakerstop-products-row:last-child {
     margin-bottom: 0px; }
-  .sneakerstop-featured-products-row a {
+  .sneakerstop-products-row a {
     position: relative;
-    width: 200px;
-    min-width: 200px;
+    width: 190px;
+    min-width: 190px;
     margin: auto;
     padding: 0px 5px 20px 5px;
     height: 220px;
     background-color: white;
     box-sizing: border-box;
     display: inline-block;
-    transition: width 0.2s; }
-    .sneakerstop-featured-products-row a:nth-child(3) {
-      display: none; }
-    .sneakerstop-featured-products-row a:nth-child(4) {
-      display: none; }
-    .sneakerstop-featured-products-row a:nth-child(5) {
-      display: none; }
-    .sneakerstop-featured-products-row a:hover {
-      box-shadow: 0px 0px 5px 0px rgba(34, 34, 255, 0.5);
-      cursor: pointer; }
+    transition: width 0.2s;
+    cursor: pointer; }
+    .sneakerstop-products-row a:hover {
+      box-shadow: 0px 0px 5px 0px rgba(34, 34, 255, 0.5); }
 
 .sneakerstop-product-thumbnail img {
   margin: auto;
@@ -943,13 +953,13 @@ input, textarea {
   margin-top: 5px; }
 
 @media (min-width: 600px) {
-  .sneakerstop-featured-products-row > a:nth-child(3) {
+  .sneakerstop-products-row > a:nth-child(3) {
     display: block; } }
 @media (min-width: 800px) {
-  .sneakerstop-featured-products-row > a:nth-child(4) {
+  .sneakerstop-products-row > a:nth-child(4) {
     display: block; } }
 @media (min-width: 1000px) {
-  .sneakerstop-featured-products-row > a:nth-child(5) {
+  .sneakerstop-products-row > a:nth-child(5) {
     display: block; } }
 
 /*# sourceMappingURL=main.css.map */

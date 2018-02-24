@@ -5,6 +5,7 @@
     padding-top: 20px;
     padding-bottom: 20px;
     font-family: 'Trade Gothic';
+    min-height: 500px;
     & h1 {
         margin: 0px 0px 10px 10%;
     }    
@@ -205,6 +206,9 @@
 }
 
 @media(min-width: 533px) {
+    .sneakerstop-cart-layout-container {
+        min-height: 600px
+    }
     .sneakerstop-cart-table {
         display: table;
     }
@@ -229,6 +233,9 @@
 }
 
 @media(min-width: 800px) {
+    .sneakerstop-cart-layout-container {
+        min-height: 1000px
+    }
     .sneakerstop-cart-table {
         width: 720px;
     }

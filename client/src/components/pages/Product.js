@@ -28,15 +28,17 @@ export default class Product extends Component {
         }
     }
 
-    async componentDidMount() {
-        let id = this.context.router.route.match.params.id;
-        let result = await axios.get(`${API_ROOT}/products/${id}`);
-        console.log(result);
-        this.setState({productData: result.data});
+    async componentWillMount() {
+        try {
+            let id = this.context.router.route.match.params.id;        
+            let result = await axios.get(`${API_ROOT}/products/${id}`);
+            this.setState({productData: result.data});
+        } catch(err) {
+            console.log(err);
+        }
     }
 
     handleSubmit = (event) => {
-        console.log(event);
         event.preventDefault();
         this.addToCart();
     }

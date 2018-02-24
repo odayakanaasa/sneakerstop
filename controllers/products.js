@@ -1,9 +1,22 @@
 const Product = require('../database.js').models.Product;
+const sequelize = require('../database.js').database;
 
 //GET Request
 const findAll = (req,res,next) => {
-	console.log('Request Type:', req.method);
-	Product.findAll().then(result => {
+    console.log('query:',req.query);
+    console.log('Request Type:', req.method);
+    let whereClause = {};
+    if (req.query.group) {
+        whereClause.product_group = req.query.group;
+    }
+    if (req.query.category) {
+        whereClause.category = req.query.category;
+    }
+    if (req.query.subcategory) {
+        whereClause.sub_category = req.query.subcategory;
+    }
+    console.log(whereClause);
+	Product.findAll(whereClause === {} ? '' : {where: whereClause}).then(result => {
     	return res.send(result);
     }).catch(next);
 }
@@ -45,15 +58,27 @@ const deleteById = (req,res,next) => {
 	}).catch(next);
 }
 
+
+//https://stackoverflow.com/questions/4014519/fulltext-query-with-scores-ranks-in-postgresql
+
+
+//GET Request
 const search = (req,res,next) => {
-    let terms = req.params.terms;
+    console.log(req.params.query);
+    let terms = req.params.query.split('%20');
+    console.log(terms)
     let resultIds = [];
     terms.forEach(term => {
-        sequelize.query(`SELECT 'products.id' 
-                FROM 'products' 
-                WHERE 'products.brand' LIKE ${term}
-                OR 'products.name' LIKE ${term}
-                OR 'products.name`, { type: sequelize.QueryTypes.SELECT}).then(result => {
+        sequelize.query(
+            `SELECT products.id, MATCH (products.name,products.brand) AGAINST ${term} AS relevance
+            FROM products WHERE products.brand LIKE '%${term}%'
+            OR products.name LIKE '%${term}%'
+            ORDER BY relevance DESC`, 
+            { 
+                type: sequelize.QueryTypes.SELECT
+            }
+        ).then(result => {
+            console.log(result);
             resultIds.push(result);
        }).catch(next);
     });

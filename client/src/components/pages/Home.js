@@ -42,19 +42,19 @@ export default class Home extends Component {
             
                 </div>
             </div>
-            <div className='sneakerstop-featured-products-container'>
+            <div className='sneakerstop-products-container'>
                 <h2> Featured Products </h2>
                 {this.state.products.length===0 ? (
                     <div className='sneakerstop-featured-products-loading'>
                     
                     </div>
                 ) : (
-                    <div className='sneakerstop-featured-products'>
-                        <div className='sneakerstop-featured-products-row'>
+                    <div>
+                        <div className='sneakerstop-products-row'>
                             {this.renderProducts(this.state.products.slice(0,5))}
                         </div>
                         <h2> Recommended For You </h2>
-                        <div className='sneakerstop-featured-products-row'>
+                        <div className='sneakerstop-products-row'>
                             {this.renderProducts(this.state.products.slice(5,10))}
                         </div>
                     </div>

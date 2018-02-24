@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { generateId } from '../../utils/uuid-generator';
 //import { categories,subcategories } from '../../utils/categories.js';
 
 const groups = ['Men','Women','Kids'];
@@ -37,7 +38,7 @@ export default class NavDropdown extends Component {
                     onMouseEnter={()=>{this.props.setDropdownGroup(this.props.group)}}
                     onMouseLeave={()=>{this.props.setDropdownGroup('')}}>
                     {Object.keys(categories).map(category => (
-                        <ul>
+                        <ul key={generateId()}>
                             <li>
                                 <Link to={`/products?group=${this.props.group.toLowerCase()}`
                                     +`&category=${category.toLowerCase()}`}>
@@ -45,7 +46,7 @@ export default class NavDropdown extends Component {
                                 </Link>
                             </li>
                             {categories[category].map(subcategory => (
-                                <li>
+                                <li key={generateId()}>
                                     <Link to={
                                         `/products?group=${this.props.group.toLowerCase()}`
                                             +`&category=${category.toLowerCase()}`
@@ -56,7 +57,7 @@ export default class NavDropdown extends Component {
                             ))}
                             <li>
                                 <Link to={
-                                    `/products/?group=${this.props.group.toLowerCase()}`
+                                    `/products?group=${this.props.group.toLowerCase()}`
                                         +`&category=${category.toLowerCase()}`}>
                                     All {plural} {category}
                                 </Link>

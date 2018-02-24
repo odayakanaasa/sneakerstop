@@ -33,17 +33,17 @@ class App extends Component {
         super();
         this.state = {
             mobileNavOpen: false,
-            cartItemCount: undefined,
+            cartItems: [],
         }
     }
 
-    async componentDidMount() {
+    async componentWillMount() {
         let username = auth.getUsername();
         if(username) {
             try {
-                let res = await axios.get(`${API_ROOT}/cartitems/count/${auth.getUsername()}`); 
-                this.setState({cartItemCount: res.data.count});
-                console.log(res.data.count);      
+                let result = await axios.get(`${API_ROOT}/cartitems/${auth.getUsername()}`);
+                this.setState({cartItems: result.data});
+                console.log(result.data.length);
             } catch(err) {
                 console.log(err);
             }
@@ -54,8 +54,8 @@ class App extends Component {
         this.state.mobileNavOpen ? this.setState({mobileNavOpen: false}) : this.setState({mobileNavOpen: true})
     }
 
-    handleSearch = (usertext) => {
-        this.props.history.push(`/search/${usertext}`)        
+    handleSearch = (query) => {
+        this.props.history.push(`/search?q=${query}`);
     }
 
     render = () => (
@@ -64,28 +64,38 @@ class App extends Component {
                 username={auth.getUsername()} 
                 toggleMobileNav={this.toggleMobileNav}
                 mobileNavOpen={this.state.mobileNavOpen}
-                cartItemCount={this.state.cartItemCount}
+                cartItemCount={this.state.cartItems.length}
                 handleSearch={this.handleSearch}
                 logout={auth.logout}/>
             <MobileNav 
                 toggleMobileNav={this.toggleMobileNav}
                 username={auth.getUsername()} 
                 open={this.state.mobileNavOpen}
-                cartItemCount={this.state.cartItemCount}
+                cartItemCount={this.state.cartItems.length}
                 handleSearch={this.handleSearch}
                 logout={auth.logout}/>
             <div className='page-content'>    
-                <Route exact path='/' render = {() => <Redirect to='/home'/>}/>
+                <Route exact path='/' render = {() => 
+                    <Redirect to='/home'/>
+                }/>
                 <Route path='/home' component = {Home}/>
                 <Route exact path='/products' component = {ProductCollection}/>
-                <Route path='/products/:id' render = {() => <Product username={auth.getUsername()}/>}/>
-                <Route path='/cart' render = {() => <Cart username={auth.getUsername()}/>}/>
+                <Route path='/products/:id' render = {() => 
+                    <Product username={auth.getUsername()}/>
+                }/>
+                <Route path='/cart' render = {() => 
+                    <Cart username={auth.getUsername()} cartItems={this.state.cartItems}/>
+                }/>
                 <Route path='/dashboard' render = {() => <Dashboard/>}/>
                 <Route path='/addproduct' render = {() => <AddProduct/>}/>
-                <Route path='/search/:terms' render = {()=><SearchResults/>}/>
+                <Route path='/search' render = {()=><SearchResults/>}/>
             </div>
-            <Route path='/login' render = {() => <LogInPage username={auth.getUsername()} login={auth.login}/>}/>
-            <Route path='/register' render = {() => <SignUpPage username={auth.getUsername()} signup={auth.signup}/>}/>
+            <Route path='/login' render = {() => 
+                <LogInPage username={auth.getUsername()} login={auth.login}/>
+            }/>
+            <Route path='/register' render = {() => 
+                <SignUpPage username={auth.getUsername()} signup={auth.signup}/>
+            }/>
             <Footer isAdmin={auth.isAdmin()} username={auth.getUsername()}/>
         </div>
     );

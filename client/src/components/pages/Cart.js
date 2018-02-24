@@ -34,13 +34,15 @@ export default class Cart extends Component {
         }
     }
 
-    async componentDidMount() {
-        try {
-            let result = await axios.get(`${API_ROOT}/cartitems/${this.props.username}`);
-            console.log(result);
-            this.setState({cartItems: result.data});
-        } catch(err) {
-            console.log(err);
+    async componentWillMount() {
+        if(this.props.username) {
+            try {
+                let result = await axios.get(`${API_ROOT}/cartitems/${this.props.username}`);
+                this.setState({cartItems: result.data});
+                console.log(result.data.length);
+            } catch(err) {
+                console.log(err);
+            }
         }
     }
 

@@ -7,7 +7,7 @@ module.exports = (router) => {
     
     router.get('/api/products', products.findAll);
     router.get('/api/products/:id', products.findById);
-    router.get('/api/products/search/:terms', products.search);
+    router.get('/api/products/search/:query', products.search);
     router.post('/api/products', products.add);
     router.put('/api/products/:id', products.updateById);
     router.delete('/api/products/:id', products.deleteById);
