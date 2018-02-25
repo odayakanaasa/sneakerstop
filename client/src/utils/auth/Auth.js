@@ -16,21 +16,20 @@ export default class Auth {
     });
 
     getUsername = () => {
-        return 'jhinsch799';
+        return '';
     }
 
     isAdmin = () => true;
 
     login = (username, password) => {
         this.auth0.login(
-        { realm: AUTH_CONFIG.dbConnectionName, username, password },
-        (err, authResult) => {
-            if (err) {
-            console.log(err);
-            alert(`Error: ${err.description}. Check the console for further details.`);
-            return;
+            { realm: AUTH_CONFIG.dbConnectionName, username, password },
+            (err, authResult) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
             }
-        }
         );
     }
 
@@ -38,13 +37,11 @@ export default class Auth {
         this.auth0.signup({ connection: AUTH_CONFIG.dbConnectionName, email, password },(err) => {
                 if (err) {
                     console.log(err);
-                    alert(`Error: ${err.description}. Check the console for further details.`);
                     return;
                 }
                 this.auth0.login({ realm: AUTH_CONFIG.dbConnectionName, username: email, password },(err, authResult) => {
                     if (err) {
                         console.log(err);
-                        alert(`Error: ${err.description}. Check the console for further details.`);
                         return;
                     }
                 });
@@ -58,6 +55,7 @@ export default class Auth {
 
     handleAuthentication = () => {
         this.auth0.parseHash((err, authResult) => {
+            console.log(authResult);
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
                 //navigate to home or dashboard

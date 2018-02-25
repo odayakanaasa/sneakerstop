@@ -37,15 +37,29 @@ class App extends Component {
         }
     }
 
-    async componentWillMount() {
+    componentWillMount() {
+        this.getCartItems();    
+    }
+
+    getCartItems = async () => {
         let username = auth.getUsername();
         if(username) {
+            //retrieve cart from API
             try {
                 let result = await axios.get(`${API_ROOT}/cartitems/${auth.getUsername()}`);
                 this.setState({cartItems: result.data});
-                console.log(result.data.length);
+                return result.data;
             } catch(err) {
                 console.log(err);
+            }
+        } else {
+            //try to retrieve cart from localStorage
+            let cartFromStorage = localStorage.getItem('sneakerstop_cart');
+            console.log(cartFromStorage);
+            if (cartFromStorage!==null) {
+                let parsedCart = JSON.parse(cartFromStorage);
+                console.log(parsedCart);
+                this.setState({cartItems: parsedCart});
             }
         }
     }
@@ -81,20 +95,29 @@ class App extends Component {
                 <Route path='/home' component = {Home}/>
                 <Route exact path='/products' component = {ProductCollection}/>
                 <Route path='/products/:id' render = {() => 
-                    <Product username={auth.getUsername()}/>
+                    <Product 
+                        username={auth.getUsername()}
+                        getCartItems={this.getCartItems}/>
                 }/>
                 <Route path='/cart' render = {() => 
-                    <Cart username={auth.getUsername()} cartItems={this.state.cartItems}/>
+                    <Cart 
+                        username={auth.getUsername()}
+                        cartItems={this.state.cartItems}
+                        getCartItems={this.getCartItems}/>
                 }/>
                 <Route path='/dashboard' render = {() => <Dashboard/>}/>
                 <Route path='/addproduct' render = {() => <AddProduct/>}/>
                 <Route path='/search' render = {()=><SearchResults/>}/>
             </div>
             <Route path='/login' render = {() => 
-                <LogInPage username={auth.getUsername()} login={auth.login}/>
+                <LogInPage 
+                    username={auth.getUsername()} 
+                    login={auth.login}/>
             }/>
             <Route path='/register' render = {() => 
-                <SignUpPage username={auth.getUsername()} signup={auth.signup}/>
+                <SignUpPage 
+                    username={auth.getUsername()} 
+                    signup={auth.signup}/>
             }/>
             <Footer isAdmin={auth.isAdmin()} username={auth.getUsername()}/>
         </div>

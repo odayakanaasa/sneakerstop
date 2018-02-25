@@ -24,6 +24,8 @@ export default class Cart extends Component {
 
     static propTypes = {
         username: PropTypes.string.isRequired,
+        cartItems: PropTypes.array.isRequired,
+        getCartItems: PropTypes.func.isRequired,
     }
 
     constructor(props) {
@@ -35,22 +37,15 @@ export default class Cart extends Component {
     }
 
     async componentWillMount() {
-        if(this.props.username) {
-            try {
-                let result = await axios.get(`${API_ROOT}/cartitems/${this.props.username}`);
-                this.setState({cartItems: result.data});
-                console.log(result.data.length);
-            } catch(err) {
-                console.log(err);
-            }
-        }
+        this.setState({cartItems: await this.props.getCartItems()});
     }
 
     removeItem = async (itemId) => {
         try {
             await axios.delete(`${API_ROOT}/cartitems/${itemId}`);
-            let cartWithoutItem = this.state.cartItems.filter(item => item.id !== itemId);
-            this.setState({cartItems: cartWithoutItem});
+            //let cartWithoutItem = this.state.cartItems.filter(item => item.id !== itemId);
+            //this.setState({cartItems: cartWithoutItem});
+            this.setState({cartItems: await this.props.getCartItems()});            
         } catch(err) {
             console.log(err);
         }
@@ -60,11 +55,13 @@ export default class Cart extends Component {
         if (newQuantity>0) {
             try {
                 await axios.patch(`${API_ROOT}/cartitems/${itemId}`,{quantity: newQuantity});
-                let cartItemToUpdate = this.state.cartItems.find(item => item.id === itemId);
+                /*let cartItemToUpdate = this.state.cartItems.find(item => item.id === itemId);
                 cartItemToUpdate.quantity = newQuantity;
                 let cartCopy = this.state.cartItems.filter(item => item.id !== itemId);;
                 cartCopy.push(cartItemToUpdate);
                 this.setState({cartItems: cartCopy});
+                this.props.getCartItems();  */ 
+                this.setState({cartItems: await this.props.getCartItems()});            
             } catch(err) {
                 console.log(err);
             }
@@ -76,7 +73,11 @@ export default class Cart extends Component {
         this.state.cartItems.forEach(item => {
             subTotal += this.calculatePrice(item);
         });
-        return subTotal;
+        return subTotal.toFixed(2);
+    }
+
+    getTotal = () => {
+        return (parseFloat(this.getSubTotal())+parseFloat(this.state.shippingPrice)).toFixed(2);
     }
 
     calculatePrice = (item) => {
@@ -245,7 +246,7 @@ export default class Cart extends Component {
                                 Total
                             </td>
                             <td>
-                                {`$${this.getSubTotal()+parseFloat(this.state.shippingPrice)}`}
+                                {`$${this.getTotal()}`}
                             </td>
                         </tr>
                     </tbody>

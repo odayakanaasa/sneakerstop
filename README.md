@@ -1,4 +1,4 @@
-# Voting Booth
+# SneakerStop
 
 E-Commerce application with image upload, authentication, search, cart system. 
 

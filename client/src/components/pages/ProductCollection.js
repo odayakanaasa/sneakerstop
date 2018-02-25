@@ -17,7 +17,6 @@ export default class ProductsPage extends Component {
     	location: PropTypes.object
 	}
 
-
     constructor(props) {
         super(props);
         this.state = {
@@ -27,10 +26,17 @@ export default class ProductsPage extends Component {
         }
     }
 
-    async componentDidMount() {
+    componentWillReceiveProps() {
+        this.getProducts();
+    }
+
+    componentDidMount() {
+        this.getProducts();
+    }
+
+    getProducts = async () => {
         try {
             let queries = queryString.parse(this.context.router.history.location.search);
-            console.log(queries);
             let url = `${API_ROOT}/products`;
             if (queries.group || queries.category || queries.subcategory) {
                 url += '?'
@@ -39,7 +45,7 @@ export default class ProductsPage extends Component {
                     if (!first) {
                         url+='&';
                     }
-                    first = false;                                            
+                    first = false;                                  
                     url+=`group=${queries.group}`
                 }
                 if (queries.category) {
@@ -57,9 +63,7 @@ export default class ProductsPage extends Component {
                     url+=`subcategory=${queries.subcategory}`
                 }
             }
-            console.log(url);
             let result = await axios.get(url);
-            console.log(result);
             this.setState({products: result.data});
         } catch (err) {
             console.log(err);

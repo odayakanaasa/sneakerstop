@@ -11,6 +11,7 @@ export default class Product extends Component {
 
     static propTypes = {
         username: PropTypes.string.isRequired,
+        getCartItems: PropTypes.func.isRequired,
     }
 
     static contextTypes = {
@@ -59,6 +60,7 @@ export default class Product extends Component {
         } else {
             //save the cartitem in localstorage or similar
         }
+        this.props.getCartItems();
     }
 
     renderThumbnails = () => {
