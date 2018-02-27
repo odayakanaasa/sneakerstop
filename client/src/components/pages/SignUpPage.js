@@ -26,8 +26,8 @@ export default class SignUpPage extends Component {
         if (text==='') {
             this.setState({usernameErrMsg:'This field is required.'});
             return;
-        } else if (text.length>12) {
-            this.setState({usernameErrMsg: 'Username cannot be more than 12 characters.'});
+        } else if (text.length>20) {
+            this.setState({usernameErrMsg: 'Username cannot be more than 20 characters.'});
             return;
         } 
         this.setState({usernameErrMsg:''});
@@ -70,7 +70,7 @@ export default class SignUpPage extends Component {
         //username is not empty
         if (this.state.usernameText!==''
             //username < 13 characters
-            && this.state.usernameText.length < 13
+            && this.state.usernameText.length <= 20
             //password > 7 characters
             && this.state.passwordText.length > 7
             //password has number
@@ -82,13 +82,19 @@ export default class SignUpPage extends Component {
         return false;
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
         this.handleUsernameChange(this.state.usernameText);
         this.handlePasswordChange(this.state.passwordText);
         this.handlePassword2Change(this.state.password2Text);
         if (this.canSubmit()) {
             //make call to auth0
-            this.props.signup();
+            try {
+                let possibleErr = this.props.signup(this.state.usernameText, this.state.passwordText);
+                console.log(possibleErr);
+            } catch(err) {
+                console.log('err',err);
+            }
         }
     }
 
@@ -97,29 +103,27 @@ export default class SignUpPage extends Component {
             <div className="signup-form-container">
                 <form className="signup-form">
                     <h2 className="signup-form-header"> Sign Up </h2>
-                    <span className="input-label"> Username </span>
                     <InputField 
                         name="username"
                         type="text"
-                        placeholder="No more than 12 characters"
-                        handleInputChange={this.handleInputChange} 
+                        placeholder="Email"
+                        handleInputChange={this.handleUsernameChange} 
                         validation={this.validateField}
                         errMsg={this.state.usernameErrMsg}
                         autofocus={true} />
-                    <span className="input-label"> Password </span>
                     <InputField 
                         name="password" 
                         type="password"
-                        placeholder="At least 8 characters and 1 number" 
-                        handleInputChange={this.handleInputChange} 
+                        placeholder="Password" 
+                        handleInputChange={this.handlePasswordChange} 
                         validation={this.validateField}
                         errMsg={this.state.passwordErrMsg} />
-                    <span className="input-label"> Re-enter Password </span>
                     <InputField 
                         name="password2"
                         type="password"
-                        handleInputChange={this.handleInputChange} 
+                        handleInputChange={this.handlePassword2Change} 
                         validation={this.validateField}
+                        placeholder="Re-enter Password"
                         errMsg={this.state.password2ErrMsg} />
                     <div className="signup-button-container">
                         <button className={"signup-button "+(this.canSubmit() ? "active" : "")} type="submit" onClick={this.handleSubmit}>Create an Account</button>
@@ -134,95 +138,3 @@ export default class SignUpPage extends Component {
         </div>
     );
 }
-
-/*
-
-static propTypes = {
-		handleSubmit: PropTypes.func.isRequired,
-	}
-
-	constructor(props) {
-		super(props)
-		this.state = {
-			formData: {
-				username: "",
-	        	password: "",
-	        	password2: "",
-			},
-			usernameErrMsg: "",
-			passwordErrMsg: "",
-			password2ErrMsg: "",
-	    }
-	}
-
-	componentDidMount() {
-		document.title="Voting Booth | Sign Up";
-		window.scrollTo(0,0);
-	}
-
-	handleInputChange = (event) => {
-		event.preventDefault();
-		let formDataCopy = this.state.formData;
-		formDataCopy[event.target.name] = event.target.value;
-    	this.setState({formData: formDataCopy});
-    	this.validateField(event.target.name);
-    }
-
-	validateField = (fieldname) => {
-	  switch(fieldname){
-	    case 'username':
-	      if (this.state.formData.username==="") {
-	      	this.setState({usernameErrMsg:"This field is required."});
-	      } else {
-	      	this.setState({usernameErrMsg:""});
-	      }
-	      break;
-	    case 'password':
-	      if (this.state.formData.password==="") {
-	      	this.setState({passwordErrMsg:"This field is required."});
-	      } else if (this.state.formData.password.length<8) {
-	      	this.setState({passwordErrMsg:"Password must be at least 8 characters."});
-	      } else if (!/\d/.test(this.state.formData.password)) {
-	      	this.setState({passwordErrMsg:"Password must contain a number."});
-	      } else {
-	      	this.setState({passwordErrMsg:""});
-	      	if(this.state.formData.password2!=="") {
-	      		this.validateField('password2');
-	      	}
-	      }
-	      break;
-	    case 'password2':
-	      if (this.state.formData.password2==="") {
-	      	this.setState({password2ErrMsg:"This field is required."});
-	      } else if (this.state.formData.password2!==this.state.formData.password) {
-	      	this.setState({password2ErrMsg:"Passwords do not match."});
-	      } else {
-	      	this.setState({password2ErrMsg:""});
-	      }
-	      break;
-	    default:
-	      break;
-		}
-	}
-
-	canSubmit = () => {
-		let username = this.state.formData.username;
-		let password = this.state.formData.password;
-		let password2 = this.state.formData.password2;
-		if (username!=="" && password.length>7 && /\d/.test(password) && password2===password) {
-			return true;
-		}
-		return false;
-	}
-
-   	handleSubmit = (event) => {
-      event.preventDefault();
-      if (this.canSubmit()) {
-      	this.props.handleSubmit(this.state.formData.username,this.state.formData.password);
-      }
-    }
-
-
-}
-
-*/

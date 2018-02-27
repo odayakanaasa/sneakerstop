@@ -85,185 +85,194 @@ export default class Cart extends Component {
     }
 
     render = () => {
-        this.state.cartItems.sort((item1,item2) => item1.id > item2.id);
-        return (
-            <div className='sneakerstop-cart-layout-container'>
-            {this.state.cartItems.length === 0 ? (
-                <div className='cart-no-items'>
-                    <h1>There are no items in your cart.</h1>
-                </div>
-            ) : (
-                <div>
-                    <h1> Cart </h1>
-                    <table className='sneakerstop-cart-table'>
-                        <thead>
-                            <tr>
-                                <th colSpan={3}>
-                                    Product
-                                </th>
-                                <th>
-                                    Price
-                                </th>
-                                <th>
-                                    Quantity
-                                </th>
-                                <th>
-                                    Total
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.cartItems.map(item => (
-                                <tr key={generateId()}>
-                                    <td className='sneakerstop-cart-item-remove'>
-                                        <span onClick={()=>this.removeItem(item.id)}>&times;</span>
-                                    </td>
-                                    <td className='sneakerstop-cart-item-image'>
-                                        <Link to={`/products/${item.product_id}`}>
-                                            <img 
-                                                src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${item.product_id}-1.jpg`}
-                                                alt={item.name}/>
-                                        </Link>
-                                    </td>
-                                    <td className='sneakerstop-cart-item-name'>
-                                        <Link to={`/products/${item.product_id}`}>
-                                            {item.name}
-                                        </Link>
-                                    </td>
-                                    <td className='sneakerstop-cart-item-price'>
-                                        {`$${item.price}`}
-                                    </td>
-                                    <td className='sneakerstop-cart-item-quantity'>
-                                        <span onClick={()=>this.updateItemQuantity(item.id,item.quantity-1)}>
-                                            &#8249;
-                                        </span>
-                                        {item.quantity}
-                                        <span onClick={()=>this.updateItemQuantity(item.id,item.quantity+1)}>
-                                            &#8250;
-                                        </span>
-                                    </td>
-                                    <td className='sneakerstop-cart-item-total'>
-                                        {`$${this.calculatePrice(item)}`}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-
-                    <div className='sneakerstop-mobile-cart'>
-                        {this.state.cartItems.length === 0 ? (
-                            <div>There are no items in your cart.</div>
-                        ) : this.state.cartItems.map(item => (
-                            <div className='sneakerstop-mobile-cart-item' key={generateId()}>
-                                <div className='sneakerstop-mobile-cart-item-image'>
-                                    <Link to={`/products/${item.product_id}`}>
-                                        <img 
-                                            src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${item.product_id}-1.jpg`}
-                                            alt={item.name}/>
-                                    </Link>
-                                </div>
-                                <div className='sneakerstop-mobile-cart-table-container'>
-                                    <table>
-                                        <tbody>
-                                            <tr className='sneakerstop-mobile-cart-item-name'>
-                                                <td colSpan={2}>
-                                                    <Link to={`/products/${item.product_id}`}>
-                                                        {item.name}
-                                                    </Link>
-                                                </td>
-                                            </tr>
-                                            <tr className='sneakerstop-mobile-cart-item-price'>
-                                                <td>
-                                                    Price:
-                                                </td>
-                                                <td>
-                                                    {`$${item.price}`}
-                                                </td>
-                                            </tr>
-                                            <tr className='sneakerstop-mobile-cart-item-quantity'>
-                                                <td>
-                                                    Quantity:
-                                                </td>
-                                                <td>
-                                                    <span onClick={()=>this.updateItemQuantity(item.id,item.quantity-1)}>
-                                                        &#8249;
-                                                    </span>
-                                                    {item.quantity}
-                                                    <span onClick={()=>this.updateItemQuantity(item.id,item.quantity+1)}>
-                                                        &#8250;
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr className='sneakerstop-mobile-cart-item-total'>
-                                                <td>
-                                                    Total:
-                                                </td>
-                                                <td>
-                                                    {`$${this.calculatePrice(item)}`}
-                                                </td>
-                                            </tr>
-                                            <tr className='sneakerstop-mobile-cart-item-remove'>
-                                                <td colSpan={2}>
-                                                    <span onClick={()=>this.removeItem(item.id)}>Remove</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        ))}
+        if (!this.state.cartItems || this.state.cartItems.length===0) {
+            return (
+                <div className='sneakerstop-cart-layout-container'>
+                    <div className='cart-no-items'>
+                        <h1>There are no items in your cart.</h1>
                     </div>
-                
-            
-                <table className='sneakerstop-totals-table'>
-                    <tbody>
-                        <tr>
-                            <td>
-                                Subtotal
-                            </td>
-                            <td>
-                                {`$${this.getSubTotal()}`}
-                            </td>
-                        </tr>
-                        <tr className='sneakerstop-totals-table-shipping'>
-                            <td>
-                                Shipping &amp; Handling
-                            </td>
-                            <td>
-                                <select 
-                                    onChange={event=>this.setState({shippingPrice: event.target.value})}
-                                    value={this.state.shippingPrice}>
-                                    {shippingMethods.map(method => (
-                                        <option
-                                            key={generateId()}
-                                            value={method.price}>{`${method.name} - $${method.price}`}</option>
-                                    ))}
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Total
-                            </td>
-                            <td>
-                                {`$${this.getTotal()}`}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            )}
-            <div className='sneakerstop-cart-nav-button-container'>
-                <Link to='/products'>
-                    &#8249; Continue Shopping 
-                </Link>
-                {this.state.cartItems.length === 0 ? null : (
-                    <Link to='/checkout'>
-                        Check Out &#8250;
-                    </Link>
-                )}
-            </div>
-        </div>
-        )
+                    {this.renderNavButtons()}
+                </div>
+            )
+        } else {
+            this.state.cartItems.sort((item1,item2) => item1.id > item2.id);
+            this.renderCart();
+        }
     }
+
+    renderCart = () => (
+        <div className='sneakerstop-cart-layout-container'>
+            <h1> Cart </h1>
+            <table className='sneakerstop-cart-table'>
+                <thead>
+                    <tr>
+                        <th colSpan={3}>
+                            Product
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+                            Quantity
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.state.cartItems.map(item => (
+                        <tr key={generateId()}>
+                            <td className='sneakerstop-cart-item-remove'>
+                                <span onClick={()=>this.removeItem(item.id)}>&times;</span>
+                            </td>
+                            <td className='sneakerstop-cart-item-image'>
+                                <Link to={`/products/${item.product_id}`}>
+                                    <img 
+                                        src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${item.product_id}-1.jpg`}
+                                        alt={item.name}/>
+                                </Link>
+                            </td>
+                            <td className='sneakerstop-cart-item-name'>
+                                <Link to={`/products/${item.product_id}`}>
+                                    {item.name}
+                                </Link>
+                            </td>
+                            <td className='sneakerstop-cart-item-price'>
+                                {`$${item.price}`}
+                            </td>
+                            <td className='sneakerstop-cart-item-quantity'>
+                                <span onClick={()=>this.updateItemQuantity(item.id,item.quantity-1)}>
+                                    &#8249;
+                                </span>
+                                {item.quantity}
+                                <span onClick={()=>this.updateItemQuantity(item.id,item.quantity+1)}>
+                                    &#8250;
+                                </span>
+                            </td>
+                            <td className='sneakerstop-cart-item-total'>
+                                {`$${this.calculatePrice(item)}`}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+
+            <div className='sneakerstop-mobile-cart'>
+                {this.state.cartItems.length === 0 ? (
+                    <div>There are no items in your cart.</div>
+                ) : this.state.cartItems.map(item => (
+                    <div className='sneakerstop-mobile-cart-item' key={generateId()}>
+                        <div className='sneakerstop-mobile-cart-item-image'>
+                            <Link to={`/products/${item.product_id}`}>
+                                <img 
+                                    src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${item.product_id}-1.jpg`}
+                                    alt={item.name}/>
+                            </Link>
+                        </div>
+                        <div className='sneakerstop-mobile-cart-table-container'>
+                            <table>
+                                <tbody>
+                                    <tr className='sneakerstop-mobile-cart-item-name'>
+                                        <td colSpan={2}>
+                                            <Link to={`/products/${item.product_id}`}>
+                                                {item.name}
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                    <tr className='sneakerstop-mobile-cart-item-price'>
+                                        <td>
+                                            Price:
+                                        </td>
+                                        <td>
+                                            {`$${item.price}`}
+                                        </td>
+                                    </tr>
+                                    <tr className='sneakerstop-mobile-cart-item-quantity'>
+                                        <td>
+                                            Quantity:
+                                        </td>
+                                        <td>
+                                            <span onClick={()=>this.updateItemQuantity(item.id,item.quantity-1)}>
+                                                &#8249;
+                                            </span>
+                                            {item.quantity}
+                                            <span onClick={()=>this.updateItemQuantity(item.id,item.quantity+1)}>
+                                                &#8250;
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr className='sneakerstop-mobile-cart-item-total'>
+                                        <td>
+                                            Total:
+                                        </td>
+                                        <td>
+                                            {`$${this.calculatePrice(item)}`}
+                                        </td>
+                                    </tr>
+                                    <tr className='sneakerstop-mobile-cart-item-remove'>
+                                        <td colSpan={2}>
+                                            <span onClick={()=>this.removeItem(item.id)}>Remove</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        
+
+            <table className='sneakerstop-totals-table'>
+                <tbody>
+                    <tr>
+                        <td>
+                            Subtotal
+                        </td>
+                        <td>
+                            {`$${this.getSubTotal()}`}
+                        </td>
+                    </tr>
+                    <tr className='sneakerstop-totals-table-shipping'>
+                        <td>
+                            Shipping &amp; Handling
+                        </td>
+                        <td>
+                            <select 
+                                onChange={event=>this.setState({shippingPrice: event.target.value})}
+                                value={this.state.shippingPrice}>
+                                {shippingMethods.map(method => (
+                                    <option
+                                        key={generateId()}
+                                        value={method.price}>{`${method.name} - $${method.price}`}</option>
+                                ))}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total
+                        </td>
+                        <td>
+                            {`$${this.getTotal()}`}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            {this.renderNavButtons()}
+        </div>
+    );
+
+    renderNavButtons = () => (
+        <div className='sneakerstop-cart-nav-button-container'>
+            <Link to='/products'>
+                &#8249; Continue Shopping 
+            </Link>
+            {!this.state.cartItems || this.state.cartItems.length === 0 ? null : (
+                <Link to='/checkout'>
+                    Check Out &#8250;
+                </Link>
+            )}
+        </div>  
+    )
 }

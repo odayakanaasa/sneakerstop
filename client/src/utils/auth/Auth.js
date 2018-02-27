@@ -21,13 +21,15 @@ export default class Auth {
 
     isAdmin = () => true;
 
-    login = (username, password) => {
+    login = (email, password) => {
         this.auth0.login(
-            { realm: AUTH_CONFIG.dbConnectionName, username, password },
+            { realm: AUTH_CONFIG.dbConnectionName, email, password },
             (err, authResult) => {
                 if (err) {
                     console.log(err);
                     return;
+                } else {
+                    console.log(authResult);
                 }
             }
         );
@@ -37,12 +39,12 @@ export default class Auth {
         this.auth0.signup({ connection: AUTH_CONFIG.dbConnectionName, email, password },(err) => {
                 if (err) {
                     console.log(err);
-                    return;
+                    return err;
                 }
                 this.auth0.login({ realm: AUTH_CONFIG.dbConnectionName, username: email, password },(err, authResult) => {
                     if (err) {
                         console.log(err);
-                        return;
+                        return err;
                     }
                 });
             }

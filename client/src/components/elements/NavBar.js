@@ -9,6 +9,7 @@ export default class NavBar extends Component {
     static propTypes = {
         mobileNavOpen: PropTypes.bool.isRequired,
         toggleMobileNav: PropTypes.func.isRequired,
+        loggedIn: PropTypes.bool.isRequired,
         username: PropTypes.string.isRequired,
         logout: PropTypes.func.isRequired,
         cartItemCount: PropTypes.number.isRequired,
@@ -45,7 +46,7 @@ export default class NavBar extends Component {
             </div>
             <div className='sneakerstop-nav-container'>
                 <div className='sneakerstop-navbar-top'>        
-                    {this.props.username ? (
+                    {this.props.loggedIn ? (
                         <ul>
                             <li>
                                 Welcome, {this.props.username}

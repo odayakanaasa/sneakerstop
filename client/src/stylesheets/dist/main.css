@@ -444,15 +444,18 @@ input, textarea {
   margin-right: 0px;
   border: 1px solid #bbb; }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset; }
+
 .inputfield {
   width: 100%;
   font-size: 14px;
   line-height: 30px;
-  background-color: white;
+  background-color: white !important;
   border: none;
   border-bottom: 1px solid #aaa; }
   .inputfield.invalid {
-    background-color: pink;
+    background-color: pink !important;
     border-bottom: 1px solid red; }
   .inputfield:focus {
     background-color: white;
