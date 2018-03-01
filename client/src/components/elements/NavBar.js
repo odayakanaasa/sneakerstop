@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Hamburger from './Hamburger';
 import NavDropdown from './NavDropdown';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 export default class NavBar extends Component {
 
@@ -54,7 +54,14 @@ export default class NavBar extends Component {
                             <li>
                                 <span
                                     className='sneakerstop-logout-link'
-                                    onClick={()=>this.props.logOut()}>Log Out</span>
+                                    onClick={
+                                        ()=>{
+                                            this.props.logout();
+                                            return (
+                                                <Redirect to='/home'/>
+                                            )
+                                        }
+                                    }>Log Out</span>
                             </li>
                         </ul>
                     ) : (

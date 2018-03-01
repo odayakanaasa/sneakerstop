@@ -16,15 +16,15 @@ import LogInPage from './components/pages/LogInPage';
 import SearchResults from './components/pages/SearchResults';
 import Footer from './components/elements/Footer';
 
-import Callback from './utils/auth/Callback';
 import Auth from './utils/auth/Auth';
 
 const auth = new Auth();
 
 const handleAuthentication = (nextState, replace) => {
-    if (/access_token|id_token|error/.test(nextState.location.hash)) {
+    /*if (/access_token|id_token|error/.test(nextState.location.hash)) {
         auth.handleAuthentication();
-    }
+    }*/
+    auth.handleAuthentication();
 }
 
 class App extends Component {
@@ -124,9 +124,12 @@ class App extends Component {
                         username={auth.getUsername()} 
                         signup={auth.signup}/>
                 }/>
-                <Route path='/callback' render = {()=> 
-                    <Redirect to='/home'/>
-                }/>}
+                <Route path='/callback' render = {()=> {
+                    handleAuthentication();
+                    return (
+                        <Redirect to='/home'/>
+                    )
+                }}/>
                 <Footer isAdmin={auth.isAdmin()} username={auth.getUsername()}/>
             </div>
         )
