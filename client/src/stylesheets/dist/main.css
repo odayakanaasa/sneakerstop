@@ -884,25 +884,34 @@ input:-webkit-autofill {
   padding: 40px 50px 40px 50px;
   box-sizing: border-box;
   height: 440px;
-  background: url("./../../assets/images/banners/basketball1.jpg");
+  background: url("./../../assets/images/banners/football1.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative; }
 
-.sneakerstop-banner-left, .sneakerstop-banner-right {
-  display: inline-block;
+.sneakerstop-banner {
   height: 360px;
   margin: auto;
+  width: 90%;
   background-color: rgba(0, 0, 0, 0.5); }
 
-.sneakerstop-banner-left {
-  float: left;
-  width: 62%; }
-
-.sneakerstop-banner-right {
-  float: right;
-  width: 32%; }
+.sneakerstop-shop-now-button {
+  font-family: 'Trade Gothic';
+  display: block;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  width: 200px;
+  font-size: 18px;
+  cursor: pointer;
+  color: white;
+  border: 2px solid #22f;
+  background-color: #22f; }
+  .sneakerstop-shop-now-button:hover {
+    text-decoration: none;
+    color: #22f;
+    background-color: white; }
 
 .sneakerstop-products-container {
   position: relative;
@@ -928,7 +937,7 @@ input:-webkit-autofill {
     position: relative;
     width: 190px;
     min-width: 190px;
-    margin: auto;
+    margin: 5px auto 5px auto;
     padding: 0px 5px 20px 5px;
     height: 220px;
     background-color: white;

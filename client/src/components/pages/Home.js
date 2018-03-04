@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { generateId } from './../../utils/uuid-generator';
 import { API_ROOT } from './../../utils/api_config';
+import ProductRow from '../elements/ProductRow';
 
 export default class Home extends Component {
 
@@ -36,30 +37,17 @@ export default class Home extends Component {
         return (
             <div>
                 <div className='sneakerstop-banner-background'>
-                    <div className='sneakerstop-banner-left'>
-
-                    </div>
-                    <div className='sneakerstop-banner-right'>
-                
+                    <div className='sneakerstop-banner'>
+                        <Link to='/products' className='sneakerstop-shop-now-button'>
+                            Shop Now &#8250;
+                        </Link>
                     </div>
                 </div>
                 <div className='sneakerstop-products-container'>
                     <h2> Featured Products </h2>
-                    {this.state.products.length===0 ? (
-                        <div className='sneakerstop-featured-products-loading'>
-                        
-                        </div>
-                    ) : (
-                        <div>
-                            <div className='sneakerstop-products-row'>
-                                {this.renderProducts(this.state.products.slice(0,5))}
-                            </div>
-                            <h2> Recommended For You </h2>
-                            <div className='sneakerstop-products-row'>
-                                {this.renderProducts(this.state.products.slice(5,10))}
-                            </div>
-                        </div>
-                    )}       
+                    <ProductRow products = {this.state.products.slice(0,10)}/>
+                    <h2> Recommended For You </h2>
+                    <ProductRow products = {this.state.products.slice(0,10)}/>
                 </div>
             </div>
         )

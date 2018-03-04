@@ -56,6 +56,7 @@ export default class NavBar extends Component {
                                     className='sneakerstop-logout-link'
                                     onClick={
                                         ()=>{
+                                            console.log('i was clicked');
                                             this.props.logout();
                                             return (
                                                 <Redirect to='/home'/>
