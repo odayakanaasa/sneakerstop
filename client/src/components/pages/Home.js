@@ -38,6 +38,8 @@ export default class Home extends Component {
             <div>
                 <div className='sneakerstop-banner-background'>
                     <div className='sneakerstop-banner'>
+                        <h2> Introducing the </h2>
+                        <h1> Nike Lebron X 2018 </h1>
                         <Link to='/products' className='sneakerstop-shop-now-button'>
                             Shop Now &#8250;
                         </Link>

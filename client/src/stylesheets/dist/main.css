@@ -884,17 +884,20 @@ input:-webkit-autofill {
   padding: 40px 50px 40px 50px;
   box-sizing: border-box;
   height: 440px;
-  background: url("./../../assets/images/banners/football1.jpg");
+  background: url("./../../assets/images/banners/lebronx.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative; }
 
 .sneakerstop-banner {
-  height: 360px;
-  margin: auto;
-  width: 90%;
+  float: left;
+  padding: 20px;
+  text-align: center;
   background-color: rgba(0, 0, 0, 0.5); }
+  .sneakerstop-banner h1, .sneakerstop-banner h2 {
+    text-align: left;
+    color: white; }
 
 .sneakerstop-shop-now-button {
   font-family: 'Trade Gothic';
@@ -904,6 +907,7 @@ input:-webkit-autofill {
   line-height: 40px;
   width: 200px;
   font-size: 18px;
+  margin-top: 20px;
   cursor: pointer;
   color: white;
   border: 2px solid #22f;

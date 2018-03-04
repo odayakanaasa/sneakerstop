@@ -19,18 +19,21 @@ export default class ProductRow extends Component {
     }
 
     render = () => {
-        <div className='sneakerstop-product-row'>
-            <div className='left arrow-container'>
 
-            </div>
-            {this.props.products.map(product => (
-                <div>
+        return (
+            <div className='sneakerstop-product-row'>
+                <div className='left arrow-container'>
 
                 </div>
-            ))}
-            <div className='right arrow-container'>
+                {this.props.products.map(product => (
+                    <div>
 
+                    </div>
+                ))}
+                <div className='right arrow-container'>
+
+                </div>
             </div>
-        </div>
+        )
     }
 }
