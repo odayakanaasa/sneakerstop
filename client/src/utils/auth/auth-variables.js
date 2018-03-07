@@ -4,3 +4,4 @@ export const AUTH_CONFIG = {
     callbackUrl: 'http://localhost:3000/callback',
     dbConnectionName: 'Username-Password-Authentication',
 }
+//secret: HzdKMRzalTS_FvOxCJQSebP4vVjPjc1yvepovTCSPBwZSpoBkpGej42f59o56AQX

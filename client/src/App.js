@@ -27,6 +27,11 @@ const handleAuthentication = (nextState, replace) => {
     auth.handleAuthentication();
 }
 
+const ScrollToTop = () => {
+    window.scrollTo(0, 0);
+    return null;
+};
+
 class App extends Component {
 
     constructor() {
@@ -93,7 +98,8 @@ class App extends Component {
                     cartItemCount={this.state.cartItems.length}
                     handleSearch={this.handleSearch}
                     logout={auth.logout}/>
-                <div className='page-content'>    
+                <div className='page-content'>
+                    <Route component={ScrollToTop}/>  
                     <Route exact path='/' render = {() => 
                         <Redirect to='/home'/>
                     }/>

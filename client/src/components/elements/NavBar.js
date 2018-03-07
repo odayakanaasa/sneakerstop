@@ -56,7 +56,7 @@ export default class NavBar extends Component {
                                     className='sneakerstop-logout-link'
                                     onClick={
                                         ()=>{
-                                            console.log('i was clicked');
+                                            console.log('logout button clicked');
                                             this.props.logout();
                                             return (
                                                 <Redirect to='/home'/>
@@ -107,7 +107,7 @@ export default class NavBar extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <input 
                                 onChange={this.handleInputChange} 
-                                placeholder={'Search...'} 
+                                placeholder={'Search'} 
                                 value={this.state.searchInputValue}/>
                         </form>
                     </div>

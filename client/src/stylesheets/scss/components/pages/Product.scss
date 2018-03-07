@@ -3,6 +3,7 @@
     margin-top: 80px;
     padding-bottom: 40px;
     background-color: white;
+    min-height: 500px;
 }
 
 .sneakerstop-product-images-container {
@@ -67,13 +68,16 @@
             width: 90%;
             font-size: 14px;                
             height: 40px;
-            color: black;
-            background-color: #f8f8f8;
-            border: 1px solid #666;
+            color: white;
+            background-color: $sneakerstop-blue;
             box-sizing: border-box;
             cursor: pointer;
+            font-family: 'Trade Gothic';
+            font-size: 18px;
             &:hover {
-                opacity: 0.7;
+                background-color: white;
+                color: $sneakerstop-blue;
+                border: 2px solid $sneakerstop-blue;
             }
         }
     }

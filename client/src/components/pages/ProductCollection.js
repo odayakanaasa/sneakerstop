@@ -5,6 +5,7 @@ import axios from 'axios';
 import { generateId } from '../../utils/uuid-generator';
 import { API_ROOT } from './../../utils/api_config';
 import queryString from 'query-string';
+import ProductRow from '../elements/ProductRow';
 
 export default class ProductsPage extends Component {
 
@@ -80,7 +81,7 @@ export default class ProductsPage extends Component {
                 <h4>${product.price}</h4>
             </div>
         </Link>
-    ));
+    ))
     
     render = () => (
         <div>
@@ -91,18 +92,9 @@ export default class ProductsPage extends Component {
             <h2> Products </h2>
             {this.state.products.length===0 ? (
                 <div>
-                
+                    Loading...
                 </div>
-            ) : (
-                <div>
-                    <div className='sneakerstop-products-row'>
-                        {this.renderProducts(this.state.products.slice(0,5))}
-                    </div>
-                    <div className='sneakerstop-products-row'>
-                        {this.renderProducts(this.state.products.slice(5,10))}
-                    </div>
-                </div>
-            )}       
+            ) : this.renderProducts(this.state.products)}       
         </div>
         </div>
     );

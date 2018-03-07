@@ -3,7 +3,6 @@ import { AUTH_CONFIG } from './auth-variables';
 
 //login with google 
 //sneakerstop.auth0.com
-//secret: HzdKMRzalTS_FvOxCJQSebP4vVjPjc1yvepovTCSPBwZSpoBkpGej42f59o56AQX
 
 export default class Auth {
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { generateId } from './../../utils/uuid-generator';
 import { API_ROOT } from './../../utils/api_config';
 import Auth from './../../utils/auth/Auth';
@@ -42,6 +43,7 @@ export default class Product extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.addToCart();
+        this.context.router.history.push('/cart')
     }
 
     async addToCart() {
