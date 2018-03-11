@@ -18,6 +18,10 @@ export default class Auth {
         return '';
     }
 
+    getNickname = () => {
+        return '';
+    }
+
     isAdmin = () => true;
 
     login = (email, password) => {
@@ -81,7 +85,9 @@ export default class Auth {
         localStorage.removeItem('access_token');
         localStorage.removeItem('id_token');
         localStorage.removeItem('expires_at');
-        // navigate to home 
+        //todo: navigate to home? 
+        //
+        window.location.reload();
     }
 
     isAuthenticated = () => {

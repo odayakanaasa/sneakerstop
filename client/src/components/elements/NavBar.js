@@ -37,104 +37,107 @@ export default class NavBar extends Component {
         this.setState({searchInputValue: ''});
     }
 
-    render = () => (
-        <div className='sneakerstop-navbar'>
-            <div className='sneakerstop-logo-container'>
-                <h1 className='logo sneakerstop-logo'>
-                    <Link to='/home'> SneakerStop </Link>
-                </h1>
-            </div>
-            <div className='sneakerstop-nav-container'>
-                <div className='sneakerstop-navbar-top'>        
-                    {this.props.loggedIn ? (
-                        <ul>
-                            <li>
-                                Welcome, {this.props.username}
-                            </li>
-                            <li>
-                                <span
-                                    className='sneakerstop-logout-link'
-                                    onClick={
-                                        ()=>{
-                                            console.log('logout button clicked');
-                                            this.props.logout();
-                                            return (
-                                                <Redirect to='/home'/>
-                                            )
-                                        }
-                                    }>Log Out</span>
-                            </li>
-                        </ul>
-                    ) : (
-                        <ul>
-                            <li>
-                                <Link to='/login'> Log In </Link>
-                            </li>
-                            <li>
-                                <Link to='/register'> Create an Account </Link>
-                            </li>
-                        </ul>
-                    )}
+    render = () => {
+        console.log(this.props);
+        return (
+            <div className='sneakerstop-navbar'>
+                <div className='sneakerstop-logo-container'>
+                    <h1 className='logo sneakerstop-logo'>
+                        <Link to='/home'> SneakerStop </Link>
+                    </h1>
                 </div>
-                <div className='sneakerstop-navbar-bottom'>
-                    <ul>
-                        <li onMouseEnter={()=>{this.setState({dropdownGroup:'Men'})}} 
-                            onMouseLeave={()=>{this.setState({dropdownGroup:''})}}
-                            style={{
-                                backgroundColor: (this.state.dropdownGroup==='Men' ? 'white' : 'transparent'), 
-                                color: (this.state.dropdownGroup==='Men' ? 'black' : 'white')
-                            }}>
-                            <a> Men </a>
-                        </li>
-                        <li onMouseEnter={()=>{this.setState({dropdownGroup:'Women'})}} 
-                            onMouseLeave={()=>{this.setState({dropdownGroup:''})}}
-                            style={{
-                                backgroundColor: (this.state.dropdownGroup==='Women' ? 'white' : 'transparent'), 
-                                color: (this.state.dropdownGroup==='Women' ? 'black' : 'white')
-                            }}>
-                            <a> Women </a>
-                        </li>
-                        <li onMouseEnter={()=>{this.setState({dropdownGroup:'Kids'})}}
-                            onMouseLeave={()=>{this.setState({dropdownGroup:''})}}
-                            style={{
-                                backgroundColor: (this.state.dropdownGroup==='Kids' ? 'white' : 'transparent'), 
-                                color: (this.state.dropdownGroup==='Kids' ? 'black' : 'white')
-                            }}>
-                            <a> Kids </a>
-                        </li>
-                    </ul>
-                    <div className='sneakerstop-search'>
-                        <form onSubmit={this.handleSubmit}>
-                            <input 
-                                onChange={this.handleInputChange} 
-                                placeholder={'Search'} 
-                                value={this.state.searchInputValue}/>
-                        </form>
+                <div className='sneakerstop-nav-container'>
+                    <div className='sneakerstop-navbar-top'>        
+                        {this.props.loggedIn ? (
+                            <ul>
+                                <li>
+                                    Welcome, {this.props.username}
+                                </li>
+                                <li>
+                                    <span
+                                        className='sneakerstop-logout-link'
+                                        onClick={
+                                            ()=>{
+                                                console.log('logout button clicked');
+                                                this.props.logout();
+                                                return (
+                                                    <Redirect to='/home'/>
+                                                )
+                                            }
+                                        }>Log Out</span>
+                                </li>
+                            </ul>
+                        ) : (
+                            <ul>
+                                <li>
+                                    <Link to='/login'> Log In </Link>
+                                </li>
+                                <li>
+                                    <Link to='/register'> Create an Account </Link>
+                                </li>
+                            </ul>
+                        )}
                     </div>
-                    <Link to='/cart'>
-                        <div className='sneakerstop-cart-icon-container'>
-                            <img src={require('../../assets/images/icons/shopping-cart.png')} alt='shopping cart'/>
+                    <div className='sneakerstop-navbar-bottom'>
+                        <ul>
+                            <li onMouseEnter={()=>{this.setState({dropdownGroup:'Men'})}} 
+                                onMouseLeave={()=>{this.setState({dropdownGroup:''})}}
+                                style={{
+                                    backgroundColor: (this.state.dropdownGroup==='Men' ? 'white' : 'transparent'), 
+                                    color: (this.state.dropdownGroup==='Men' ? 'black' : 'white')
+                                }}>
+                                <a> Men </a>
+                            </li>
+                            <li onMouseEnter={()=>{this.setState({dropdownGroup:'Women'})}} 
+                                onMouseLeave={()=>{this.setState({dropdownGroup:''})}}
+                                style={{
+                                    backgroundColor: (this.state.dropdownGroup==='Women' ? 'white' : 'transparent'), 
+                                    color: (this.state.dropdownGroup==='Women' ? 'black' : 'white')
+                                }}>
+                                <a> Women </a>
+                            </li>
+                            <li onMouseEnter={()=>{this.setState({dropdownGroup:'Kids'})}}
+                                onMouseLeave={()=>{this.setState({dropdownGroup:''})}}
+                                style={{
+                                    backgroundColor: (this.state.dropdownGroup==='Kids' ? 'white' : 'transparent'), 
+                                    color: (this.state.dropdownGroup==='Kids' ? 'black' : 'white')
+                                }}>
+                                <a> Kids </a>
+                            </li>
+                        </ul>
+                        <div className='sneakerstop-search'>
+                            <form onSubmit={this.handleSubmit}>
+                                <input 
+                                    onChange={this.handleInputChange} 
+                                    placeholder={'Search'} 
+                                    value={this.state.searchInputValue}/>
+                            </form>
                         </div>
-                        <div className='sneakerstop-cart-item-count'>
-                            {this.props.cartItemCount}
-                        </div>
-                    </Link>
+                        <Link to='/cart'>
+                            <div className='sneakerstop-cart-icon-container'>
+                                <img src={require('../../assets/images/icons/shopping-cart.png')} alt='shopping cart'/>
+                            </div>
+                            <div className='sneakerstop-cart-item-count'>
+                                {this.props.cartItemCount}
+                            </div>
+                        </Link>
+                    </div>
                 </div>
+                <div 
+                    className='sneakerstop-hamburger-container' 
+                    onClick={()=> {
+                        if (this.props.mobileNavOpen) {
+                            this.props.toggleMobileNav();
+                        } else {
+                            this.props.toggleMobileNav();
+                        } 
+                    }}>
+                    <Hamburger open={this.props.mobileNavOpen}/>
+                </div>
+                <NavDropdown 
+                    group={this.state.dropdownGroup} 
+                    setDropdownGroup={group => this.setState({dropdownGroup: group})}/>
             </div>
-            <div 
-                className='sneakerstop-hamburger-container' 
-                onClick={()=> {
-                    if (this.props.mobileNavOpen) {
-                        this.props.toggleMobileNav();
-                    } else {
-                        this.props.toggleMobileNav();
-                    } 
-                }}>
-                <Hamburger open={this.props.mobileNavOpen}/>
-            </div>
-            <NavDropdown 
-                group={this.state.dropdownGroup} 
-                setDropdownGroup={group => this.setState({dropdownGroup: group})}/>
-        </div>
-    )
+        )
+    }
 }
