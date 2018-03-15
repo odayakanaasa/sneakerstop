@@ -1,7 +1,46 @@
 .sneakerstop-action-button {
+    display: block;
+    position: relative;
     height: 40px;
+    line-height: 40px;
     width: 200px;
+    margin: 20px;
     color: white;
     background-color: $sneakerstop-blue;
     font-family: 'Trade Gothic';
+    font-size: 18px;
+    border: 2px solid $sneakerstop-blue;    
+    & div {
+        position: absolute;
+        font-size: 40px;
+        line-height: 32px;
+        transition: right 0.2s, left 0.2s;
+        & .right-button {
+            float: right;
+            right: 25%;
+        }
+        & .left-button {
+            float: left;            
+            left: 25%;
+        }
+    }
+    &.inverse {
+        background-color: $white;
+        color: $sneakerstop-blue;
+    }
+    & span {
+        line-height: 40px;
+        position: absolute;
+        float: left;            
+        left: 25%;
+    }
+    &:hover {
+        text-decoration: none;
+        & .right-button {
+            right: 22%;
+        }
+        & .left-button {
+            left: 22%;
+        }
+    }
 }
