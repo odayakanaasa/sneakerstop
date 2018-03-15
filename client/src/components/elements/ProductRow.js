@@ -13,37 +13,35 @@ export default class ProductRow extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isScrolled: false,
+            scrollPos: 0,
         }
     }
 
-    moveSlider = () => {
-        if (this.state.isScrolled) {
-            this.setState({isScrolled: false});
-        } else {
-            this.setState({isScrolled: true});
-        }
+    moveSliderRight = () => {
+        let currentScrollPos = this.state.scrollPos;
+        this.setState({scrollPos: currentScrollPos-210});
     }
 
-    //sets of 4-5 products
-    //each set gets a sneakerstop-product-thumbnails container (display:flex)
-    //thumbnails in set are 
+    moveSliderLeft = () => {
+        let currentScrollPos = this.state.scrollPos;
+        this.setState({scrollPos: currentScrollPos+210});
+    }
 
     render = () => {
-        let set = this.props.products;
-
         return (
             <div className='sneakerstop-product-row'>
                 <div 
                     className='left arrow-container' 
-                    onClick={()=>this.moveSlider()} 
-                    style={this.state.isScrolled ? {} : {visibility: 'hidden'}}>
+                    onClick={()=>this.moveSliderLeft()} 
+                    style={this.state.scrollPos === 0 ? {visibility: 'hidden'} : {}}>
                     &#x276E;
                 </div>
                 <div className='sneakerstop-product-thumbnails-container'>
                     <div className='sneakerstop-product-thumbnails'>
-                        <div className={`sneakerstop-product-thumbnail-set ${this.state.isScrolled ? 'scrolled' : ''}`}>
-                            {set.map(product => (
+                        <div 
+                            className='sneakerstop-product-thumbnail-set' 
+                            style={{marginLeft:`${this.state.scrollPos}px`}}>
+                            {this.props.products.map(product => (
                                 <Link key={generateId()} to={`/products/${product.id}`}>
                                     <div className='sneakerstop-product-thumbnail'>
                                         <img 
@@ -59,8 +57,8 @@ export default class ProductRow extends Component {
                 </div>
                 <div 
                     className='right arrow-container' 
-                    onClick={()=>this.moveSlider()}
-                    style={this.state.isScrolled ? {visibility: 'hidden'} : {}}>
+                    onClick={()=>this.moveSliderRight()}
+                    style={this.state.scrollPos === 1000 ? {visibility: 'hidden'} : {}}>
                     &#x276F;
                 </div>
             </div>

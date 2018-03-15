@@ -9,15 +9,12 @@ export default class ActionButton extends Component {
     static propTypes = {
         orientation: PropTypes.string.isRequired, //left or right
         text: PropTypes.string.isRequired,
-        inverse: PropTypes.bool.isRequired,
-        url: PropTypes.string.isRequired,
+        inverse: PropTypes.bool,        
     }
 
     render = () => {
         return (
-            <Link
-                to={this.props.url} 
-                className={`sneakerstop-action-button ${this.props.inverse ? 'inverse' : ''}`}>
+            <div className={`sneakerstop-action-button ${this.props.inverse ? 'inverse' : ''}`}>
                     {this.props.orientation === 'left' ? (
                         <div className='left-button'>&#8249;</div>
                     ) : null}
@@ -25,7 +22,7 @@ export default class ActionButton extends Component {
                     {this.props.orientation === 'right' ? (
                         <div className='right-button'>&#8250;</div>
                      ) : null}
-            </Link>
+            </div>
         )
     }
 }

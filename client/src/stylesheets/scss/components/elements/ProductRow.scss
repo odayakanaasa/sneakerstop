@@ -33,11 +33,7 @@
         box-sizing: border-box;
         cursor: pointer;
     }
-    margin-left: 0px;
     transition: margin-left 0.5s;
-    &.scrolled {
-        margin-left: -95% !important;
-    }
 }
 
 .sneakerstop-product-thumbnail {

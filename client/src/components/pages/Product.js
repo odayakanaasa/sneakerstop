@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ActionButton from '../elements/ActionButton';
 import { generateId } from './../../utils/uuid-generator';
 import { API_ROOT } from './../../utils/api_config';
 import Auth from './../../utils/auth/Auth';
@@ -99,15 +100,18 @@ export default class Product extends Component {
                             <h1> {this.state.productData.name} </h1>
                             <h2> {this.state.productData.brand} </h2>
                             <h3> ${this.state.productData.price} </h3>
-                            <form onSubmit={this.handleSubmit}>
-                                <div>
+                            <form>
+                                <div className='form-row'>
                                     <span> Size </span>
                                     <select>
                                         {sizes.map(size => <option key={generateId()}>{size}</option>)}
                                     </select>
                                 </div>
-                                <div>
-                                    <button type='submit'> Add to Cart </button>
+                                <div className='form-row'>
+                                    <ActionButton 
+                                        orientation='right' 
+                                        text='Add to Cart' 
+                                        onClick={this.handleSubmit}/>
                                 </div>
                             </form>
                         </div>

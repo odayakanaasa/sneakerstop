@@ -49,11 +49,13 @@
     & form {
         margin: auto;        
         width: 90%;
-        & div {
+        & .form-row{
             width: 100%;
-            height: 80px;
             padding: 20px;
             box-sizing: border-box;
+        }
+        & .sneakerstop-action-button {
+            margin: auto;
         }
         & select {
             width: 70%;
@@ -63,22 +65,6 @@
             border: 1px solid #666;
             font-size: 14px;
             box-sizing: border-box;
-        }
-        & button {
-            width: 90%;
-            font-size: 14px;                
-            height: 40px;
-            color: white;
-            background-color: $sneakerstop-blue;
-            box-sizing: border-box;
-            cursor: pointer;
-            font-family: 'Trade Gothic';
-            font-size: 18px;
-            &:hover {
-                background-color: white;
-                color: $sneakerstop-blue;
-                border: 2px solid $sneakerstop-blue;
-            }
         }
     }
 }

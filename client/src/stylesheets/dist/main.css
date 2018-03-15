@@ -71,6 +71,45 @@ h1, h2, h3, h4, h5 {
 @font-face {
   font-family: 'Trade Gothic Condensed';
   src: url("../../assets/fonts/trade-gothic-condensed.ttf"); }
+.sneakerstop-action-button {
+  display: block;
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  width: 200px;
+  margin-top: 20px;
+  color: white;
+  background-color: #22f;
+  font-family: 'Trade Gothic';
+  font-size: 18px;
+  border: 2px solid #22f;
+  cursor: pointer; }
+  .sneakerstop-action-button div {
+    position: absolute;
+    font-size: 40px;
+    line-height: 32px;
+    transition: right 0.2s, left 0.2s; }
+    .sneakerstop-action-button div.right-button {
+      float: right;
+      right: 25%; }
+    .sneakerstop-action-button div.left-button {
+      float: left;
+      left: 25%; }
+  .sneakerstop-action-button.inverse {
+    background-color: white;
+    color: #22f; }
+  .sneakerstop-action-button span {
+    line-height: 40px;
+    position: absolute;
+    float: left;
+    left: 25%; }
+  .sneakerstop-action-button:hover {
+    text-decoration: none; }
+    .sneakerstop-action-button:hover .right-button {
+      right: 22%; }
+    .sneakerstop-action-button:hover .left-button {
+      left: 22%; }
+
 .sneakerstop-navbar {
   z-index: 5;
   position: absolute;
@@ -493,7 +532,6 @@ input:-webkit-autofill {
 .sneakerstop-product-thumbnail-set {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: 0px;
   transition: margin-left 0.5s; }
   .sneakerstop-product-thumbnail-set a {
     position: relative;
@@ -505,8 +543,6 @@ input:-webkit-autofill {
     background-color: white;
     box-sizing: border-box;
     cursor: pointer; }
-  .sneakerstop-product-thumbnail-set.scrolled {
-    margin-left: -95% !important; }
 
 .sneakerstop-product-thumbnail {
   text-align: center; }
@@ -922,11 +958,12 @@ input:-webkit-autofill {
   .sneakerstop-product-info form {
     margin: auto;
     width: 90%; }
-    .sneakerstop-product-info form div {
+    .sneakerstop-product-info form .form-row {
       width: 100%;
-      height: 80px;
       padding: 20px;
       box-sizing: border-box; }
+    .sneakerstop-product-info form .sneakerstop-action-button {
+      margin: auto; }
     .sneakerstop-product-info form select {
       width: 70%;
       height: 30px;
@@ -935,20 +972,6 @@ input:-webkit-autofill {
       border: 1px solid #666;
       font-size: 14px;
       box-sizing: border-box; }
-    .sneakerstop-product-info form button {
-      width: 90%;
-      font-size: 14px;
-      height: 40px;
-      color: white;
-      background-color: #22f;
-      box-sizing: border-box;
-      cursor: pointer;
-      font-family: 'Trade Gothic';
-      font-size: 18px; }
-      .sneakerstop-product-info form button:hover {
-        background-color: white;
-        color: #22f;
-        border: 2px solid #22f; }
 
 @media (min-width: 768px) {
   .sneakerstop-product-images-container {

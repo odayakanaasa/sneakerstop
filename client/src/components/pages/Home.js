@@ -27,9 +27,8 @@ export default class Home extends Component {
                     <div className='sneakerstop-banner'>
                         <h2> Introducing the </h2>
                         <h1> Nike Lebron X </h1>
-                        <Link to='/products' className='sneakerstop-shop-now-button'>
-                            <span>Shop Now</span>
-                            <div>&#8250;</div>
+                        <Link to='/'>
+                            <ActionButton text='Shop Now' url='/products' orientation='right'/>
                         </Link>
                     </div>
                 </div>
