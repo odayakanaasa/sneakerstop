@@ -974,9 +974,45 @@ input:-webkit-autofill {
     max-width: 768px; } }
 .sneakerstop-products-collection-header {
   margin-top: 80px;
-  height: 80px;
-  line-height: 80px;
-  background-color: white; }
+  height: 60px;
+  line-height: 60px;
+  background-color: white;
+  padding: 20px 5% 100px 5%;
+  box-sizing: border-box; }
+
+.sneakerstop-products-collection-container {
+  background-color: white;
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+  text-align: center;
+  margin: auto; }
+  .sneakerstop-products-collection-container .sneakerstop-product-thumbnail {
+    height: 240px;
+    vertical-align: top;
+    width: 190px;
+    display: inline-block;
+    text-align: center; }
+    .sneakerstop-products-collection-container .sneakerstop-product-thumbnail img {
+      margin: auto;
+      width: 90%; }
+    .sneakerstop-products-collection-container .sneakerstop-product-thumbnail h3, .sneakerstop-products-collection-container .sneakerstop-product-thumbnail h4 {
+      font-family: 'Trade Gothic';
+      width: 150px;
+      margin: 20px auto 0px auto; }
+    .sneakerstop-products-collection-container .sneakerstop-product-thumbnail h3 {
+      font-size: 14px;
+      color: #666; }
+    .sneakerstop-products-collection-container .sneakerstop-product-thumbnail h4 {
+      font-size: 12px;
+      color: #22f;
+      margin-top: 5px; }
+    .sneakerstop-products-collection-container .sneakerstop-product-thumbnail:hover h3 {
+      color: #22f; }
 
 .sneakerstop-banner-background {
   margin-top: 80px;

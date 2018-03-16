@@ -9,10 +9,6 @@ import ProductRow from '../elements/ProductRow';
 
 export default class ProductsPage extends Component {
 
-    static propTypes = {
-
-	}
-
 	static contextTypes = {
     	router: PropTypes.object,
     	location: PropTypes.object
@@ -35,9 +31,39 @@ export default class ProductsPage extends Component {
         this.getProducts();
     }
 
+    getQueries = () => {
+        return queryString.parse(this.context.router.history.location.search);
+    }
+
+    getTitle = () => {
+        let queries = this.getQueries();
+        if (queries.group || queries.category || queries.subcategory) {
+            let title = '';            
+            if (queries.group) {
+                title+=`${queries.group.charAt(0).toUpperCase() + queries.group.slice(1)}`;
+                if (queries.group==='men' || queries.group==='women') {
+                    title+=`'s`;
+                } else {
+                    title+=`'`;
+                }
+            }
+            if (queries.subcategory) {
+                title+=` ${queries.subcategory.charAt(0).toUpperCase() + queries.subcategory.slice(1)}`
+            }
+            if (queries.category) {
+                if (!queries.subcategory || queries.category === 'shoes') {
+                    title+=` ${queries.category.charAt(0).toUpperCase() + queries.category.slice(1)}`                                    
+                }
+            }
+            return title;
+        } else {
+            return 'All Products';
+        }
+    }
+
     getProducts = async () => {
         try {
-            let queries = queryString.parse(this.context.router.history.location.search);
+            let queries = this.getQueries();
             let url = `${API_ROOT}/products`;
             if (queries.group || queries.category || queries.subcategory) {
                 url += '?'
@@ -86,16 +112,17 @@ export default class ProductsPage extends Component {
     render = () => (
         <div>
             <div className='sneakerstop-products-collection-header'>
-                {this.state.title}
+                <h1>{this.getTitle()}</h1>
             </div>
-            <div className='sneakerstop-products-container'>
-            <h2> Products </h2>
-            {this.state.products.length===0 ? (
-                <div>
-                    Loading...
-                </div>
-            ) : this.renderProducts(this.state.products)}       
-        </div>
+            <div className='sneakerstop-products-collection-container'>
+                {this.state.products.length===0 ? (
+                    <div>
+                        Loading...
+                    </div>
+                ) : (
+                    this.renderProducts(this.state.products)
+                )}                
+            </div>
         </div>
     );
 }
