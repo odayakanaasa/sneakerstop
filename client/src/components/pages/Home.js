@@ -13,12 +13,6 @@ export default class Home extends Component {
             products: [],
         }
     }
-
-    async componentDidMount() {
-        let result = await axios.get(`${API_ROOT}/products`);
-        console.log(result);
-        this.setState({products: result.data});
-    }
     
     render = () => {
         return (
@@ -34,9 +28,9 @@ export default class Home extends Component {
                 </div>
                 <div className='sneakerstop-products-container'>
                     <h2> Recently Released </h2>
-                    <ProductRow products = {this.state.products.slice(0,10)}/>
+                    <ProductRow/>
                     <h2> Recommended For You </h2>
-                    <ProductRow products = {this.state.products.slice(0,10)}/>
+                    <ProductRow/>
                 </div>
             </div>
         )

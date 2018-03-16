@@ -10,7 +10,7 @@
 .sneakerstop-product-thumbnails-container {
     position: absolute;
     left: 5% !important;
-    width: 95%;
+    width: 90%;
     overflow-x: hidden;
 }
 
@@ -19,14 +19,15 @@
 }
 
 .sneakerstop-product-thumbnail-set {
+    border: 1px solid red;
     display: flex;
     flex-wrap: nowrap;
     & a {
+        border: 1px solid green;
         position: relative;
         display: inline-block;
         width: 190px;
-        //min-width: 190px;
-        margin: 5px 10px 5px 10px;
+        margin: 0px 10px 0px 10px;
         padding: 0px 5px 20px 5px;
         height: 220px;
         background-color: white;
@@ -66,22 +67,21 @@
 //arrow buttons
 .sneakerstop-product-row .arrow-container {
     font-size: 36px;
-    margin-top: 5px;
     position: absolute;
     height: 220px;
     line-height: 220px;
     color: rgba(0,0,0,0.2);
-    width: 5%;
-    visibility: visible;
+    width: 40px;
+    opacity: 0;
     z-index: 10;
     cursor: pointer;
     text-align: center;
     &:hover {
-        visibility: visible;
+        opacity: 1;
     }
     &.left {
         left: 0px;
-        background: linear-gradient(to left, white, rgba(0,0,0,0));  
+        background: linear-gradient(to left, rgba(0,0,0,0), white);  
     }
     &.right {
         right: 0px;

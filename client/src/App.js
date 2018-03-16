@@ -7,6 +7,7 @@ import NavBar from './components/elements/NavBar';
 import MobileNav from './components/elements/MobileNav';
 import Home from './components/pages/Home';
 import Cart from './components/pages/Cart';
+import Checkout from './components/pages/Checkout';
 import Dashboard from './components/pages/Dashboard';
 import ProductCollection from './components/pages/ProductCollection';
 import Product from './components/pages/Product';
@@ -39,6 +40,7 @@ class App extends Component {
         this.state = {
             mobileNavOpen: false,
             cartItems: [],
+            selectedShippingMethod: undefined,
         }
     }
 
@@ -79,13 +81,11 @@ class App extends Component {
 
     render = () => {
         console.log(auth.isAuthenticated());
-        //auth.logout();
-        console.log(auth.isAuthenticated());
         return (
             <div>
-                <NavBar 
+                <NavBar
                     loggedIn={auth.isAuthenticated()}
-                    username={auth.getUsername()} 
+                    username={auth.getUsername()}
                     toggleMobileNav={this.toggleMobileNav}
                     mobileNavOpen={this.state.mobileNavOpen}
                     cartItemCount={this.state.cartItems.length}
@@ -116,9 +116,19 @@ class App extends Component {
                             cartItems={this.state.cartItems}
                             getCartItems={this.getCartItems}/>
                     }/>
-                    <Route path='/dashboard' render = {() => <Dashboard/>}/>
-                    <Route path='/addproduct' render = {() => <AddProduct/>}/>
-                    <Route path='/search' render = {()=><SearchResults/>}/>
+                    <Route path='/checkout' render = {() => 
+                        <Checkout 
+                            username={auth.getUsername()}
+                            cartItems={this.state.cartItems}
+                            selectedShippingMethod={this.state.selectedShippingMethod}/>
+                    }/>
+                    <Route path='/dashboard' render = {() => 
+                        <Dashboard/>
+                    }/>
+                    <Route path='/addproduct' render = {() => 
+                        <AddProduct/>
+                    }/>
+                    <Route path='/search' component={SearchResults}/>
                 </div>
                 <Route path='/login' render = {() => 
                     <LogInPage 
@@ -136,7 +146,9 @@ class App extends Component {
                         <Redirect to='/home'/>
                     )
                 }}/>
-                <Footer isAdmin={auth.isAdmin()} username={auth.getUsername()}/>
+                <Footer 
+                    isAdmin={auth.isAdmin()} 
+                    username={auth.getUsername()}/>
             </div>
         )
     }

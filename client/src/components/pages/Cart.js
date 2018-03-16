@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ActionButton from '../elements/ActionButton';
 import { API_ROOT } from './../../utils/api_config';
 import { generateId } from './../../utils/uuid-generator';
 
@@ -26,6 +27,11 @@ export default class Cart extends Component {
         username: PropTypes.string.isRequired,
         cartItems: PropTypes.array.isRequired,
         getCartItems: PropTypes.func.isRequired,
+    }
+
+    static contextTypes = {
+    	router: PropTypes.object,
+    	location: PropTypes.object
     }
 
     constructor(props) {
@@ -265,13 +271,16 @@ export default class Cart extends Component {
 
     renderNavButtons = () => (
         <div className='sneakerstop-cart-nav-button-container'>
-            <Link to='/products'>
-                &#8249; Continue Shopping 
-            </Link>
+            <ActionButton 
+                text='Continue Shopping' 
+                orientation='left' 
+                inverse={true}
+                onClick = {()=>this.context.router.history.push('/products')}/>
             {!this.state.cartItems || this.state.cartItems.length === 0 ? null : (
-                <Link to='/checkout'>
-                    Check Out &#8250;
-                </Link>
+                <ActionButton 
+                    text='Check Out' 
+                    orientation='right'
+                    onClick = {()=>this.context.router.history.push('/checkout')}/>
             )}
         </div>  
     )

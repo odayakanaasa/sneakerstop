@@ -44,7 +44,7 @@ export default class Product extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.addToCart();
-        this.context.router.history.push('/cart')
+        this.context.router.history.push('/cart');
     }
 
     async addToCart() {

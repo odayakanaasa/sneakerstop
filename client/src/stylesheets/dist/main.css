@@ -77,38 +77,33 @@ h1, h2, h3, h4, h5 {
   height: 40px;
   line-height: 40px;
   width: 200px;
-  margin-top: 20px;
+  margin: 20px auto 0px auto;
   color: white;
   background-color: #22f;
+  border: 2px solid #22f;
   font-family: 'Trade Gothic';
   font-size: 18px;
-  border: 2px solid #22f;
   cursor: pointer; }
   .sneakerstop-action-button div {
-    position: absolute;
+    display: inline-flex;
+    vertical-align: top;
     font-size: 40px;
-    line-height: 32px;
-    transition: right 0.2s, left 0.2s; }
-    .sneakerstop-action-button div.right-button {
-      float: right;
-      right: 25%; }
-    .sneakerstop-action-button div.left-button {
-      float: left;
-      left: 25%; }
+    line-height: 30px;
+    font-family: 'Trade Gothic Light'; }
   .sneakerstop-action-button.inverse {
     background-color: white;
     color: #22f; }
-  .sneakerstop-action-button span {
+  .sneakerstop-action-button .text {
     line-height: 40px;
-    position: absolute;
-    float: left;
-    left: 25%; }
+    text-align: center;
+    font-family: 'Trade Gothic';
+    font-size: 18px;
+    padding: 0px 5px 0px 5px;
+    transition: padding 0.2s; }
   .sneakerstop-action-button:hover {
     text-decoration: none; }
-    .sneakerstop-action-button:hover .right-button {
-      right: 22%; }
-    .sneakerstop-action-button:hover .left-button {
-      left: 22%; }
+    .sneakerstop-action-button:hover .text {
+      padding: 0px 10px 0px 10px; }
 
 .sneakerstop-navbar {
   z-index: 5;
@@ -523,21 +518,23 @@ input:-webkit-autofill {
 .sneakerstop-product-thumbnails-container {
   position: absolute;
   left: 5% !important;
-  width: 95%;
+  width: 90%;
   overflow-x: hidden; }
 
 .sneakerstop-product-thumbnails {
   display: inline-block; }
 
 .sneakerstop-product-thumbnail-set {
+  border: 1px solid red;
   display: flex;
   flex-wrap: nowrap;
   transition: margin-left 0.5s; }
   .sneakerstop-product-thumbnail-set a {
+    border: 1px solid green;
     position: relative;
     display: inline-block;
     width: 190px;
-    margin: 5px 10px 5px 10px;
+    margin: 0px 10px 0px 10px;
     padding: 0px 5px 20px 5px;
     height: 220px;
     background-color: white;
@@ -565,21 +562,20 @@ input:-webkit-autofill {
 
 .sneakerstop-product-row .arrow-container {
   font-size: 36px;
-  margin-top: 5px;
   position: absolute;
   height: 220px;
   line-height: 220px;
   color: rgba(0, 0, 0, 0.2);
-  width: 5%;
-  visibility: visible;
+  width: 40px;
+  opacity: 0;
   z-index: 10;
   cursor: pointer;
   text-align: center; }
   .sneakerstop-product-row .arrow-container:hover {
-    visibility: visible; }
+    opacity: 1; }
   .sneakerstop-product-row .arrow-container.left {
     left: 0px;
-    background: linear-gradient(to left, white, rgba(0, 0, 0, 0)); }
+    background: linear-gradient(to left, rgba(0, 0, 0, 0), white); }
   .sneakerstop-product-row .arrow-container.right {
     right: 0px;
     background: linear-gradient(to right, rgba(0, 0, 0, 0), white); }

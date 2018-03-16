@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import InputField from './../elements/InputField';
+import InputField from '../elements/InputField';
+import ActionButton from '../elements/ActionButton';
 
 export default class LogInPage extends Component {
 

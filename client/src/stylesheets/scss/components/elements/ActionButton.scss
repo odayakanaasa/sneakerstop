@@ -4,44 +4,36 @@
     height: 40px;
     line-height: 40px;
     width: 200px;
-    margin-top: 20px;
+    margin: 20px auto 0px auto;
     color: white;
     background-color: $sneakerstop-blue;
-    font-family: 'Trade Gothic';
-    font-size: 18px;
     border: 2px solid $sneakerstop-blue;
+    font-family: 'Trade Gothic';
+    font-size: 18px;   
     cursor: pointer;
     & div {
-        position: absolute;
+        display: inline-flex;
+        vertical-align: top;
         font-size: 40px;
-        line-height: 32px;
-        transition: right 0.2s, left 0.2s;
-        &.right-button {
-            float: right;
-            right: 25%;
-        }
-        &.left-button {
-            float: left;            
-            left: 25%;
-        }
+        line-height: 30px;
+        font-family: 'Trade Gothic Light';
     }
     &.inverse {
         background-color: white;
         color: $sneakerstop-blue;
     }
-    & span {
+    & .text {
         line-height: 40px;
-        position: absolute;
-        float: left;            
-        left: 25%;
+        text-align: center; 
+        font-family: 'Trade Gothic';
+        font-size: 18px;        
+        padding: 0px 5px 0px 5px;
+        transition: padding 0.2s;
     }
     &:hover {
         text-decoration: none;
-        & .right-button {
-            right: 22%;
-        }
-        & .left-button {
-            left: 22%;
+        & .text {
+            padding: 0px 10px 0px 10px;
         }
     }
 }
