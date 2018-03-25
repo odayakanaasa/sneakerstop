@@ -538,7 +538,6 @@ input:-webkit-autofill {
   .sneakerstop-product-thumbnails-flex-container a {
     position: relative;
     display: inline-block;
-    width: 190px;
     margin: 0px 10px 0px 10px;
     padding: 0px 5px 0px 5px;
     height: 200px;
@@ -547,13 +546,13 @@ input:-webkit-autofill {
     cursor: pointer; }
 
 .sneakerstop-product-thumbnail {
-  text-align: center; }
+  text-align: center;
+  width: 150px; }
   .sneakerstop-product-thumbnail img {
     margin: auto;
     width: 90%; }
   .sneakerstop-product-thumbnail h3, .sneakerstop-product-thumbnail h4 {
     font-family: 'Trade Gothic';
-    width: 150px;
     margin: 20px auto 0px auto; }
   .sneakerstop-product-thumbnail h3 {
     font-size: 14px;
