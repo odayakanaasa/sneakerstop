@@ -510,33 +510,38 @@ input:-webkit-autofill {
   margin-bottom: 10px; }
 
 .sneakerstop-product-row {
+  background-color: white;
+  padding: 10px 0px 20px 0px;
+  box-sizing: border-box;
   position: relative;
   width: 100%;
-  height: 240px;
+  height: 300px;
   overflow-x: hidden; }
-
-.sneakerstop-product-thumbnails-container {
-  position: absolute;
-  left: 5% !important;
-  width: 90%;
-  overflow-x: hidden; }
+  .sneakerstop-product-row h2 {
+    font-family: 'Trade Gothic Condensed';
+    margin-left: 50px;
+    font-size: 30px;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 10px; }
 
 .sneakerstop-product-thumbnails {
-  display: inline-block; }
+  position: absolute;
+  width: 94%;
+  left: 3%;
+  height: 200px;
+  overflow-x: hidden; }
 
-.sneakerstop-product-thumbnail-set {
-  border: 1px solid red;
+.sneakerstop-product-thumbnails-flex-container {
   display: flex;
-  flex-wrap: nowrap;
-  transition: margin-left 0.5s; }
-  .sneakerstop-product-thumbnail-set a {
-    border: 1px solid green;
+  flex-wrap: nowrap; }
+  .sneakerstop-product-thumbnails-flex-container a {
     position: relative;
     display: inline-block;
     width: 190px;
     margin: 0px 10px 0px 10px;
-    padding: 0px 5px 20px 5px;
-    height: 220px;
+    padding: 0px 5px 0px 5px;
+    height: 200px;
     background-color: white;
     box-sizing: border-box;
     cursor: pointer; }
@@ -561,23 +566,22 @@ input:-webkit-autofill {
     color: #22f; }
 
 .sneakerstop-product-row .arrow-container {
+  top: 0px;
   font-size: 36px;
   position: absolute;
-  height: 220px;
-  line-height: 220px;
+  height: 200px;
+  line-height: 200px;
   color: rgba(0, 0, 0, 0.2);
   width: 40px;
-  opacity: 0;
   z-index: 10;
-  cursor: pointer;
-  text-align: center; }
-  .sneakerstop-product-row .arrow-container:hover {
-    opacity: 1; }
+  cursor: pointer; }
   .sneakerstop-product-row .arrow-container.left {
     left: 0px;
+    text-align: left;
     background: linear-gradient(to left, rgba(0, 0, 0, 0), white); }
   .sneakerstop-product-row .arrow-container.right {
     right: 0px;
+    text-align: right;
     background: linear-gradient(to right, rgba(0, 0, 0, 0), white); }
 
 .sneakerstop-cart-layout-container {
@@ -1064,18 +1068,5 @@ input:-webkit-autofill {
     text-decoration: none; }
     .sneakerstop-shop-now-button:hover div {
       right: 22%; }
-
-.sneakerstop-products-container {
-  position: relative;
-  width: 100%;
-  background-color: white;
-  padding: 10px 0px 20px 0px;
-  box-sizing: border-box; }
-  .sneakerstop-products-container h2 {
-    margin-left: 50px;
-    font-size: 30px;
-    height: 60px;
-    line-height: 60px;
-    margin-bottom: 10px; }
 
 /*# sourceMappingURL=main.css.map */

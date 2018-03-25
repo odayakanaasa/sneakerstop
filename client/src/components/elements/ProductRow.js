@@ -7,12 +7,16 @@ import { generateId } from '../../utils/uuid-generator';
 
 export default class ProductRow extends Component {
 
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+        products: PropTypes.array.isRequired,
+    }
+
     constructor(props) {
         super(props);
         this.state = {
             index: 0,
-
-            scrollPos: 0,
+            scrollPos: -160,
             displayedProducts: [],
             isRotating: false,
         }
@@ -27,20 +31,29 @@ export default class ProductRow extends Component {
         this.setState({isRotating: true});
         let currentScrollPos = this.state.scrollPos;
         if(direction==='left') {
-            this.setState({scrollPos: currentScrollPos+210});                        
-            let nextProducts = this.state.displayedProducts.slice();
-            let productToRotate = nextProducts.shift();
-            nextProducts.push(productToRotate);
-            setTimeout(()=>{
-                this.setState({displayedProducts: nextProducts, isRotating: false});             
-            },500);
-        } else if (direction==='right') {
-            this.setState({scrollPos: currentScrollPos-210});            
+            this.setState({scrollPos: currentScrollPos+180});                        
             let nextProducts = this.state.displayedProducts.slice();
             let productToRotate = nextProducts.pop();
             nextProducts.unshift(productToRotate);
             setTimeout(()=>{
-                this.setState({displayedProducts: nextProducts, isRotating: false});                
+                this.setState({
+                        displayedProducts: nextProducts,
+                        isRotating: false,
+                        scrollPos: currentScrollPos,
+                    });
+                this.setState({scrollPos: currentScrollPos});                                  
+            },500);
+        } else if (direction==='right') {
+            this.setState({scrollPos: currentScrollPos-180});   
+            let nextProducts = this.state.displayedProducts.slice();
+            let productToRotate = nextProducts.shift();
+            nextProducts.push(productToRotate);         
+            setTimeout(()=>{
+                this.setState({
+                        displayedProducts: nextProducts,
+                        isRotating: false,
+                    });
+                this.setState({scrollPos: currentScrollPos});              
             },500);
         }
     }
@@ -58,38 +71,33 @@ export default class ProductRow extends Component {
     )
 
     render = () => {
-        console.log(this.state.displayedProducts);
         return (
             <div className='sneakerstop-product-row'>
-                <div 
-                    className='left arrow-container'
-                    onClick={()=>{
-                        if(!this.state.isRotating) {
-                            this.rotate('left')
-                        }
-                    }}
-                    style={this.state.scrollPos === 0 ? {visibility: 'hidden'} : {}}>
-                    &#x276E;
-                </div>
-                <div className='sneakerstop-product-thumbnails-container'>
-                    <div className='sneakerstop-product-thumbnails'>
-                        <div
-                            className='sneakerstop-product-thumbnail-set'
-                            style={{marginLeft:`${this.state.scrollPos}px`}}
-                            >
-                            {this.state.displayedProducts.slice(1,this.state.displayedProducts.length-1).map(product => this.renderProduct(product))}
-                        </div>
+                <h2>{this.props.title}</h2>
+                <div className='sneakerstop-product-thumbnails'>
+                    <div className='left arrow-container'
+                        onClick={()=>{
+                            if(!this.state.isRotating) {
+                                this.rotate('left')
+                            }
+                        }}>
+                        &#x276E;
                     </div>
-                </div>
-                <div
-                    className='right arrow-container'
-                    onClick={()=>{
-                        if(!this.state.isRotating) {
-                            this.rotate('right')
-                        }
-                    }}
-                    style={this.state.scrollPos === 1000 ? {visibility: 'hidden'} : {}}>
-                    &#x276F;
+                    <div className='sneakerstop-product-thumbnails-flex-container'
+                        style={{
+                            marginLeft:`${this.state.scrollPos}px`,
+                            transition: (this.state.isRotating ? 'margin-left 0.5s' : null),
+                            }}>
+                        {this.state.displayedProducts.map(product => this.renderProduct(product))}
+                    </div>
+                    <div className='right arrow-container'
+                        onClick={()=>{
+                            if(!this.state.isRotating) {
+                                this.rotate('right')
+                            }
+                        }}>
+                        &#x276F;
+                    </div>
                 </div>
             </div>
         )

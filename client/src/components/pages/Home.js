@@ -26,12 +26,8 @@ export default class Home extends Component {
                         </Link>
                     </div>
                 </div>
-                <div className='sneakerstop-products-container'>
-                    <h2> Recently Released </h2>
-                    <ProductRow/>
-                    <h2> Recommended For You </h2>
-                    <ProductRow/>
-                </div>
+                <ProductRow title='Recently Released'/>
+                <ProductRow title='Recommended For You'/>
             </div>
         )
     }
