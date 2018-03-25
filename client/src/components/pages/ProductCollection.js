@@ -123,6 +123,7 @@ export default class ProductsPage extends Component {
                     this.renderProducts(this.state.products)
                 )}                
             </div>
+            <ProductRow title='Recommended For You'/>
         </div>
     );
 }
