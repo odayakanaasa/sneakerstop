@@ -135,6 +135,7 @@ export default class NavBar extends Component {
                     <Hamburger open={this.props.mobileNavOpen}/>
                 </div>
                 <NavDropdown 
+                    hide={()=>this.setState({dropdownGroup: ''})}
                     group={this.state.dropdownGroup} 
                     setDropdownGroup={group => this.setState({dropdownGroup: group})}/>
             </div>

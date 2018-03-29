@@ -33,6 +33,11 @@ const ScrollToTop = () => {
     return null;
 };
 
+export const setUsername = (username) => {
+    console.log(username);
+    App.setState({username: username});
+}
+
 class App extends Component {
 
     constructor() {
@@ -41,6 +46,7 @@ class App extends Component {
             mobileNavOpen: false,
             cartItems: [],
             selectedShippingMethod: undefined,
+            username: undefined,
         }
     }
 
@@ -49,8 +55,7 @@ class App extends Component {
     }
 
     getCartItems = async () => {
-        let username = auth.getUsername();
-        if(username) {
+        if(this.state.username) {
             //retrieve cart from API
             try {
                 let result = await axios.get(`${API_ROOT}/cartitems/${auth.getUsername()}`);
@@ -85,7 +90,7 @@ class App extends Component {
             <div>
                 <NavBar
                     loggedIn={auth.isAuthenticated()}
-                    username={auth.getUsername()}
+                    username={this.state.username}
                     toggleMobileNav={this.toggleMobileNav}
                     mobileNavOpen={this.state.mobileNavOpen}
                     cartItemCount={this.state.cartItems.length}
@@ -93,7 +98,7 @@ class App extends Component {
                     logout={auth.logout}/>
                 <MobileNav 
                     toggleMobileNav={this.toggleMobileNav}
-                    username={auth.getUsername()} 
+                    username={this.state.username} 
                     open={this.state.mobileNavOpen}
                     cartItemCount={this.state.cartItems.length}
                     handleSearch={this.handleSearch}
@@ -132,7 +137,7 @@ class App extends Component {
                 </div>
                 <Route path='/login' render = {() => 
                     <LogInPage 
-                        username={auth.getUsername()} 
+                        username={this.state.username} 
                         login={auth.login}/>
                 }/>
                 <Route path='/register' render = {() => 
@@ -148,7 +153,7 @@ class App extends Component {
                 }}/>
                 <Footer 
                     isAdmin={auth.isAdmin()} 
-                    username={auth.getUsername()}/>
+                    username={this.state.username}/>
             </div>
         )
     }

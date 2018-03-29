@@ -13,21 +13,21 @@ export default class Footer extends Component {
             <div className='row'>
                 <div className='col-md-4 footer-nav'>
                     <ul className='left'>
-                        <li><Link to='/customerservice'><h3>Customer Service</h3></Link></li>
-                        <li><Link to='/tracking'>Track a Shipment</Link></li>
-                        <li><Link to='/faq'>FAQ</Link></li>
-                        <li><Link to='/contact'>Contact Us</Link></li>
-                        <li><Link to='/giftcards'>Gift Cards</Link></li>
-                        <li><Link to='/coupons'>Coupons</Link></li>
-                        <li><Link to='/returns'>Returns</Link></li>
+                        <li><Link to='#'><h3>Customer Service</h3></Link></li>
+                        <li><Link to='#'>Track a Shipment</Link></li>
+                        <li><Link to='#'>FAQ</Link></li>
+                        <li><Link to='#'>Contact Us</Link></li>
+                        <li><Link to='#'>Gift Cards</Link></li>
+                        <li><Link to='#'>Coupons</Link></li>
+                        <li><Link to='#'>Returns</Link></li>
                     </ul>
                 </div>
                 <div className='col-md-4 footer-nav'>
                     <ul className='middle'>
-                        <li><Link to='/about'><h3>About</h3></Link></li>
-                        <li><Link to='/blog'>Blog</Link></li>
-                        <li><Link to='/investors'>Investors</Link></li>
-                        <li><Link to='/careers'>Careers</Link></li>
+                        <li><Link to='#'><h3>About</h3></Link></li>
+                        <li><Link to='#'>Blog</Link></li>
+                        <li><Link to='#'>Investors</Link></li>
+                        <li><Link to='#'>Careers</Link></li>
                         {this.props.isAdmin ? (
                             <li>
                                 <Link to='/dashboard'>Dashboard</Link>

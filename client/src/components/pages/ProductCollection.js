@@ -35,6 +35,8 @@ export default class ProductsPage extends Component {
         return queryString.parse(this.context.router.history.location.search);
     }
 
+    //TODO: fix men's boots shoes
+
     getTitle = () => {
         let queries = this.getQueries();
         if (queries.group || queries.category || queries.subcategory) {
@@ -117,7 +119,7 @@ export default class ProductsPage extends Component {
             <div className='sneakerstop-products-collection-container'>
                 {this.state.products.length===0 ? (
                     <div>
-                        Loading...
+                        Sorry! No products in this category.
                     </div>
                 ) : (
                     this.renderProducts(this.state.products)

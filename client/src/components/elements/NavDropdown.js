@@ -22,6 +22,7 @@ export default class NavDropdown extends Component {
     static propTypes = {
         group: PropTypes.string.isRequired,
         setDropdownGroup: PropTypes.func.isRequired,
+        hide: PropTypes.func.isRequired,
     }
 
     render = () => {
@@ -36,7 +37,8 @@ export default class NavDropdown extends Component {
                 <div 
                     className='nav-dropdown'
                     onMouseEnter={()=>{this.props.setDropdownGroup(this.props.group)}}
-                    onMouseLeave={()=>{this.props.setDropdownGroup('')}}>
+                    onMouseLeave={()=>{this.props.setDropdownGroup('')}}
+                    onClick={this.props.hide}>
                     {Object.keys(categories).map(category => (
                         <ul key={generateId()}>
                             <li>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import uuidv1 from 'uuid';
 import { API_ROOT } from '../../utils/api_config';
+import { generateId } from '../../utils/uuid-generator';
 
 const brands = ['Adidas', 'Air Jordan', 'Converse', 'Nike', 'Puma', 'Vans'];
 const groups = ['Men','Women','Kids'];
@@ -10,8 +11,6 @@ const categories = ['Shoes','Clothing','Accessories'];
 const shoeCategories = ['Basketball','Running','Lifestyle','Tennis','Soccer','Skateboarding','Cleats','Boots'];
 const clothingCategories = ['Outerwear','Shirts','Hoodies & Sweatshirts','Socks','Pants','Shorts','Swim'];
 const accessoryCategories = ['Hats','Gloves','Sunglasses','Bags & Backpacks','Watches'];
-
-//TODO: react DND tags for all of these???
 
 export default class AddProduct extends Component {
 
@@ -25,30 +24,35 @@ export default class AddProduct extends Component {
             category: '',
             subcategory: '',
             price: '',
-            image1uploadSuccessful: false,
-            image2uploadSuccessful: false,
-            image3uploadSuccessful: false,
-            image4uploadSuccessful: false,
+            image1: undefined,
+            image2: undefined,
+            image3: undefined,
+            image4: undefined,
             formValid: false,
         }
     }
-    
-    static propTypes = {
 
-    }
-
-    generateId = () => {
-	    let uuidv1 = require('uuid/v1');
-        return uuidv1();
-    }
-
-    async uploadImage(event) {
+    async handleSubmit(event) {
         event.preventDefault();
-        try {
-            await axios.post(`${API_ROOT}/images/${this.state.id}`);
-            this.setState({uploadSuccessful: true});
-        } catch (err) {
-            console.log('Image upload error:',err);
+
+        if(this.state.image1 && this.state.image2 && this.state.image3 && this.state.image4) {
+            let images = [
+                this.state.image1,
+                this.state.image2,
+                this.state.image3,
+                this.state.image4,
+            ]
+            //upload images
+
+            //add product to database
+            try {
+                await axios.post(`${API_ROOT}/products`,{
+                    //product data here
+                });
+                this.props.router.push('/home');            
+            } catch (err) {
+                console.log('DELETE request error:',err);
+            }
         }
     }
 
@@ -57,25 +61,14 @@ export default class AddProduct extends Component {
         //this.setState({event.target.name: event.target.value});
     }
 
-    async handleSubmit(event) {
+    handleFileChoice = (event) => {
         event.preventDefault();
-
-
-
-        if (this.state.uploadSuccessful) {
-             //make api POST call
-
-            
-            try {
-                await axios.post(`${API_ROOT}/products`);
-                this.props.router.push('/home');            
-            } catch (err) {
-                console.log('DELETE request error:',err);
-            }
+        if(this.checkFileType(event.target.files[0])) {
+            this.setState({[event.target.name]: event.target.files[0]});            
         }
     }
 
-    handleUploadAttempt = () => {
+    checkFileType = () => {
 
     }
 
@@ -92,42 +85,44 @@ export default class AddProduct extends Component {
         }
     }
 
-    render = () => (
-        <div className='add-product-page'>
-            <form onSubmit={this.handleSubmit}>
-                <input onChange={this.handleChange} placeholder='Name'/>
-                    Brand
-                <select>
-                    {brands.map(brand => <option>{brand}</option>)}
-                </select>
-                    Group
-                <select>
-                    {groups.map(group => <option>{group}</option>)}
-                </select>
-                    Category
-                <select>
-                    {categories.map(type => <option>{type}</option>)}
-                </select>
-                    Subcategory
-                <select>
-                    {this.renderSubcategories()}
-                </select>
-                    Price
-                $<input onChange={this.handleChange} type='number' placeholder='$' min={0} max={499.99}/>
-            </form>
-            <form onSubmit={this.uploadImage}>
-                Image 1
-                <input type='file'/>
-                Image 2
-                <input type='file'/>
-                Image 3
-                <input type='file'/>
-                Image 4
-                <input type='file'/>
-            </form>
-            <button type='submit'>Add Product</button>
-        </div>
-
-    ) 
-    
+    render = () => {
+        return (
+            <div className='add-product-page'>
+                <form onSubmit={this.handleSubmit}>
+                    <input onChange={this.handleChange} placeholder='Name'/>
+                        Brand
+                    <select onChange={this.handleChange}>
+                        {brands.map(brand => <option>{brand}</option>)}
+                    </select>
+                        Group
+                    <select onChange={this.handleChange}>
+                        {groups.map(group => <option>{group}</option>)}
+                    </select>
+                        Category
+                    <select onChange={this.handleChange}>
+                        {categories.map(type => <option>{type}</option>)}
+                    </select>
+                        Subcategory
+                    <select onChange={this.handleChange}>
+                        {this.renderSubcategories()}
+                    </select>
+                        Price
+                    $<input onChange={this.handleChange} type='number' placeholder='$' min={0} max={499.99}/>
+                    Image 1
+                    <input type='file' name='image1' onChange={this.handleFileChoice}/>
+                    <span className='err-msg'>{}</span>
+                    Image 2
+                    <input type='file' name='image2' onChange={this.handleFileChoice}/>
+                    <span className='err-msg'>{}</span>
+                    Image 3
+                    <input type='file' name='image3' onChange={this.handleFileChoice}/>
+                    <span className='err-msg'>{}</span>
+                    Image 4
+                    <input type='file' name='image4' onChange={this.handleFileChoice}/>
+                    <span className='err-msg'>{}</span>
+                </form>
+                <button type='submit'>Add Product</button>
+            </div>
+        );
+    } 
 }

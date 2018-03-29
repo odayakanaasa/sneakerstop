@@ -1,5 +1,6 @@
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth-variables';
+import setUsername from './../../App';
 
 //login with google 
 //sneakerstop.auth0.com
@@ -14,14 +15,6 @@ export default class Auth {
         responseType: 'token id_token'
     });
 
-    getUsername = () => {
-        return '';
-    }
-
-    getNickname = () => {
-        return '';
-    }
-
     isAdmin = () => true;
 
     login = (email, password) => {
@@ -31,9 +24,7 @@ export default class Auth {
                 if (err) {
                     console.log(err);
                     return;
-                } else {
-                    console.log(authResult);
-                }
+                } 
             }
         );
     }
@@ -60,10 +51,13 @@ export default class Auth {
 
     handleAuthentication = () => {
         this.auth0.parseHash((err, authResult) => {
-            console.log(authResult);
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
                 //navigate to home or dashboard
+                console.log(authResult);
+                console.log(authResult.idTokenPayload.nickname); //works
+                console.log(setUsername);
+                setUsername(authResult.idTokenPayload.nickname);
             } else if (err) {
                 console.log(err);
                 alert(`Error: ${err.error}. Check the console for further details.`);
@@ -91,8 +85,7 @@ export default class Auth {
     }
 
     isAuthenticated = () => {
-        // Check whether the current time is past the 
-        // access token's expiry time
+        // Check whether the current time is past the access token's expiry time
         let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
         return new Date().getTime() < expiresAt;
     }
