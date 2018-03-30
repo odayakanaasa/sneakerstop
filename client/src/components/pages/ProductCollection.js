@@ -114,17 +114,20 @@ export default class ProductsPage extends Component {
         ))
     }
 
-    renderSortOptions = () => {
+    renderSortWidget = () => {
         return (
-            <select onChange={(event)=>{
-                event.preventDefault();
-                this.setState({sortBy: event.target.value});
-            }}>
-                <option value='name'>Name</option>
-                <option value='name'>Brand</option>
-                <option value='price'>Price: Low to High</option>
-                <option value='pricereverse'>Price: High to Low</option>
-            </select>
+            <div className='sneakerstop-products-collection-sort'>
+                <span >Sort</span>
+                <select onChange={(event)=>{
+                    event.preventDefault();
+                    this.setState({sortBy: event.target.value});
+                }}>
+                    <option value='name'>Name</option>
+                    <option value='name'>Brand</option>
+                    <option value='price'>Price: Low to High</option>
+                    <option value='pricereverse'>Price: High to Low</option>
+                </select>
+            </div>
         )
     }
     
@@ -133,7 +136,7 @@ export default class ProductsPage extends Component {
             <div className='sneakerstop-products-collection-page'>
                 <div className='sneakerstop-products-collection-header'>
                     <h1>{this.getTitle()}</h1>
-                    {this.renderSortOptions}
+                    {this.renderSortWidget()}
                 </div>
                 <div className='sneakerstop-products-collection-container'>
                     {this.state.products.length===0 ? (

@@ -7,10 +7,31 @@
     height: 40px;
     line-height: 40px;
     background-color: white;
-    padding: 20px 5% 80px 5%;
+    padding: 20px 5% 85px 5%;
     box-sizing: border-box;
     & h1 {
+        width: 100%;
+        display: inline-block;
         text-align: center;
+    }
+    
+}
+
+.sneakerstop-products-collection-sort {
+    vertical-align: top;
+    width: 100%;
+    text-align: center;
+    & span {
+        font-family: 'Trade Gothic';
+    }
+    & select {
+        width: 150px;
+        height: 30px;
+        margin: 5px;
+        border-radius: 0px;
+        border: 1px solid #666;
+        font-size: 14px;
+        box-sizing: border-box;
     }
 }
 
@@ -65,6 +86,12 @@
         width: 190px;
     }
     .sneakerstop-products-collection-header h1 {
+        width: 50%;
         text-align: left;
+    }
+    .sneakerstop-products-collection-sort {
+        width: 50%;
+        display: inline-block;
+        text-align: right;
     }
 }

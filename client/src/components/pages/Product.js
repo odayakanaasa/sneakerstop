@@ -48,8 +48,7 @@ export default class Product extends Component {
     }
 
     async addToCart() {
-        if(this.props.username) {
-            //if user is logged in post to cartitems database
+        if(localStorage.getItem('username')) {
             try {
                 await axios.post(`${API_ROOT}/cartitems`,{
                     product_id: this.state.productData.id,
@@ -61,7 +60,18 @@ export default class Product extends Component {
                 console.log(err);
             }
         } else {
-            //save the cartitem in localstorage or similar
+            let cart = localStorage.getItem('cart');
+            if(cart) {
+                let parsedCart = JSON.parse(cart);
+                console.log(parsedCart);
+            } else {
+                localStorage.setItem('cart',JSON.stringify({
+                    product_id: this.state.productData.id,
+                    username: this.props.username,
+                    quantity: 1,
+                    purchased: false,
+                }));
+            }
         }
         this.props.getCartItems();
     }
