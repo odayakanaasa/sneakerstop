@@ -33,11 +33,6 @@ const ScrollToTop = () => {
     return null;
 };
 
-export const setUsername = (username) => {
-    console.log(username);
-    App.setState({username: username});
-}
-
 class App extends Component {
 
     constructor() {
@@ -50,15 +45,18 @@ class App extends Component {
         }
     }
 
-    componentWillMount() {
-        this.getCartItems();    
+    componentDidMount() {
+        this.getCartItems();
+        console.log(localStorage.getItem('username'));
+        this.setState({username: localStorage.getItem('username')});    
     }
 
     getCartItems = async () => {
-        if(this.state.username) {
+        let username = localStorage.getItem('username');
+        if(username) {
             //retrieve cart from API
             try {
-                let result = await axios.get(`${API_ROOT}/cartitems/${auth.getUsername()}`);
+                let result = await axios.get(`${API_ROOT}/cartitems/${username}`);
                 this.setState({cartItems: result.data});
                 return result.data;
             } catch(err) {
@@ -90,7 +88,6 @@ class App extends Component {
             <div>
                 <NavBar
                     loggedIn={auth.isAuthenticated()}
-                    username={this.state.username}
                     toggleMobileNav={this.toggleMobileNav}
                     mobileNavOpen={this.state.mobileNavOpen}
                     cartItemCount={this.state.cartItems.length}
@@ -98,7 +95,6 @@ class App extends Component {
                     logout={auth.logout}/>
                 <MobileNav 
                     toggleMobileNav={this.toggleMobileNav}
-                    username={this.state.username} 
                     open={this.state.mobileNavOpen}
                     cartItemCount={this.state.cartItems.length}
                     handleSearch={this.handleSearch}
@@ -112,18 +108,15 @@ class App extends Component {
                     <Route exact path='/products' component = {ProductCollection}/>
                     <Route path='/products/:id' render = {() => 
                         <Product 
-                            username={auth.getUsername()}
                             getCartItems={this.getCartItems}/>
                     }/>
                     <Route path='/cart' render = {() => 
                         <Cart 
-                            username={auth.getUsername()}
                             cartItems={this.state.cartItems}
                             getCartItems={this.getCartItems}/>
                     }/>
                     <Route path='/checkout' render = {() => 
                         <Checkout 
-                            username={auth.getUsername()}
                             cartItems={this.state.cartItems}
                             selectedShippingMethod={this.state.selectedShippingMethod}/>
                     }/>
@@ -137,12 +130,10 @@ class App extends Component {
                 </div>
                 <Route path='/login' render = {() => 
                     <LogInPage 
-                        username={this.state.username} 
                         login={auth.login}/>
                 }/>
                 <Route path='/register' render = {() => 
                     <SignUpPage 
-                        username={auth.getUsername()} 
                         signup={auth.signup}/>
                 }/>
                 <Route path='/callback' render = {()=> {
@@ -152,8 +143,7 @@ class App extends Component {
                     )
                 }}/>
                 <Footer 
-                    isAdmin={auth.isAdmin()} 
-                    username={this.state.username}/>
+                    isAdmin={auth.isAdmin()}/>
             </div>
         )
     }

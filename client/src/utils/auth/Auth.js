@@ -1,6 +1,6 @@
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth-variables';
-import setUsername from './../../App';
+import { setUsername } from './../../App';
 
 //login with google 
 //sneakerstop.auth0.com
@@ -54,10 +54,6 @@ export default class Auth {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 this.setSession(authResult);
                 //navigate to home or dashboard
-                console.log(authResult);
-                console.log(authResult.idTokenPayload.nickname); //works
-                console.log(setUsername);
-                setUsername(authResult.idTokenPayload.nickname);
             } else if (err) {
                 console.log(err);
                 alert(`Error: ${err.error}. Check the console for further details.`);
@@ -68,6 +64,7 @@ export default class Auth {
     setSession(authResult) {
         // Set the time that the access token will expire at
         let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+        localStorage.setItem('username',authResult.idTokenPayload.nickname);
         localStorage.setItem('access_token', authResult.accessToken);
         localStorage.setItem('id_token', authResult.idToken);
         localStorage.setItem('expires_at', expiresAt);
@@ -76,6 +73,7 @@ export default class Auth {
 
     logout = () => {
         // Clear access token and ID token from local storage
+        localStorage.removeItem('username')
         localStorage.removeItem('access_token');
         localStorage.removeItem('id_token');
         localStorage.removeItem('expires_at');

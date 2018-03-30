@@ -10,7 +10,6 @@ export default class NavBar extends Component {
         mobileNavOpen: PropTypes.bool.isRequired,
         toggleMobileNav: PropTypes.func.isRequired,
         loggedIn: PropTypes.bool.isRequired,
-        username: PropTypes.string.isRequired,
         logout: PropTypes.func.isRequired,
         cartItemCount: PropTypes.number.isRequired,
         handleSearch: PropTypes.func.isRequired,
@@ -21,7 +20,14 @@ export default class NavBar extends Component {
         this.state = {
             searchInputValue: '',
             dropdownGroup: '',
+            username: undefined,
         }
+    }
+
+    componentDidMount() {
+        //TODO: make sure this is called
+        let username = localStorage.getItem('username');
+        this.setState({username: username});
     }
 
     handleInputChange = (event) => {
@@ -38,6 +44,7 @@ export default class NavBar extends Component {
     }
 
     render = () => {
+       
         console.log(this.props);
         return (
             <div className='sneakerstop-navbar'>
@@ -48,17 +55,16 @@ export default class NavBar extends Component {
                 </div>
                 <div className='sneakerstop-nav-container'>
                     <div className='sneakerstop-navbar-top'>        
-                        {this.props.loggedIn ? (
+                        {this.state.username ? (
                             <ul>
                                 <li>
-                                    Welcome, {this.props.username}
+                                    Welcome, {this.state.username}
                                 </li>
                                 <li>
                                     <span
                                         className='sneakerstop-logout-link'
                                         onClick={
                                             ()=>{
-                                                console.log('logout button clicked');
                                                 this.props.logout();
                                                 return (
                                                     <Redirect to='/home'/>

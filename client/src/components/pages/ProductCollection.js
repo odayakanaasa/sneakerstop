@@ -17,9 +17,9 @@ export default class ProductsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            filter: '',
             title: '',
             products: [],
+            sortBy: 'name',
         }
     }
 
@@ -34,8 +34,6 @@ export default class ProductsPage extends Component {
     getQueries = () => {
         return queryString.parse(this.context.router.history.location.search);
     }
-
-    //TODO: fix men's boots shoes
 
     getTitle = () => {
         let queries = this.getQueries();
@@ -54,7 +52,9 @@ export default class ProductsPage extends Component {
             }
             if (queries.category) {
                 if (!queries.subcategory || queries.category === 'shoes') {
-                    title+=` ${queries.category.charAt(0).toUpperCase() + queries.category.slice(1)}`                                    
+                    if (queries.subcategory!=='boots' && queries.subcategory!=='cleats') {
+                        title+=` ${queries.category.charAt(0).toUpperCase() + queries.category.slice(1)}`                                                            
+                    }
                 }
             }
             return title;
@@ -99,33 +99,53 @@ export default class ProductsPage extends Component {
         }
     }
 
-    renderProducts = (products) => products.map(product => (
-        <Link key={generateId()} to={`/products/${product.id}`}>
-            <div className='sneakerstop-product-thumbnail'>
-                <img 
-                    src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${product.id}-1.jpg`}
-                    alt={product.name}/>
-                <h3>{product.name}</h3>
-                <h4>${product.price}</h4>
-            </div>
-        </Link>
-    ))
+    renderProducts = (products) => {
+        products.sort();
+        return products.map(product => (
+            <Link key={generateId()} to={`/products/${product.id}`}>
+                <div className='sneakerstop-product-thumbnail'>
+                    <img 
+                        src={`http://res.cloudinary.com/djtc1xatx/image/upload/v1517870233/${product.id}-1.jpg`}
+                        alt={product.name}/>
+                    <h3>{product.name}</h3>
+                    <h4>${product.price}</h4>
+                </div>
+            </Link>
+        ))
+    }
+
+    renderSortOptions = () => {
+        return (
+            <select onChange={(event)=>{
+                event.preventDefault();
+                this.setState({sortBy: event.target.value});
+            }}>
+                <option value='name'>Name</option>
+                <option value='name'>Brand</option>
+                <option value='price'>Price: Low to High</option>
+                <option value='pricereverse'>Price: High to Low</option>
+            </select>
+        )
+    }
     
-    render = () => (
-        <div>
-            <div className='sneakerstop-products-collection-header'>
-                <h1>{this.getTitle()}</h1>
+    render = () => {
+        return (
+            <div className='sneakerstop-products-collection-page'>
+                <div className='sneakerstop-products-collection-header'>
+                    <h1>{this.getTitle()}</h1>
+                    {this.renderSortOptions}
+                </div>
+                <div className='sneakerstop-products-collection-container'>
+                    {this.state.products.length===0 ? (
+                        <div className='sneakerstop-no-products'>
+                            Sorry! No products in this category.
+                        </div>
+                    ) : (
+                        this.renderProducts(this.state.products)
+                    )}                
+                </div>
+                <ProductRow title='Recommended For You'/>
             </div>
-            <div className='sneakerstop-products-collection-container'>
-                {this.state.products.length===0 ? (
-                    <div>
-                        Sorry! No products in this category.
-                    </div>
-                ) : (
-                    this.renderProducts(this.state.products)
-                )}                
-            </div>
-            <ProductRow title='Recommended For You'/>
-        </div>
-    );
+        )
+    }
 }
